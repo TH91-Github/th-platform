@@ -1,0 +1,42 @@
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,div,span,table,th,td,form,fieldset,legend,input,textarea, a, button,select,svg,i,label,strong,code{margin:0; padding:0; font-family: 'Pretendard',sans-serif; box-sizing:border-box;}
+img,fieldset{border:0}
+em,address,i{font-style:normal;}
+table{border-collapse:collapse;}
+ul li, 
+ol li, li {
+  list-style:none;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size:16px;
+  font-weight:500;
+  line-height:1.5;
+  color:#000;
+}
+img {
+  vertical-align: top;
+  width:100%;
+  max-width:100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+button {
+  appearance: none;
+  border: none;
+  background-color: transparent;
+  font-size:inherit;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+input:autofill,
+input:autofill:active {
+  -webkit-text-fill-color: #000;
+  -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  box-shadow: 0 0 0px 1000px #fff inset;
+  border:1px solid #dbdbdb;
+  transition: none;
+}
