@@ -1,0 +1,85 @@
+@use './_variables' as *;
+@use './_mixins' as *;
+@use './_function' as *;
+
+body {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Pretendard', sans-serif;
+  line-height: 1.5;
+  letter-spacing: -0.25px;
+}
+
+.blind {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.pc-only {
+  display: block;
+}
+
+.mo-only {
+  display: none;
+}
+h1, h2, h3, h4, h5, h6, .title, .tit, .tit-s {
+  letter-spacing: -0.4px;
+}
+// title
+.title {
+  font-weight: 600;
+}
+
+.tit {
+  font-size: rem(18px);
+  font-weight: 550;
+}
+
+.tit-s {
+  font-size: rem(16px);
+  font-weight: 500;
+}
+
+// color
+.title,
+.tit,
+.tit-s {
+  color: var(--color-title);
+}
+
+.text {
+  color: var(--color-text);
+}
+
+.desc {
+  color: var(--color-desc);
+}
+
+.txt,
+.text-s,
+.txt-s {
+  color: var(--color-sub-text);
+}
+
+.cont-inner {
+  position: relative;
+  width: 100%;
+  max-width: $bp-tablet;
+  padding: 0 30px;
+}
+
+@include mob {
+  .pc-only {
+    display: none;
+  }
+
+  .mo-only {
+    display: block;
+  }
+
+  .cont-inner {
+    padding: 0 15px;
+  }
+
+}

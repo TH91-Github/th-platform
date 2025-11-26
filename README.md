@@ -1,6 +1,6 @@
-// next.js -> react + vite 변경 25/11/20
 
-# 💻 아이파 프로젝트 관리 
+
+# 💻 
 테스트 중
 
 ## 개발 
@@ -8,13 +8,14 @@
 ### 환경변수
 .env
 
-### 폴더 구조
+### 폴더 구조 및 파일
 - assets/ style, font, img, svg 등 관리
 - components/ 공통 컴포넌트 외 pages 경로 폴더 생성 후 하위 구조 진행
 - pages/ router 연결된 페이지 ~Page.tsx
 - utils/ 공통 함수
 - type/ 최소 2곳 이상에서 사용하는 type 폴더 만들어서 진행
 - router/ 
+※ 개별 컴포넌트 폴더는 시작 대문자(PascalCase) 단순 분류는 소문자(camelCase)로 시작
 
 ### 🔷 style 
 - assets/style/ : 공통 스타일 작성

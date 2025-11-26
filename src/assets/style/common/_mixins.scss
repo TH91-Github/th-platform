@@ -1,3 +1,5 @@
+@use './variables' as *;
+
 // ~ 1920px
 @mixin max-pc {
   @media screen and (max-width: #{$bp-max-pc}) {
@@ -41,21 +43,21 @@
 }
 
 // ~ 1139px
-@mixin tablet-mo {
+@mixin tablet-mob {
   @media screen and (max-width: #{($bp-tablet - 1px)}) {
     @content;
   }
 }
 
 // ~ 767px
-@mixin mo {
+@mixin mob {
   @media screen and (max-width: #{($bp-mo - 1px)}) {
     @content;
   }
 }
 
 // ~ 450px
-@mixin small-mo {
+@mixin small-mob {
   @media screen and (max-width: #{($bp-small-mo - 1px)}) {
     @content;
   }

@@ -1,13 +1,16 @@
 import { Outlet } from 'react-router-dom';
-import '@/assets/style/common/index.scss';
+import { HeaderLayout } from './components/layout/Header/HeaderLayout';
+import { RootLayout } from './components/layout/RootLayout/RootLayout';
 import css from '@/App.module.scss'
 
 function App() {
   return (
     <div className={css.app}>
-      <div>
+      <HeaderLayout />
+      <div className={css.contents}>
         <Outlet />
       </div>
+      <RootLayout />
     </div>
   )
 }

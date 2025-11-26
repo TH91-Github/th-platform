@@ -1,9 +1,20 @@
-[data-theme='light'] {
-  --color-bg: #fff;
-  --color-text: #000;
+@use './variables' as *; 
+
+// 기본 :root or ligh
+:root, [data-theme='light'] {
+  --color-bg: #{$color-white};
+  --color-line: #{$color-line};
+  --color-title: #{$color-title-b};
+  --color-text: #{$color-text-b};
+  --color-desc: #{$color-desc-b};
+  --color-sub-text: #{$color-sub-text-b};
 }
 
 [data-theme='dark'] {
-  --color-bg: #000;
-  --color-text: #fff;
+  --color-bg: #{$color-black};
+  --color-line: #{$color-line-black};
+  --color-title: #{$color-title-w};
+  --color-text: #{$color-text-w};
+  --color-desc: #{$color-desc-w};
+  --color-sub-text: #{$color-sub-text-w};
 }

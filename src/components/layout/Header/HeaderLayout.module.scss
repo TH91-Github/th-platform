@@ -1,0 +1,17 @@
+
+.header{
+  position:relative;
+  border:1px solid $color-line;
+}
+.title, .tit, .tit-s {
+  color: var(--color-text);
+}
+.text{
+  color: var(--color-text);
+}
+.desc {
+  color: var(--color-desc);
+}
+.txt, .text-s, .txt-s {
+  color: var(--color-sub-text);
+}
