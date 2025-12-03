@@ -1,3 +1,4 @@
+import React from 'react';
 import DOMPurify, { type Config } from 'dompurify';
 
 // 🔹 모바일 사이즈 체크
@@ -80,3 +81,26 @@ export function randomIdChk (listId:any[], name:string) {
 export const numberComma = (num: number): string => {
   return num.toLocaleString();
 };
+
+// 텍스트 개별 span 분리
+export function splitTextToSpans(
+  text: string,
+  options:{spacing?: boolean; className?: string; } = {}
+): React.ReactNode[] {
+  const { spacing = true, className } = options;
+
+  if (!text) return [];
+
+  const characters = Array.from(text).filter((char) => {
+    if (spacing) return true;
+    return char.trim() !== '';
+  });
+
+  return characters.map((char, index) =>
+    React.createElement(
+      'span',
+      { key: `${char}-${index}`, className },
+      char
+    )
+  );
+}

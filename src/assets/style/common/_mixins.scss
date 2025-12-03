@@ -62,3 +62,34 @@
     @content;
   }
 }
+
+@mixin scroll($direction: 'x', $width: 5px) {
+  @if $direction == 'y' {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: $width;
+    padding-bottom: 0;
+  } @else if $direction == 'x' {
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: $width;
+    padding-right: 0;
+  } @else {
+    overflow: auto;
+    padding-bottom: $width;
+    padding-right: 0;
+  }
+  
+  &::-webkit-scrollbar {
+    width: $width;
+    height: $width;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: $color-disabled;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-gray;
+     border-radius: calc($width / 2);
+  }
+
+}

@@ -6,5 +6,7 @@
 }
 .contents{
   position:relative;
-  padding-top:50px;
+  padding-top: var(--header-h);
+  background-color: var(--color-bg);
+  transition: background-color 0.3s ease;
 }

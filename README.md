@@ -1,6 +1,6 @@
+// next.js -> react + vite 변경 25/11/20
 
-
-# 💻 
+# 💻 아이파 프로젝트 관리 
 테스트 중
 
 ## 개발 
@@ -33,12 +33,23 @@
 <hr /> 
 
 ## 📘 설치
+@reduxjs/toolkit
+dompurify
+react
+react-dom
+react-icons
+react-redux
+react-router-dom
+zustand
+swiper
+-D sass
+
 
 ### 🔷 Node 설치 기준
 node 22.12 권장
 
 #### 🔷 설치 방법
-npm install
+
 
 #### 🔷 실행
 npm run dev

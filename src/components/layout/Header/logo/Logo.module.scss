@@ -1,0 +1,9 @@
+
+.logo {
+  font-size: 24px;
+  line-height:1;
+  a {
+    color:var(--color-title);
+    transition: color 0.3s ease;
+  }
+}

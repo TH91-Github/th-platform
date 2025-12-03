@@ -1,4 +1,3 @@
-// export { AiOutlineBell as IconBell } from 'react-icons/ai' // 알림 종
-// export { AiOutlineHome as IconHome } from 'react-icons/ai' // 집 홈
-// export { AiOutlineSearch as IconSearch } from 'react-icons/ai' // 검색 돋보기
-// export { AiOutlineFolder as IconFolder } from 'react-icons/ai' // 폴더
+export { BsMoonStarsFill as IconMoon } from 'react-icons/bs' // 초승달
+export { MdSunny as IconSunny } from 'react-icons/md' // 해
+export { FaUser as IconLogin } from 'react-icons/fa' // 로그인

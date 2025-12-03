@@ -1,0 +1,59 @@
+
+.project{
+
+}
+.heading{
+  max-width:$bp-tablet;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+.full{
+  position:relative;
+}
+.scroll{
+  position:relative;
+  width:100%;
+  padding:0 calc((100vw - $bp-tablet) / 2);
+  @include scroll();
+  .lists{
+    display: flex;
+    padding:0 30px;
+    width: max-content;
+  }
+}
+.portfolio {
+  .lists{
+    gap: 20px;
+  }
+  .box{
+    width:300px;
+    height:400px;
+    padding:20pxx 15px;
+    border-radius:5px;
+    background-color:$color-gray;
+  }
+}
+.client {
+  .lists{
+    gap:30px;
+  }
+  .box{
+    width:80px;
+    height:80px;
+    border-radius:5px;
+    background-color:$color-gray;
+  }
+}
+
+@include tablet-mob {
+  .lists-wrap{
+
+  .lists{
+    display: flex;
+    gap: 20px;
+    padding: 0 30px;
+    min-width: max-content;
+  }
+}
+
+}

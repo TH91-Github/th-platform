@@ -1,0 +1,135 @@
+.text-change {
+  position: relative;
+  .text {
+    display: block;
+    position: relative;
+    width:100%;
+    opacity: 0;
+    transform: translateY(100%);
+    &:not(.base) {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+  &:not(.static) .text {
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+  }
+  &.delay-only .text {
+    animation-name: slideUpOnce;
+    animation-duration: 0.5s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+  }
+  // 2, 3, 4개 텍스트 x 2, 3, 4초 speed 조합 생성
+  @each $max in 2, 3, 4 {
+    @each $speed in 2, 3, 4 {
+      &[data-max="#{$max}"][data-speed="#{$speed}"] .text {
+        animation-name: slideUp#{$max}-#{$speed}s;
+        animation-duration: #{$max * $speed}s;
+      }
+    }
+  }
+  &.static .text {
+    position: relative;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  // align
+  &.left { text-align: left; }
+  &.center { text-align: center; }
+  &.right { text-align: right; }
+  // color
+  &.black { color: black; }
+  &.white { color: white; }
+  &.point { color: var(--point-color); }
+  &.sub { color: var(--color-sub-text); }
+}
+// 1개 텍스트용 - 한 번만 올라오기
+@keyframes slideUpOnce {
+  0% { 
+    opacity: 0; 
+    transform: translateY(100%); 
+  }
+  100% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+// 2개 텍스트
+@keyframes slideUp2-2s {
+  0% { opacity: 0; transform: translateY(100%); }
+  12.5% { opacity: 1; transform: translateY(0); }
+  37.5% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+@keyframes slideUp2-3s {
+  0% { opacity: 0; transform: translateY(100%); }
+  8.33% { opacity: 1; transform: translateY(0); }
+  41.67% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+@keyframes slideUp2-4s {
+  0% { opacity: 0; transform: translateY(100%); }
+  6.25% { opacity: 1; transform: translateY(0); }
+  43.75% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+// 3개 텍스트
+@keyframes slideUp3-2s {
+  0% { opacity: 0; transform: translateY(100%); }
+  8.33% { opacity: 1; transform: translateY(0); }
+  25% { opacity: 1; transform: translateY(0); }
+  33.33% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+@keyframes slideUp3-3s {
+  0% { opacity: 0; transform: translateY(100%); }
+  5.56% { opacity: 1; transform: translateY(0); }
+  27.77% { opacity: 1; transform: translateY(0); }
+  33.33% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+@keyframes slideUp3-4s {
+  0% { opacity: 0; transform: translateY(100%); }
+  4.17% { opacity: 1; transform: translateY(0); }
+  29.17% { opacity: 1; transform: translateY(0); }
+  33.33% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+// 4개 텍스트
+@keyframes slideUp4-2s {
+  0% { opacity: 0; transform: translateY(100%); }
+  6.25% { opacity: 1; transform: translateY(0); }
+  18.75% { opacity: 1; transform: translateY(0); }
+  25% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+@keyframes slideUp4-3s {
+  0% { opacity: 0; transform: translateY(100%); }
+  4.17% { opacity: 1; transform: translateY(0); }
+  20.83% { opacity: 1; transform: translateY(0); }
+  25% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}
+
+@keyframes slideUp4-4s {
+  0% { opacity: 0; transform: translateY(100%); }
+  3.125% { opacity: 1; transform: translateY(0); }
+  21.875% { opacity: 1; transform: translateY(0); }
+  25% { opacity: 0; transform: translateY(-100%); }
+  100% { opacity: 0; transform: translateY(-100%); }
+}

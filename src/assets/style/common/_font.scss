@@ -1,4 +1,22 @@
 @font-face {
   font-family: Pretendard;
-  src: url('./assets/fonts/PretendardVariable.woff2') format('woff2');
+  src: url('@/assets/fonts/PretendardVariable.woff2') format('woff2');
 }
+
+/*
+  🔹 font size 
+  min - max : 12 ~ 56
+  58, 52
+  48, 42
+  36, 32
+  28, 24
+  20, 18
+  16, 14
+  12
+
+  🔹 font weight
+  min - max : 400~600
+  600
+  550, 500
+  400
+*/

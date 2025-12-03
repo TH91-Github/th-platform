@@ -1,0 +1,41 @@
+.split-text{
+  display: flex;
+  gap: 5px;
+  &.SquashStretch{
+    .text{
+      animation-name: SquashStretch;
+      transform-origin: center bottom;
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+    }
+  }
+  &.fadeIn{
+    position:relative;
+    .text{
+      animation-name: fadeIn;
+      animation-fill-mode: both;
+      animation-iteration-count: 1;
+    }
+  }
+}
+
+.text {
+  display: inline-block;
+}
+
+@keyframes SquashStretch {
+  0% { transform: scale(1); }
+  5% { transform: scale(1.2,0.8); }
+  10%, 100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  100% { 
+    opacity: 1;
+     filter: blur(0);
+  }
+}
