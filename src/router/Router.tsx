@@ -3,7 +3,6 @@ import { routerList } from './RouterList';
 import App from '../App';
 import { ErrorPage } from '../pages/error/ErrorPage';
 import { MainPage } from '@/pages/main/MainPage';
-
  
 export const router = createBrowserRouter(
   [
@@ -31,7 +30,3 @@ export const router = createBrowserRouter(
     },
   }
 );
-
-
-
-

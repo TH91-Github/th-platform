@@ -41,7 +41,7 @@ react-icons
 react-redux
 react-router-dom
 zustand
-swiper
+swiper@11.2.5
 -D sass
 
 
