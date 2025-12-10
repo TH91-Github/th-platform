@@ -16,5 +16,12 @@ html {
 }
 
 :root {
+  --min-h: #{calc(100svh - $headHeight)};
   --header-h: #{$headHeight};
+  --transition-d : #{$transitionDuration};
+  --transition-w: width #{$transitionDuration} ease;
+  --transition-color: color #{$transitionDuration} ease;
+  --transition-bg: background-color #{$transitionDuration} ease;
+  --transition-border: border-color #{$transitionDuration} ease;
+  --transition-transform: transform #{$transitionDuration} ease;
 }

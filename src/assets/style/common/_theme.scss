@@ -4,23 +4,25 @@
 :root, [data-theme='light'] {
   --color : #{$color-black};
   --color-bg: #{$color-white};
-  --color-origin: ${#ffffff};
+  --color-origin: #ffffff;
   --color-line: #{$color-line};
   --color-title: #{$color-title-b};
   --color-text: #{$color-text-b};
   --color-desc: #{$color-desc-b};
   --color-sub-text: #{$color-sub-text-b};
   --color-point: #{$color-blue};
+  --shadow-box: #{$shadow-b};
 }
 
 [data-theme='dark'] {
   --color: #{$color-white};
   --color-bg: #{$color-black};
-  --color-origin: ${#000000};
+  --color-origin: #000000;
   --color-line: #{$color-line-black};
   --color-title: #{$color-title-w};
   --color-text: #{$color-text-w};
   --color-desc: #{$color-desc-w};
   --color-sub-text: #{$color-sub-text-w};
   --color-point: #{$color-yellow};
+  --shadow-box: #{$shadow-w};
 }

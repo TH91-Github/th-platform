@@ -14,9 +14,33 @@ export const iconData = [
     key:['icon','sunny','sun','해','태양','뜨거운','hot']
   },
   {
-    id:'icon-sunny',
+    id:'icon-login',
     code:'fa/FaUser',
     element:'<IconLogin />',
     key:['icon','유저', 'user','FaUser','로그인','login']
+  },
+  {
+    id:'icon-arrow-left',
+    code:'io/IoIosArrowBack',
+    element:'<IconArrowLeft />',
+    key:['icon','arrow','left','왼쪽','화살표']
+  },
+  {
+    id:'icon-arrow-right',
+    code:'io/IoIosArrowForward',
+    element:'<IconArrowRight />',
+    key:['icon','arrow','right','오른쪽','화살표']
+  },
+  {
+    id:'icon-play',
+    code:'io5/IoPlay',
+    element:'<IconPlay />',
+    key:['icon','play','시작','재생','스타트']
+  },
+  {
+    id:'icon-pause',
+    code:'io5/IoPause',
+    element:'<IconPause />',
+    key:['icon','멈춤','pause','정지','스탑','정지']
   },
 ]
