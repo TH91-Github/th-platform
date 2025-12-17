@@ -23,5 +23,7 @@ html {
   --transition-color: color #{$transitionDuration} ease;
   --transition-bg: background-color #{$transitionDuration} ease;
   --transition-border: border-color #{$transitionDuration} ease;
+  --transition-shadow: box-shadow #{$transitionDuration} ease;
+  --transition-opacity: opacity #{$transitionDuration} ease;
   --transition-transform: transform #{$transitionDuration} ease;
 }

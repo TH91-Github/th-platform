@@ -1,8 +1,8 @@
-
+import styles from './ErrorPage.module.scss';
 
 export const ErrorPage = () => {
 	return( 
-		<div>
+		<div className={styles.error}>
 			error
 
 		</div>

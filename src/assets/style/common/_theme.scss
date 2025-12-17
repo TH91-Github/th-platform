@@ -11,7 +11,8 @@
   --color-desc: #{$color-desc-b};
   --color-sub-text: #{$color-sub-text-b};
   --color-point: #{$color-blue};
-  --shadow-box: #{$shadow-b};
+  --color-point-bg: #{$color-blue-bg};
+  --box-shadow: #{$shadow-b};
 }
 
 [data-theme='dark'] {
@@ -24,5 +25,6 @@
   --color-desc: #{$color-desc-w};
   --color-sub-text: #{$color-sub-text-w};
   --color-point: #{$color-yellow};
-  --shadow-box: #{$shadow-w};
+  --color-point-bg: #{$color-yellow-bg};
+  --box-shadow: #{$shadow-w};
 }

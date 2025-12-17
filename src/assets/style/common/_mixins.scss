@@ -91,5 +91,14 @@
     background-color: $color-gray;
      border-radius: calc($width / 2);
   }
+}
 
+@mixin ellipsis($lineClamp: 1, $lineHeight: 1.5) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lineClamp;
+  line-height: $lineHeight;
+  text-overflow: ellipsis;
+  max-height: $lineClamp * $lineHeight * 1em;
 }

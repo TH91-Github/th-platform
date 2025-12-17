@@ -3,3 +3,67 @@
     position:relative;
   }
 }
+.titleLink{
+  display:flex;
+  gap:10px;
+  align-items: center;
+  .icon{
+    display:inline-block;
+    width:35px;
+    height:35px;
+    padding:5px;
+    border-radius:10px;
+    background-color: $color-navy;
+    color: $color-white; 
+  }
+  .title{
+    font-size:24px;
+    @include ellipsis();
+  }
+}
+.fold{
+  padding:10px;
+  text-align:center;
+  .titleLink{
+    justify-content: center;
+    .icon {
+
+      & + span { 
+        display:none;
+      }
+    }
+  }
+}
+
+.guidCont{
+  
+}
+
+[data-theme='dark'] {
+  
+  titleLink{
+    .icon{
+      background-color: $color-white;
+      color: $color-blue;
+    }
+  }
+}
+
+@include mob {
+  .guideNav {
+    h2 {
+      display:inline-block;
+    }
+  }
+  .titleLink{
+    .icon{
+      display:inline-block;
+      width:40px;
+      height:40px;
+      padding:5px;
+      border-radius:10px;
+      background-color: $color-navy;
+      color: $color-white; 
+    }
+  }
+}

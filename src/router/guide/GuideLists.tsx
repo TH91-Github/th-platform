@@ -52,19 +52,19 @@ export const GUIDE_LIST = [
     children: [
       {
         id: "element",
-        path: "element/:id",
+        path: "element",
         title: "기능",
         element: <ElementCmPage />,
       },
       {
         id: "modules",
-        path: "modules/:id",
+        path: "modules",
         title: "모듈",
         element: <ModulesCmPage />,
       },
       {
         id: "layout",
-        path: "layout/:id",
+        path: "layout",
         title: "레이아웃",
         element: <LayoutCmPage />,
       },
