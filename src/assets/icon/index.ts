@@ -1,8 +1,24 @@
-export { BsMoonStarsFill as IconMoon } from 'react-icons/bs' // 초승달
-export { FaUser as IconLogin } from 'react-icons/fa' // 로그인
-export { MdSunny as IconSunny } from 'react-icons/md' // 해
-export { IoIosArrowBack as IconArrowLeft } from 'react-icons/io' // 왼쪽 <  화살표
-export { IoIosArrowForward as IconArrowRight } from 'react-icons/io' // 오른쪽 > 화살표
-export { IoPlay  as IconPlay } from 'react-icons/io5' // 재생, 삼각형, 시작 io5/IoPlay
-export { IoPause   as IconPause } from 'react-icons/io5' // 재생, 삼각형, 시작 io5/IoPause
+export { BsMoonStarsFill as IconMoon } from 'react-icons/bs'
+export { FaUser as IconLogin } from 'react-icons/fa'
+export { MdSunny as IconSunny } from 'react-icons/md'
+export { IoIosArrowBack as IconArrowLeft } from 'react-icons/io'
+export { IoIosArrowForward as IconArrowRight } from 'react-icons/io'
+export { IoPlay as IconPlay } from 'react-icons/io5'
+export { IoPause as IconPause } from 'react-icons/io5'
+export { IoColorWandOutline  as IconDesign } from 'react-icons/io5'
+export { LuComponent as IconComponents } from 'react-icons/lu'
+export { TbIcons as IconIcon } from 'react-icons/tb'
+export { IoColorPaletteOutline as IconColor } from 'react-icons/io5'
+export { FaFont as IconFont } from 'react-icons/fa6'
+export { CgArrowsBreakeH as IconBP } from 'react-icons/cg'
+export { AiOutlinePartition as IconPart } from 'react-icons/ai'
+export { GrMultiple as IconModule } from 'react-icons/gr'
+export { PiLayoutLight as IconLayout } from 'react-icons/pi'
+export { PiWebhooksLogo as IconHook } from 'react-icons/pi'
+export { PiCode as IconCode } from 'react-icons/pi'
+export { MdOutlineFolderOff as IconFolderEmpty } from 'react-icons/md' 
+export { HiCubeTransparent  as IconCubeTransparent } from 'react-icons/hi2'
+export { CgClose as IconClose } from 'react-icons/cg'
+export { IoList  as IconList } from 'react-icons/io5'
+
 

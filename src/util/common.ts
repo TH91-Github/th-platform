@@ -104,3 +104,15 @@ export function splitTextToSpans(
     )
   );
 }
+
+// breadcrumb 
+export const breadcrumbLists = (pathname:string, capitalize: boolean = true) => {
+  return pathname
+    .split('/')
+    .filter(Boolean)
+    .map(item => 
+      capitalize 
+        ? item[0].toUpperCase() + item.slice(1)
+        : item
+    )
+}
