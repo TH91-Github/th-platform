@@ -2,8 +2,8 @@
 $bp-max-pc: 1920px;
 $bp-pc: 1440px;
 $bp-tablet: 1140px;
-$bp-mo: 768px;
-$bp-small-mo: 450px;
+$bp-mob: 768px;
+$bp-small-mob: 450px;
 
 // color
 $color-black:#050b21;
@@ -22,7 +22,7 @@ $color-line:#dbdbdb;
 $color-line-black:#40444b;
 // color opacity
 $opacity-w:rgba(255,255,255,0.7);
-$opacity-b: rgba(0,0,0,0.7);
+$opacity-b: rgba(5,11,33,0.7);
 
 // tit & text
 // ligh 기준
@@ -42,7 +42,7 @@ $color-dark-bg-on:#454864;
 
 // box shadow
 $shadow-w:0 4px 20px rgba(255, 255, 255, 0.2);
-$shadow-b:0 2px 8px rgba(0,0,0,0.2);
+$shadow-b:0 2px 8px rgba(0, 0, 0, 0.15);
 
 // etc 
 $headHeight:55px;

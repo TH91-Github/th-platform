@@ -5,6 +5,7 @@
   --color : #{$color-black};
   --color-bg: #{$color-white};
   --color-origin: #ffffff;
+  --color-origin-on: #ffffff;
   --color-line: #{$color-line};
   --color-title: #{$color-title-b};
   --color-text: #{$color-text-b};
@@ -13,12 +14,14 @@
   --color-point: #{$color-blue};
   --color-point-bg: #{$color-blue-bg};
   --box-shadow: #{$shadow-b};
+  --opacity-bg: #{$opacity-w};
 }
 
 [data-theme='dark'] {
   --color: #{$color-white};
   --color-bg: #{$color-black};
   --color-origin: #000000;
+  --color-origin-on: #{$color-dark-bg};
   --color-line: #{$color-line-black};
   --color-title: #{$color-title-w};
   --color-text: #{$color-text-w};
@@ -27,4 +30,5 @@
   --color-point: #{$color-yellow};
   --color-point-bg: #{$color-yellow-bg};
   --box-shadow: #{$shadow-w};
+  --opacity-bg: #{$opacity-b};
 }

@@ -19,6 +19,8 @@ export { PiCode as IconCode } from 'react-icons/pi'
 export { MdOutlineFolderOff as IconFolderEmpty } from 'react-icons/md' 
 export { HiCubeTransparent  as IconCubeTransparent } from 'react-icons/hi2'
 export { CgClose as IconClose } from 'react-icons/cg'
-export { IoList  as IconList } from 'react-icons/io5'
-
+export { IoList as IconList } from 'react-icons/io5'
+export { LuEllipsis as IconEllipsis } from 'react-icons/lu'
+export { HiOutlineExternalLink as IconOutLink } from "react-icons/hi";
+export { IoIosSearch as IconSearch } from "react-icons/io";
 
