@@ -1,0 +1,102 @@
+
+.color{
+  display:flex;
+  flex-direction: column;
+  gap:20px;
+}
+.themeColor{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top:20px;
+   background: linear-gradient(to right, $color-white 50%, $color-black 50%);
+  & > div {
+    padding:20px;
+  }
+}
+.themeTit {
+  font-size:rem(20px);
+  font-weight:600;
+  text-align:center;
+}
+.themeItem{
+  & + .themeItem {
+    margin-top:20px;
+  }
+  .tit {
+    position:relative;
+    padding-left:10px;
+    font-size:rem(18px);
+    font-weight:600;
+    &::before{
+      position:absolute;
+      top:50%;
+      left:0;
+      width:4px;
+      height:2px;
+      background-color: $color-blue;
+      transform: translateY(-50%);
+      content:'';
+    }
+  }
+  .desc{
+    font-size:rem(14px);
+  }
+}
+.chipLists{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:15px;
+  & > div {
+    width:150px;
+  }
+}
+// light
+.light{
+  color:$color-text-b;
+  .themeTit{
+    color:$color-title-b;
+  }
+  .tit {
+    color:$color-blue;
+  }
+  .desc{
+    color:$color-desc-b;
+  }
+  :global { 
+    .chip-info{
+      .chip-tit{
+        color:$color-title-b;
+      }
+      .chip-text{ 
+        color:$color-sub-text-b;
+      }
+    }
+  }
+}
+// dark
+.dark {
+  color:$color-text-w;
+  .themeTit {
+    color:$color-title-w;
+  }
+  .tit{
+    color: $color-yellow;
+    &::before {
+      background-color: $color-yellow;
+    }
+  }
+  .desc{
+    color:$color-desc-w;
+  }
+  :global { 
+    .chip-info{
+      .chip-tit{
+        color:$color-title-w;
+      }
+      .chip-text{ 
+        color:$color-sub-text-w;
+      }
+    }
+  }
+}

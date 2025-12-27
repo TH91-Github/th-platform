@@ -1,0 +1,65 @@
+.iconLists {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+
+  &>li {
+    display: flex;
+    justify-content: center;
+    width: 80px;
+  }
+}
+
+.iconBtn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: var(--transition-border);
+
+  &:hover,&:focus {
+    .icon {
+      border-color: var(--color-point);
+      color: var(--color-point);
+    }
+    .tit {
+      color: var(--color-point);
+    }
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  box-sizing: initial;
+  border: 1px solid var(--color-line);
+  transition: var(--transition-border), var(--transition-color);
+  color: var(--color-title);
+}
+
+.tit {
+  margin-top: 5px;
+  font-size: rem(14px);
+  transition: var(--transition-color);
+  white-space: nowrap;
+  color: var(--color-title);
+}
+
+@include mob {
+  .iconLists {
+    gap: 10px;
+
+    &>li {
+      width: 60px;
+    }
+  }
+}

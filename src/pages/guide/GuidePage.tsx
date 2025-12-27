@@ -1,12 +1,13 @@
-import { SideLayout } from '@/components/layout/cont/side/SideLayout';
-import { useToggle } from '@/hook/common/useToggle';
-import { cn } from '@/utils/common';
-import styles from './GuidePage.module.scss';
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
-import { GuideNav } from '@/components/pages/guide/GuideNav';
 import { IconCubeTransparent } from '@/assets/icon';
-import { GuideContHeader } from '@/components/pages/guide/GuideContHeader';
+import { SideLayout } from '@/components/layout/cont/side/SideLayout';
 import { GuideAbout } from '@/components/pages/guide/GuideAbout';
+import { GuideContHeader } from '@/components/pages/guide/GuideContHeader';
+import { GuideNav } from '@/components/pages/guide/GuideNav';
+import { useToggle } from '@/hook/common/useToggle';
+import { breadcrumbLists, cn } from '@/utils/common';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { Breadcrumb } from '@/components/element/breadcrumb/Breadcrumb';
+import styles from './GuidePage.module.scss';
 
 export const GuidePage = () => {
   const location = useLocation();
@@ -35,16 +36,15 @@ export const GuidePage = () => {
             <GuideNav isFold={isFold} />
           </div>
         </div>
-        <div className={cn(styles.guidCont)}>
-          {
-            showGuide 
-            ? <GuideAbout />
-            : <>
-               <GuideContHeader />
-               <Outlet />
-            </>
-          }
-        </div> 
+        {showGuide
+          ? <GuideAbout />
+          : <>
+            <div className={styles.breadcrumbWrap}>
+              <Breadcrumb data={breadcrumbLists(location.pathname)} />
+            </div>
+            <GuideContHeader />
+            <Outlet />
+          </>}
       </SideLayout>
     </div>
   )

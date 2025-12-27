@@ -1,5 +1,7 @@
+
 import { ComponentsGuidePage } from "@/pages/guide/components/ComponentsGuidePage";
 import { ElementCmPage } from "@/pages/guide/components/ElementCmPage";
+import { ElementViewPage } from "@/pages/guide/components/ElementViewPage";
 import { LayoutCmPage } from "@/pages/guide/components/LayoutCmPage";
 import { ModulesCmPage } from "@/pages/guide/components/ModulesCmPage";
 import { BreakpointsGuidePage } from "@/pages/guide/design/BreakpointsGuidePage";
@@ -11,35 +13,31 @@ import { HooksGuidePage } from "@/pages/guide/hooks/HooksGuidePage";
 import { UtilsGuidePage } from "@/pages/guide/utils/UtilsGuidePage";
 
 // 🔹 guide page 리스트 
+// ⭐ guideLists.ts 똑같이 추가 사용 데이터를 다룸.
 export const GUIDE_LIST = [
   {
     id: "design",
     path: "design",
-    title: "디자인",
     element: <DesignGuidePage />,
     children: [
       {
         id: "icon",
         path: "icon",
-        title: "아이콘",
         element: <IconGuidePage />
       },
       {
         id: "colors",
         path: "colors",
-        title: "색상",
         element: <ColorsGuidePage />
       },
       {
         id: "fonts",
         path: "fonts",
-        title: "글자",
         element: <FontsGuidePage />
       },
       {
         id: "breakpoints",
         path: "breakpoints",
-        title: "브레이크 포인트",
         element: <BreakpointsGuidePage />
       },
     ],
@@ -47,25 +45,28 @@ export const GUIDE_LIST = [
   {
     id: "components",
     path: "components",
-    title: '컴포넌트',
     element: <ComponentsGuidePage />,
     children: [
       {
         id: "element",
         path: "element",
-        title: "기능",
         element: <ElementCmPage />,
+        children:[
+          {
+            id:'elementView',
+            path:':id',
+            element: <ElementViewPage />,
+          },
+        ]
       },
       {
         id: "modules",
         path: "modules",
-        title: "모듈",
         element: <ModulesCmPage />,
       },
       {
         id: "layout",
         path: "layout",
-        title: "레이아웃",
         element: <LayoutCmPage />,
       },
     ]
@@ -73,13 +74,11 @@ export const GUIDE_LIST = [
   {
     id: "hooks",
     path: "hooks",
-    title: "커스텀 훅",
     element: <HooksGuidePage />,
   },
   {
     id: "utils",
     path: "utils",
-    title: "유틸 함수",
     element: <UtilsGuidePage />,
   },
 ]

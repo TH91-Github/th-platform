@@ -3,14 +3,16 @@
     position:relative;
   }
 }
+// side menu
 .titleLink{
   display:flex;
   gap:10px;
   align-items: center;
   .icon{
+    flex-shrink: 0;
     display:inline-block;
-    width:35px;
-    height:35px;
+    width:36px;
+    height:36px;
     padding:5px;
     border-radius:10px;
     background-color: $color-navy;
@@ -22,26 +24,28 @@
   }
 }
 .fold{
-  padding:10px;
-  text-align:center;
+  padding:18px 10px 20px;
   .titleLink{
     justify-content: center;
     .icon {
-
       & + span { 
         display:none;
       }
     }
   }
 }
-
-.guidCont{
-  
+// cont
+.breadcrumbWrap{
+  padding:20px 30px;
+}
+:global {
+  .guide-cont{
+    padding:0 30px;
+  }
 }
 
 [data-theme='dark'] {
-  
-  titleLink{
+  .titleLink{
     .icon{
       background-color: $color-white;
       color: $color-blue;
