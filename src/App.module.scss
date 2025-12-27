@@ -2,11 +2,10 @@
   position:relative;
   width:100%;
   max-width:$bp-max-pc;
-  color:$color-black;
 }
 .contents{
   position:relative;
   padding-top: var(--header-h);
   background-color: var(--color-bg);
-  transition: background-color 0.3s ease;
+  transition: var(--transition-bg);
 }

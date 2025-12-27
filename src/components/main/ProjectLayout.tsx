@@ -1,90 +1,52 @@
+
+import { TitleCarousel } from '../layout/cont/lists/TitleCarousel';
 import styles from './ProjectLayout.module.scss';
 
 export const ProjectLayout = () => {
-  return( 
+  return (
     <div className={styles.project}>
+      {/* 큰 박스 리스트 */}
       <div className={`${styles.portfolio}`}>
-        <div className={styles.heading}>
-          <h3 className="title">Title TItle</h3>
-        </div>
-        <div className={styles.full}>
-          <div className={styles.scroll}>
-            <ul className={styles.lists}>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <TitleCarousel 
+          title="test"
+          desc="tset"
+          carouselMode="full-cont"
+          carouselOpt={{
+            navigation: true,
+            pagination: {
+              clickable: true
+            },
+          }}
+        >
+          {Array(5).fill(0).map((_, idx) => (
+            <li key={idx}>
+              <div className={styles.box}>
+                <p className={`tit`}>Title</p>
+                <p className="text">TEST TEXT TEST TEXT</p>
+              </div>
+            </li>
+          ))}
+        </TitleCarousel>
       </div>
-      {/* ex) 함께 했었던 기업 리스트 */}
+      {/* 리스트 + 상세 정보 레이아웃  */}
       <div className={styles.client}>
-        <div className={styles.heading}>
-          <h3 className="title">Title TItle</h3>
-        </div>
-        <div className={styles.full}>
-          <div className={styles.scroll}>
-            <ul className={styles.lists}>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-              <li>
-                <div className={styles.box}>
-                  <p className={`tit`}>Title</p>
-                  <p className="text">TEST TEXT TEST TEXT</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+         <TitleCarousel 
+          title="test2"
+          desc="test2"
+          carouselMode="full-cont"
+          carouselOpt={{
+            slidesPerView: 'auto',
+          }}
+        >
+          {Array(10).fill(0).map((_, idx) => (
+            <li key={idx}>
+              <div className={styles.box}>
+                <p className={`tit`}>Title</p>
+                <p className="text">TEST TEXT TEST TEXT</p>
+              </div>
+            </li>
+          ))}
+        </TitleCarousel>
         <div className={styles.detail}>
           <div className={styles.info}>
             정보
@@ -94,7 +56,7 @@ export const ProjectLayout = () => {
           </div>
         </div>
       </div>
-     
+
     </div>
   )
 }

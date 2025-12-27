@@ -77,7 +77,7 @@ export const SplitText = ({
   return (
     <span
       className={cn(
-        styles['split-text'],
+        styles.splitText,
         animationName && styles[`${animationName}`],
         className
       )}

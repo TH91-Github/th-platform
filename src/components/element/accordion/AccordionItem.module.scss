@@ -1,0 +1,88 @@
+.accItem{
+  &.open{
+    .accContent{
+      display:block;
+    }
+  }
+  &.smooth {
+    .accContent{
+      height: 0;
+      transition: height 0.3s ease-in-out;
+    }
+    &.open{
+      [data-ani-time='off'] {
+        height:auto !important;
+      }
+    }
+  }
+  &.full {
+    .accBtn, .accTit{
+      display:block;
+      width:100%;
+    }
+  }
+}
+.accHead{
+  position:relative;
+}
+.accContent{
+  display:none;
+  overflow: hidden;
+  position:relative;
+}
+.accInner{
+  width:100%;
+}
+.accBtn{
+  padding:5px 0;
+}
+.accBtn, .accTit {
+  display:inline-block;
+  text-align:left;
+  svg { 
+    max-width:30px;
+    max-height:30px;
+  }
+}
+
+// 화살표 옵션
+.arrow{
+  .accBtn{
+    padding-right:30px;
+  }
+  &.open {
+    .arrowIcon{
+        &::before{
+        transform:rotate(-45deg);
+      }
+      &::after{
+        transform:rotate(45deg);
+      }
+    }
+  }
+  .arrowIcon{
+    display:block;
+    position:absolute;
+    top:50%;
+    right:10px;
+    width:11px;
+    height:11px;
+    transform:translateY(-50%);
+    &::before, &::after{
+      position:absolute;
+      top:4px;
+      right:7px;
+      width:100%; 
+      height:2px;
+      border-radius:30px; 
+      background: var(--color);
+      transform:rotate(-135deg);
+      transition:transform .3s ease-in-out;
+      content:'';
+    }
+    &::after{
+      right:0;
+      transform:rotate(135deg);
+    }
+  }
+}

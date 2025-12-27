@@ -27,10 +27,14 @@ export const Breadcrumb = ({data = ['Home']}:BreadcrumbPropsType) => {
   const renderBreadcrumb = () => {
     if (data.length < 5) {
       // 4개 이하면 모두 표시
-      return data.map((item, index) => (
-        <div key={index} className={styles.breadcrumbItem}>
-          {index > 0 && <span className={styles.gapArrow}><IconArrowRight /></span>}
-          <button className={styles.breadcrumbBtn}>{item}</button>
+      return data.map((item, idx) => (
+        <div key={idx} className={styles.breadcrumbItem}>
+          {idx > 0 && <span className={styles.gapArrow}><IconArrowRight /></span>}
+          <span 
+            className={cn(styles.breadcrumbBtn, (data.length -1) === idx && styles.active)}
+          >
+            <span>{item}</span>
+          </span>
         </div>
       ));
     } else {
@@ -40,7 +44,7 @@ export const Breadcrumb = ({data = ['Home']}:BreadcrumbPropsType) => {
         <>
           {/* 첫번째 항목 */}
           <div className={styles.breadcrumbItem}>
-            <button className={styles.breadcrumbBtn}>{data[0]}</button>
+            <span className={styles.breadcrumbBtn}>{data[0]}</span>
           </div>
           {/* 생략된 항목들 (드롭다운) */}
           <div ref={dropdownRef} className={cn(styles.breadcrumbItem,styles.dropdownContainer)}>
@@ -57,7 +61,7 @@ export const Breadcrumb = ({data = ['Home']}:BreadcrumbPropsType) => {
               <div className={styles.dropdownMenu}>
                 {hiddenItems.map((item, index) => (
                   <div key={index} className={styles.dropdownItem}>
-                    <button className={styles.breadcrumbBtn}>{item}</button>
+                    <span className={styles.breadcrumbBtn}>{item}</span>
                   </div>
                 ))}
               </div>
@@ -66,11 +70,15 @@ export const Breadcrumb = ({data = ['Home']}:BreadcrumbPropsType) => {
           {/* 마지막 2개 항목 */}
           <div className={styles.breadcrumbItem}>
             <span className={styles.gapArrow}><IconArrowRight /></span>
-            <button className={styles.breadcrumbBtn}>{data[data.length - 2]}</button>
+            <span className={styles.breadcrumbBtn}>{data[data.length - 2]}</span>
           </div>
           <div className={styles.breadcrumbItem}>
             <span className={styles.gapArrow}><IconArrowRight /></span>
-            <button className={styles.breadcrumbBtn}>{data[data.length - 1]}</button>
+            <span 
+              className={cn(styles.breadcrumbBtn, styles.active)}
+            >
+              <span>{data[data.length - 1]}</span>
+            </span>
           </div>
         </>
       );

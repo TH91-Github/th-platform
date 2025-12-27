@@ -1,9 +1,9 @@
-.more-btn-wrap{
+.moreBtnWrap{
   position:relative;
   width: 40px;
   height: 40px;
 }
-.more-btn{ 
+.btn{ 
   display: block;
   overflow: hidden;
   position: absolute;
@@ -63,7 +63,7 @@
   }
 }
 :global {
-  .more-btn-wrap{
+  .moreBtnWrap{
     &.circle {
       &::before, &::after{
         top:0;

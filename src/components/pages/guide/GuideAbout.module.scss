@@ -1,0 +1,499 @@
+
+.aboutInner{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  height:100%;
+  max-width:$bp-tablet;
+  margin:0 auto;
+  padding:20px 0;
+  text-align:center;
+}
+.color{
+  color:var(--color-point);
+}
+.lineBox{
+  display:inline-block;
+  position:relative;
+  padding:20px 30px;
+  &::before, &::after {
+    position: absolute;
+    width: 10px;
+    height:10px;
+    border-radius:50%;
+    border:1px solid var(--color-point);
+    content: '';
+  }
+  &::before{
+    top: -5px;
+    left: -5px;
+    animation: circleLineAni 4.1s infinite;
+  }
+  &::after {
+    bottom:-5px;
+    right:-5px;
+    animation: circleLineAni 2.7s infinite;
+  }
+  @keyframes circleLineAni {
+    0%{
+      transform: scale(0);
+      opacity:1;
+    }
+    100%{
+      transform: scale(2);
+      opacity:0;
+    }
+  }
+  .title{
+    font-size:48px;
+    &::before, &::after {
+      position:absolute;
+      top:-20px;
+      left:0;
+      width:1px;
+      height:calc(100% + 40px);
+      border-left:1px dashed var(--color-line);
+      content:'';
+    }
+    &::after{ 
+      top:0;
+      left:-20px;
+      width:calc(100% + 40px);
+      height:1px;
+      border-left:none;
+      border-top:1px dashed var(--color-line);
+    }
+  }
+  .desc{
+    margin-top:30px;
+    font-size:18px;
+    line-height:24px;
+    &::before, &::after {
+      position:absolute;
+      bottom:-20px;
+      right:0;
+      width:1px;
+      height:calc(100% + 40px);
+      border-left:1px dashed var(--color-line);
+      content:'';
+    }
+    &::after{ 
+      bottom:0;
+      right:-20px;
+      width:calc(100% + 40px);
+      height:1px;
+      border-left:none;
+      border-top:1px dashed var(--color-line);
+    }
+  }
+}
+.aboutContent{
+  display:flex;
+  justify-content:center;
+  position:relative;
+  padding:80px;
+}
+.designBox{
+  position:relative;
+}
+.linkBox{
+  
+}
+.linkBtn {
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  gap:5px;
+  position:relative;
+  padding:10px;
+  border:1px dashed var(--color-line);
+  border-radius:5px;
+  background:#fff;
+  transition: var(--transition-border);
+  &::before{
+    position:absolute;
+    z-index:-2;
+    width:48px;
+    border-top:1px dashed var(--color-line);
+    transition: var(--transition-border);
+    content:'';
+  }
+  &::after{
+    position:absolute;
+    z-index:-1;
+    top:50%;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#000;
+    transform:translateY(-50%);
+    transition: background-color var(--transition);
+    content:'';
+  }
+  &:hover, &:focus {
+    border-color: var(--color-point);
+    &::before{
+      border-color: var(--color-point);
+    }
+    &::after{
+      background-color: var(--color-point);
+    }
+    .icon {
+      color: var(--color-point);
+    }
+    .tit {
+      color: var(--color-point);
+    }
+  }
+  .icon{ 
+    display:inline-block;
+    width:30px;
+    height:30px;
+    transition: var(--transition-color);
+    color: var(--color-point);
+  }
+  .tit {
+    font-size:14px;
+    white-space: nowrap;
+    transition:  var(--transition-color);
+  }
+}
+
+@include tablet-pc {
+  .designBox{
+    z-index:2;
+    width:250px;
+    height:250px;
+    border-radius:5px;
+    background-color: rgba(255,255,255,0.5);
+    box-shadow:inset 0px 0px 1px 0px rgba(255,255,255,0.3), 0px 0px 3px 0px rgba(0,0,0,0.1), 0px 0px 3px 0px rgba(0,0,0,0.1);
+    backdrop-filter: blur(3px);
+  }
+    
+  .squareBox{
+    display:block;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:200px;
+    transform: translate(-50%, -50%) rotateX(-60deg);
+  }
+
+  .squareItem{ 
+    display:block;
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:100px;
+    height:100px;
+    border-radius:5px;
+    background: linear-gradient(to bottom right, #9fa8ff, #6a67e5);
+    opacity:.9;
+    &:nth-child(1){ 
+      transform: translate(-50%, calc(-50% + 50px)) rotate(45deg);
+      animation: squareAin-1 2s .5s ease-in-out both;
+    }
+    &:nth-child(2){ 
+      transform: translate(-50%, -50%) rotate(45deg);
+      animation: squareAin-2 2s .5s ease-in-out both;
+    }
+    &:nth-child(3){ 
+      transform: translate(-50%, calc(-50% - 50px)) rotate(45deg);
+      animation: squareAin-3 2s .5s ease-in-out both;
+    }
+  }
+  
+  @keyframes squareAin-1 {
+    from { opacity:0; transform: translate(-50%, -50%) rotate(45deg); }
+    to { opacity:1; transform: translate(-50%, calc(-50% + 50px)) rotate(45deg); }
+  }
+    @keyframes squareAin-2 {
+    from { opacity:0; transform: translate(-50%, -50%) rotate(45deg); }
+    to { opacity:1; transform: translate(-50%, -50%) rotate(45deg); }
+  }
+    @keyframes squareAin-3 {
+    from { opacity:0; transform: translate(-50%, -50%) rotate(45deg); }
+    to { opacity:1; transform: translate(-50%, calc(-50% - 50px)) rotate(45deg); }
+  }
+  .linkItem{
+    position:absolute;
+  }
+  .linkBox {
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:250px;
+    height:250px;
+    transform: translate(-50%, -50%);
+  }
+
+  [data-theme='dark'] {
+    .designBox{
+      box-shadow:inset 0px 0px 1px 0px rgba(127,127,127,0.3), 0px 0px 3px 0px rgba(255,255,255,0.1), 0px 0px 3px 0px rgba(255,255,255,0.1);
+    }
+  }
+}
+// ~ 1140
+@include pc {
+  .linkItem{
+    &.design{
+      top:0px;
+      right:calc(100% + 50px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          left:100%;
+        }
+        &::after{
+          left:calc(100% + 48px);
+          transform:translate(-50px, -50%);
+          animation: left-1-Ani 5s 1s linear infinite both;
+        }
+      }
+    }
+    &.components{
+      top:0px;
+      left: calc(100% + 50px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          right:100%;
+        }
+        &::after{
+          right:calc(100% + 48px);
+          animation: right-1-Ani 5s 1.5s linear infinite both;
+        }
+      }
+    }
+    &.hooks{
+      top:170px;
+      right:calc(100% + 80px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          left:100%;
+          width:78px;
+        }
+        &::after{
+        left:calc(100% + 78px);
+        animation: left-2-Ani 5s 1.3s linear infinite both;
+        }
+      }
+    }
+    &.utils {
+      top:170px;
+      left: calc(100% + 80px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          right:100%;
+          width:80px;
+        }
+          &::after{
+          right:calc(100% + 78px);
+          animation: right-2-Ani 5s 1.6s linear infinite both;
+        }
+      }
+    }
+  }
+  @keyframes left-1-Ani {
+    0%{ transform:translate(-60px, -50%);}
+    20% {transform:translate(-50px, -50%);}
+    90% {transform:translate(1px, -50%);}
+    100%{transform:translate(1px, -50%) scale(0);}
+  }
+  @keyframes left-2-Ani {
+    0%{ transform:translate(-90px, -50%); }
+    20% { transform:translate(-80px, -50%); }
+    90% { transform:translate(1px, -50%);}
+    100% { transform:translate(1px, -50%) scale(0);}
+  }
+  @keyframes right-1-Ani {
+    0%{  transform:translate(60px, -50%);}
+    20% { transform:translate(50px, -50%);}
+    90% { transform:translate(-1px, -50%);}
+    100% { transform:translate(-1px, -50%) scale(0);}
+  }
+  @keyframes right-2-Ani {
+    0%{  transform:translate(90px, -50%); }
+    20% {transform:translate(80px, -50%); }
+    90% {transform:translate(-1px, -50%);}
+    100% {transform:translate(-1px, -50%) scale(0);}
+  }
+  @keyframes top-Ani {
+    0%{ transform:translate(-50%, 60px); }
+    20% { transform:translate(-50%, 50px);}
+    90% { transform:translate(-50%, -1px);}
+    100% { transform:translate(-50%, -1px) scale(0);}
+  }
+}
+
+@include tablet {
+  .aboutHeader{
+    .title{ 
+      font-size:38px;
+    }
+    .desc{ 
+      margin-top:15px;
+      font-size:16px;
+      line-height:22px;
+    }
+  }
+  .aboutContent{
+    padding:80px 60px;
+  }
+  .designBox{
+    width:150px;
+    height:150px;
+    .squareBox{
+      width:120px;
+    }
+    .squareItem{
+      width:80px;
+      height:80px;
+    }
+    @keyframes squareAin-1 {
+      from { opacity:0; transform: translate(-50%, -50%) rotate(45deg); }
+      to { opacity:1; transform: translate(-50%, calc(-50% + 40px)) rotate(45deg); }
+    }
+    @keyframes squareAin-3 {
+      from { opacity:0; transform: translate(-50%, -50%) rotate(45deg); }
+      to { opacity:1; transform: translate(-50%, calc(-50% - 40px)) rotate(45deg); }
+    }
+  }
+  .linkBox{
+    width:150px;
+    height:150px;
+  }
+  .linkItem{
+    &.design{
+      top:-10px;
+      right:calc(100% + 30px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          left:100%;
+          width:40px;
+        }
+        &::after{
+          left:calc(100% + 35px);
+          transform:translate(0, -50%);
+          animation: left-1-Ani 5s 1s linear infinite both;
+        }
+      }
+    }
+    &.components{
+      top:-10px;
+      left: calc(100% + 30px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          right:100%;
+          width:40px;
+        }
+        &::after{
+          right:calc(100% + 35px);
+          animation: right-1-Ani 5s 1.5s linear infinite both;
+        }
+      }
+    }
+    &.hooks{
+      top:90px;
+      right:calc(100% + 60px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          left:100%;
+          width:80px;
+        }
+        &::after{
+        left:calc(100% + 60px);
+        animation: left-2-Ani 5s 1.3s linear infinite both;
+        }
+      }
+    }
+    &.utils {
+      top:90px;
+      left: calc(100% + 60px);
+      .linkBtn {
+        &::before{
+          top:50%;
+          right:100%;
+          width:80px;
+        }
+          &::after{
+          right:calc(100% + 60px);
+          animation: right-2-Ani 5s 1.6s linear infinite both;
+        }
+      }
+    }
+  }
+  .linkBtn{
+    padding:5px;
+    .icon {
+      width:20px;
+      height:20px;
+    }
+  }
+  @keyframes left-1-Ani {
+    0%{ transform:translate(-50px, -50%);}
+    20% {transform:translate(-40px, -50%);}
+    90% {transform:translate(1px, -50%);}
+    100%{transform:translate(1px, -50%) scale(0);}
+  }
+  @keyframes left-2-Ani {
+    0%{ transform:translate(-90px, -50%); }
+    20% { transform:translate(-80px, -50%); }
+    90% { transform:translate(5px, -50%);}
+    100% { transform:translate(5px, -50%) scale(0);}
+  }
+  @keyframes right-1-Ani {
+    0%{  transform:translate(50px, -50%);}
+    20% { transform:translate(40px, -50%);}
+    90% { transform:translate(-1px, -50%);}
+    100% { transform:translate(-1px, -50%) scale(0);}
+  }
+  @keyframes right-2-Ani {
+    0%{  transform:translate(90px, -50%); }
+    20% {transform:translate(80px, -50%); }
+    90% {transform:translate(-1px, -50%);}
+    100% {transform:translate(-1px, -50%) scale(0);}
+  }
+  @keyframes top-Ani {
+    0%{ transform:translate(-50%, 60px); }
+    20% { transform:translate(-50%, 50px);}
+    90% { transform:translate(-50%, -1px);}
+    100% { transform:translate(-50%, -1px) scale(0);}
+  }
+}
+@include mob {
+  .aboutHeader{
+    margin-top:10px;
+    .title{ 
+      font-size:32px;
+    }
+    .desc{ 
+      margin-top:10px;
+      font-size:14px;
+      line-height:20px;
+    }
+  }
+  .aboutContent{
+    display:block;
+    padding:50px 0 20px;
+  }
+  .designBox{
+    display:none;
+  }
+  .linkLists{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .linkItem{
+    width: calc((100% - 20px) / 3);
+  }
+  .linkBtn{
+    width:100%;
+  }
+}

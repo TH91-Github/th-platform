@@ -12,10 +12,10 @@ export const MoreBtn = ({uiType}: MoreBtnPropsType) => {
     setActive(!active);
   }
   return (
-    <div className={`${styles['more-btn-wrap']} ${cn(uiType ==='circle' && 'circle')}`}>
+    <div className={`${styles.moreBtnWrap} ${cn(uiType ==='circle' && 'circle')}`}>
       <button
         type="button"
-        className={`${styles['more-btn']} ${active ? styles.open : ''}`}
+        className={`${styles.btn} ${active ? styles.open : ''}`}
         onClick={handleMoreClick}
       >
         <span className="blind">더보기</span>

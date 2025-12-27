@@ -110,8 +110,6 @@ export const Carousel = ({
     carouselSlideTo: index => swiperRef.current?.swiper.slideTo(index),
     carouselUpdate: () => swiperRef.current?.swiper.update()
   }));
-
-  console.log(option )
   
   return (
     <div 

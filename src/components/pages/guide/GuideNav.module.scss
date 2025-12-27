@@ -1,0 +1,124 @@
+.nav{
+  position:relative;
+  margin-top:10px;
+  
+  & > ul { 
+    display:flex;
+    gap:10px;
+    flex-direction: column;
+    & > [class*="open"]{
+      .accBtn{
+        color: var(--color-point);
+      }
+    }
+  }
+  .accBtn{
+    padding-left:10px;
+    color:var(--color-sub-text);
+  }
+  [class*="_accHead_"]{
+    [class*="_accTit_"]{ 
+      padding-left:0;
+    }
+  }
+
+  &.fold {
+    margin-top:20px;
+    .depth{
+      border-bottom:1px solid var(--color-line);
+    }
+    .accBtn{
+      padding:0;
+    }
+    .navTit, .navLength{
+      display:none;
+    }
+    .navBtn{
+      justify-content: center;
+    }
+    [class*="_arrowIcon_"]{
+      display:none;
+    }
+    .navLink{
+      justify-content: center;
+      padding:5px;
+    }
+    .icon {
+      width:25px;
+      height:25px;
+    }
+  }
+}
+.navTit{
+  font-size:rem(16px);
+  @include ellipsis();
+}
+.accTit{ 
+  transition: var(--transition-color);
+}
+.navBtn{
+  display:flex;
+  align-items: center;
+  gap:10px;
+}
+.navLength{
+  display:inline-block;
+  padding:3px;
+  background-color: var(--color-point-bg);
+  font-size:12px;
+  font-weight:600;
+  line-height:1;
+  text-align:center;
+  color: $color-title-b;
+}
+.icon{
+  flex-shrink: 0;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  width:20px;
+  height:20px;
+}
+.depth{
+  position:relative;
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+  padding:10px 0;
+}
+.depthItem{
+  padding:0 5px;
+}
+.navLink{
+  display:flex;
+  align-items: center;
+  gap:10px;
+  padding:5px 10px;
+  border-radius:5px;
+  color: var(--color-sub-text);
+  transition: var(--transition-color), var(--transition-bg), var(--transition-border), var(--transition-shadow);
+  &[class*="active"]{ 
+    font-weight:600;
+    background-color: var(--color-origin);
+    color: var(--color-title);
+    box-shadow: var(--box-shadow);
+    .icon {
+      color:var(--color-point);
+    }
+  }
+  .navTit{
+    font-size:rem(18px);
+  }
+}
+
+
+[data-theme='dark'] {
+  .navLink{
+    &[class*="active"]{ 
+      background-color: $color-dark-bg-on;
+      .icon {
+        color: var(--color-point);
+      }
+    }
+  }
+}

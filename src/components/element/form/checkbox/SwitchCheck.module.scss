@@ -8,7 +8,7 @@
   left:0;
   opacity:0;
 }
-.switch-btn {
+.switchBtn {
   display: block;
   overflow: hidden;
   position: relative;
@@ -22,7 +22,7 @@
   transition: box-shadow 0.3s ease;
 }
 
-.switch-mode {
+.switchMode {
   display: block;
   position: absolute;
   top: 2px;
@@ -37,8 +37,8 @@
 }
 
 /* 체크된 상태 */
-.input:checked + .switch-btn {
-  .switch-mode{
+.input:checked + .switchBtn {
+  .switchMode{
     transform: translatex(calc(100% + 2px));
   }
 }
@@ -53,7 +53,7 @@
   transform: scale(1);
 }
 
-.input:focus-visible + .switch-btn {
+.input:focus-visible + .switchBtn {
   outline: 2px solid $color-black;
   outline-offset: 1px;
 }

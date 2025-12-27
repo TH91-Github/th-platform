@@ -8,8 +8,8 @@ export const SwitchCheck = () => {
         type="checkbox" 
         className={styles.input}
       />
-      <span className={styles['switch-btn']}>
-        <span className={styles['switch-mode']}>
+      <span className={styles.switchBtn}>
+        <span className={styles.switchMode}>
           
         </span>
       </span>

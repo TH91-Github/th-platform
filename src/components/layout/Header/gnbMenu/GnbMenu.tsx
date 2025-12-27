@@ -8,7 +8,7 @@ const DEV_MODE = import.meta.env.DEV;
 export const GnbMenu = () => {
   const location = useLocation();
   const navRefs = useRef<HTMLAnchorElement[]>([]);
-  const [barStyle, setBarStyle] = useState({ left: 0, width: 0 });
+  const [barStyle, setBarStyle] = useState({ left: 0, width: 0, top: 0 });
 
   const navLists = routerList.filter(
     (item) => item.view !== 'dev' || DEV_MODE
@@ -27,7 +27,9 @@ export const GnbMenu = () => {
     const activeEl = navRefs.current[activeIndex];
     if (activeEl) {
       const { offsetLeft, offsetWidth } = activeEl;
-      setBarStyle({ left: offsetLeft, width: offsetWidth });
+      setBarStyle({ left: offsetLeft, width: offsetWidth, top:0 });
+    }else{
+      setBarStyle({ ...barStyle, top:100 });
     }
   }, [activeIndex, location]);
 
@@ -35,21 +37,21 @@ export const GnbMenu = () => {
     <div className={styles.gnb}>
       <ul className={styles.lists}>
         {navLists.map((navItem, idx) => (
-          <li key={idx} className={styles['nav-item']}>
+          <li key={idx} className={styles.navItem}>
             <NavLink
               to={navItem.path}
-              className={styles['nav-link']}
+              className={styles.navLink}
               ref={(el) => setNavRef(el, idx)}
             >
-              <span className={styles['nav-tit']}>{navItem.title}</span>
+              <span className={styles.navTit}>{navItem.title}</span>
             </NavLink>
           </li>
         ))}
       </ul>
       <span
-        className={styles['active-bar']}
+        className={styles.activeBar}
         style={{
-          transform: `translateX(${barStyle.left}px)`
+          transform: `translate(${barStyle.left}px, ${barStyle.top}px)`
         }}
       ></span>
     </div>

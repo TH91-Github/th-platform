@@ -8,10 +8,10 @@ export function ThemeToggle() {
     <div className={styles.theme}>
       <button
         type="button"
-        className={styles['theme-btn']}
+        className={styles.btn}
         onClick={toggleTheme}
       >
-        <span className={styles['theme-text']}>
+        <span className={styles.themeText}>
           <span className={styles.text}>
             Dark
           </span>
@@ -20,7 +20,7 @@ export function ThemeToggle() {
           </span>
           <span className="blind">모드 중 {theme === 'dark' ? 'dark' : 'light'}선택 됨</span>
         </span>
-        <span className={styles['mode-icon']}>
+        <span className={styles.modeIcon}>
           <span className={`${styles.icon} ${styles.light}`}>
             <IconSunny />
           </span>

@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.theme-btn {
+.btn {
   display: block;
   overflow: hidden;
   position: relative;
@@ -16,7 +16,7 @@
   transition: box-shadow 0.3s ease;
 }
 
-.theme-text {
+.themeText {
   display: flex;
   align-items: center;
   position: relative;
@@ -38,7 +38,7 @@
   }
 }
 
-.mode-icon {
+.modeIcon {
   display: block;
   position: absolute;
   z-index:3;
@@ -69,11 +69,11 @@
 }
 
 [data-theme='dark'] {
-  .theme-btn {
+  .btn {
     background-color: $color-dark-bg;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset 1px -1px 1px rgba(255, 255, 255, 0.5);
   }
-  .mode-icon {
+  .modeIcon {
     background: $color-dark-bg-on;
     transform: translatex(calc(100% + 2px));
     .icon{

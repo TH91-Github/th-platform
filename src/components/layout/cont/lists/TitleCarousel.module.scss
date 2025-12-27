@@ -1,0 +1,68 @@
+.titleCarousel{
+  overflow:hidden;
+  position:relative;
+  width:100%;
+}
+.heading{
+  max-width:$bp-tablet;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+.tc-carousel{
+  width:100%;
+  max-width: $bp-tablet;
+  margin:20px auto 0;
+  padding:0 30px;
+  &.fullCont {
+    max-width:100%;
+    padding:0;
+    :global{ 
+      .swiper {
+        width:100%;
+      }
+    }
+  }
+}
+@include pc { // 1140 ~
+  .tc-carousel{
+    max-width: $bp-tablet;
+    &.fullCont {
+      :global{ 
+        .swiper {
+          padding:0 calc((100% - ($bp-tablet) + 60px) / 2);
+        }
+      }
+    }
+  }
+}
+@include tablet { // 768 ~ 1139
+  .tc-carousel{
+    max-width: $bp-tablet;
+    &.fullCont {
+      :global{ 
+        .swiper {
+          padding:0 30px;
+        }
+      }
+    }
+  }
+}
+@include tablet-pc{ // 768 ~
+ 
+}
+@include mob {
+  .heading{
+    padding:0 15px;
+  }
+  .tc-carousel {
+    margin-top:10px;
+    padding:0 15px;
+    &.fullCont {
+      :global{ 
+        .swiper {
+          padding:0 15px;
+        }
+      }
+    }
+  }
+}

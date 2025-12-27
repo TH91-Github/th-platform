@@ -33,11 +33,11 @@ export const TextChageUI = ({
   return (
     <p
       className={cn(
-        styles['text-change'],
+        styles.textChange,
         !isAnimation && !hasDelayOnly && styles.static, // 애니메이션도 없고 delay도 없을 때
         align && styles[align],
         color && styles[color],
-        hasDelayOnly && styles['delay-only']
+        hasDelayOnly && styles.delayOnly
       )}
       data-max={isAnimation ? maxTextLength.length : undefined}
       data-speed={isAnimation ? speed : undefined}

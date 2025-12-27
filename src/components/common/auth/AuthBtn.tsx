@@ -5,7 +5,6 @@ import styles from './AuthBtn.module.scss'
 export const AuthBtn = () => {
   const isLogin = useIsLogin();
 
-  console.log(isLogin)
   const handleLoginClick = () => {
     // 로그인 페이지로
     alert('준비중')
@@ -17,7 +16,7 @@ export const AuthBtn = () => {
           ? (
             <button
               type="button"
-              className={styles['login-btn']}
+              className={styles.btn}
               onClick={handleLoginClick}
             >
               <IconLogin />

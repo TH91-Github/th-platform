@@ -24,7 +24,7 @@ export const MainVisual = () => {
             }}
           />
         </h2>
-        <div className={styles['sub-text']}>
+        <div className={styles.subText}>
           {MAIN_SUB_TEXT.map((textItem, textIdx) => (
             <TextChageUI
               textData={textItem}
@@ -34,6 +34,7 @@ export const MainVisual = () => {
                 delay: Number(`${3}.${textIdx}`),
               }}
               color="sub"
+              key={textIdx}
             />
           ))}
         </div>
