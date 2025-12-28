@@ -1,5 +1,3 @@
-// next.js -> react + vite 변경 25/11/20
-
 # 💻 통합 플랫폼
 이전 사이드 프로젝트였던 카카오맵 api 기반 지도(리뷰&즐겨찾기 등), 날씨(지역검색), 가이드 기능을
 통합 리팩토링하여 재시작을 하였습니다.
@@ -37,16 +35,16 @@
 <hr /> 
 
 ## 📘 설치
-@reduxjs/toolkit
-dompurify
-react
-react-dom
-react-icons
-react-redux
-react-router-dom
-zustand
-swiper@11.2.5
--D sass
+@reduxjs/toolkit <br/>
+dompurify<br/>
+react <br/>
+react-dom <br/>
+react-icons <br/>
+react-redux <br/> 
+react-router-dom <br/> 
+zustand <br/> 
+swiper@11.2.5 <br/> 
+-D sass <br/>
 
 
 ### 🔷 Node 설치 기준
