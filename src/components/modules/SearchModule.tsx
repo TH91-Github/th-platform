@@ -74,13 +74,13 @@ export const SearchModule = <T extends EssentialSearchType>({
     });
     return matches;
   }, [data, resultVal]);
-  const onKeyword = (keyVal: string) => {
-    // 자동완성 클릭
-    setResultVal(keyVal);
-    setIsPreview(false);
-    if (!inputRef.current) return;
-    inputRef.current.changeVal(keyVal);
-  };
+  // const onKeyword = (keyVal: string) => {
+  //   // 자동완성 클릭
+  //   setResultVal(keyVal);
+  //   setIsPreview(false);
+  //   if (!inputRef.current) return;
+  //   inputRef.current.changeVal(keyVal);
+  // };
   const handleEnter = () => {
     handleClick();
   };

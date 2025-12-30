@@ -1,4 +1,4 @@
-import styles from './HooksGuidePage.module.scss';
+// import styles from './HooksGuidePage.module.scss';
 export const HooksGuidePage = () => {
   return( 
     <div>

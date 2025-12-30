@@ -1,19 +1,19 @@
 import { GuideSearch } from '@/components/pages/guide/GuideSearch';
-import { useRestoreFocus } from '@/hook/common/useCommon';
+// import { useRestoreFocus } from '@/hook/common/useCommon';
 import type { ContextPropsType } from '@/types/guide';
-import { Outlet, useNavigate, useOutletContext } from 'react-router-dom';
+import { Outlet, useOutletContext } from 'react-router-dom';
 
 
 export const ElementCmPage = () => {
   const {id, detailsAni } = useOutletContext<ContextPropsType>();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   
-  const {beforeFocus, resetFocus} = useRestoreFocus();
+  // const {beforeFocus, resetFocus} = useRestoreFocus();
 
-  const handleItemClick = (pathID:string) => {
-    beforeFocus(pathID);
-    navigate(`element/${pathID}`);
-  }
+  // const handleItemClick = (pathID:string) => {
+  //   beforeFocus(pathID);
+  //   navigate(`element/${pathID}`);
+  // }
 
   return( 
     <div>

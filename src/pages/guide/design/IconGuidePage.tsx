@@ -7,6 +7,7 @@ import styles from './IconGuidePage.module.scss';
 export const IconGuidePage = () => {
   const handleIconClick = async (e:string) => {
     const copySuccess = await copyClipboard(e);
+    console.log(copySuccess)
   }
   return( 
     <div>

@@ -9,7 +9,7 @@ export const BreakpointsGuidePage = () => {
 
   const handleClickCopy = async (e: string) => {
     const copySuccess = await copyClipboard(e);
-
+    console.log(copySuccess)
   };
 
   return (

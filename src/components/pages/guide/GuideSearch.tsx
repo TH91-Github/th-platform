@@ -1,6 +1,6 @@
 import { TitlePoint } from "@/components/ui/text/TitlePoint";
 import styles from './GuideSearch.module.scss';
-import { Input } from "@/components/element/form/input/Input";
+// import { Input } from "@/components/element/form/input/Input";
 import { SearchModule } from "@/components/modules/SearchModule";
 
 interface GuideSearchPropsType {

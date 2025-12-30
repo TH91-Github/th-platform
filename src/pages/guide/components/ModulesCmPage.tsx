@@ -11,6 +11,9 @@ export const ModulesCmPage = () => {
   const handleItemClick = (pathID:string) => {
     beforeFocus(pathID);
     navigate(`element/${pathID}`);
+    if(false){
+      resetFocus()
+    }
   }
 
   return( 
@@ -19,6 +22,7 @@ export const ModulesCmPage = () => {
       <GuideSearch title='컴포넌트 키워드를 검색하세요 🔎 ' />
       {/* 검색 이후 나오는 viewp */}
       <Outlet context={{ id, detailsAni }} />
+      <button onClick={() => handleItemClick('d')}>test </button>
     </div>
   )
 }

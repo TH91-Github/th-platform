@@ -9,7 +9,7 @@ interface UserInfoStoreType {
   }
 }
 
-export const useUserInfoStore = create<UserInfoStoreType>((set, get) => ({
+export const useUserInfoStore = create<UserInfoStoreType>((set) => ({
   login: false,
   actions: {
     userClear: () =>
