@@ -1,6 +1,6 @@
 
 import styles from '@/App.module.scss'
-import { VercelTest } from './components/VercelTest'
+import { VercelTest } from '@/components/VercelTest'
 
 function App() {
   return (
