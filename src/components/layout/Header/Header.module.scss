@@ -1,0 +1,18 @@
+.header {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: $bp-max-pc;
+  height: var(--header-h);
+  border-bottom:1px solid $color-line;
+  background-color: var(--color-bg);
+  transition: background-color 0.3s ease;
+  &-inner{
+    display:flex;
+    gap:10px;
+    align-items: center;
+    height:100%;
+  }
+}
