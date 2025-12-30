@@ -1,13 +1,16 @@
-
+import { Outlet } from 'react-router-dom';
+import { HeaderLayout } from '@/components/layout/header/HeaderLayout';
+import { RootLayout } from '@/components/layout/rootLayout/RootLayout';
 import styles from '@/App.module.scss'
-import { VercelTest } from '@/components/VercelTest'
-import { HeaderTest } from './components/layout/header/HeaderTest'
 
 function App() {
   return (
     <div className={styles.app}>
-      <HeaderTest />
-      <VercelTest />
+      <HeaderLayout />
+      <div className={styles.contents}>
+        <Outlet />
+      </div>
+      <RootLayout />
     </div>
   )
 }
