@@ -9,7 +9,6 @@ export const routerList = [
     id:'guide',
     path: '/guide',
     title:'Guide',
-    // view: 'dev', // dev모드
     element: <GuidePage />,
     children: [...GUIDE_LIST],
   },
