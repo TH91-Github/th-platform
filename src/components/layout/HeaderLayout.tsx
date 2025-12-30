@@ -1,7 +1,8 @@
-  
+import styles from './HeaderLayout.module.scss';
+
 export const HeaderLayout = () => {
   return (
-    <div>
+    <div className={styles.header}>
       HeaderLayout
     </div>
   )
