@@ -1,13 +1,13 @@
 
 import styles from '@/App.module.scss'
 import { VercelTest } from '@/components/VercelTest'
-import { Header } from '@/components/layout/header/Header'
+import { HeaderLayout } from './components/layout/HeaderLayout'
 
 function App() {
   return (
     <div className={styles.app}>
-      <Header />
-     <VercelTest />
+      <HeaderLayout />
+      <VercelTest />
     </div>
   )
 }
