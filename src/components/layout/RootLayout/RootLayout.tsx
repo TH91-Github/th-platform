@@ -6,7 +6,7 @@ export const RootLayout = () => {
   useResizeHandle();
   return(
     <>
-    
+     <div>root</div>
     </>
   )
 }
