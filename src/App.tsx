@@ -1,12 +1,12 @@
 
 import styles from '@/App.module.scss'
 import { VercelTest } from '@/components/VercelTest'
-import { HeaderLayout } from './components/layout/HeaderLayout'
+import { HeaderTest } from './components/layout/header/HeaderTest'
 
 function App() {
   return (
     <div className={styles.app}>
-      <HeaderLayout />
+      <HeaderTest />
       <VercelTest />
     </div>
   )
