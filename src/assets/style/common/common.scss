@@ -24,6 +24,7 @@ svg {
 h1,h2,h3,h4,h5,h6,
 .title,.tit,.tit-s {
   letter-spacing: -0.4px;
+  line-height:1.3;
 }
 
 a {
@@ -119,4 +120,13 @@ a {
     padding: 0 15px;
   }
 
+}
+// 접근성 : 운영체제(OS나 브라우저에서 사용자가 “움직임/애니메이션 최소화" 설정 reduce : true
+@media (prefers-reduced-motion: reduce) {
+  [data-theme='dark'] *,
+  [data-theme='dark'] *::before,
+  [data-theme='dark'] *::after {
+    transition: background-color .01ms, color .01ms, border-color .01ms !important;
+    // transition: none !important;
+  }
 }

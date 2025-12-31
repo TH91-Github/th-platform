@@ -1,6 +1,7 @@
 @use './variables' as *;
 
-// 기본 :root or ligh
+// 🔹 기본 :root or ligh
+// colorsData.ts 추가
 :root, [data-theme='light'] {
   --color : #{$color-black};
   --color-bg: #{$color-white};
@@ -13,8 +14,10 @@
   --color-sub-text: #{$color-sub-text-b};
   --color-point: #{$color-blue};
   --color-point-bg: #{$color-blue-bg};
+  --color-point-text: #{$color-text-w};
   --box-shadow: #{$shadow-b};
   --opacity-bg: #{$opacity-w};
+  --glass-line: #{$glass-border-w};
 }
 
 [data-theme='dark'] {
@@ -29,6 +32,8 @@
   --color-sub-text: #{$color-sub-text-w};
   --color-point: #{$color-yellow};
   --color-point-bg: #{$color-yellow-bg};
+  --color-point-text: #{$color-text-b};
   --box-shadow: #{$shadow-w};
   --opacity-bg: #{$opacity-b};
+  --glass-line: #{$glass-border-b};
 }

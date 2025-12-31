@@ -59,6 +59,12 @@ export const themeColorData = [
             root:'var(--color-point-bg)'
           },
           {
+            title:'Point Text',
+            code:'#e9ecef',
+            scss:'$color-text-w',
+            root:'var(--color-point-text)'
+          },
+          {
             title:'Line',
             code:'#dbdbdb',
             scss:'$color-line',
@@ -100,6 +106,19 @@ export const themeColorData = [
             code:'0 2px 8px rgba(0, 0, 0, 0.15)',
             scss:'$shadow-b',
             root:'var(--box-shadow)'
+          },
+        ]
+      },
+      {
+        id:'option',
+        title:'Option',
+        desc:'다크 테마에서 사용하는 option',
+        lists:[
+          {
+            title:'투명도 BG',
+            code:'rgba(255,255,255,0.5)',
+            scss:'$opacity-w',
+            root:'var(--opacity-bg)'
           },
         ]
       }
@@ -151,6 +170,12 @@ export const themeColorData = [
             root:'var(--color-point-bg)'
           },
           {
+            title:'Point Text',
+            code:'#42464d',
+            scss:'$color-text-b',
+            root:'var(--color-point-text)'
+          },
+          {
             title:'Line',
             code:'#40444b',
             scss:'$color-line-black',
@@ -188,10 +213,23 @@ export const themeColorData = [
         desc:'다크 테마에서 사용하는 box-shadow',
         lists:[
           {
-            title:'Default',
-            code:'0 4px 20px rgba(255, 255, 255, 0.2)',
-            scss:'$shadow-w',
-            root:'var(--box-shadow)'
+            title:'Text',
+            code:'rgba(255, 255, 255, 0.2)',
+            scss:'$color-text-w',
+            root:'var(--color-text)'
+          }
+        ]
+      },
+      {
+        id:'option',
+        title:'Option',
+        desc:'다크 테마에서 사용하는 option',
+        lists:[
+          {
+            title:'투명도 BG',
+            code:'rgba(5,11,33,0.5)',
+            scss:'$opacity-b',
+            root:'var(--opacity-bg)'
           },
         ]
       }

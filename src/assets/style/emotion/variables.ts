@@ -48,3 +48,23 @@ export const colors = {
   darkBgOn:'#454864',
 }
 
+export const colorsText = {
+  titleB:'#353844',
+  textB:'#42464d',
+  descB:'#495057',
+  subTextB:'#8d9095',
+  titleW:'#f1f3f5',
+  textW:'#e9ecef',
+  descW:'#dee2e6',
+  subTextW:'#adb5bd',
+}
+
+export const styleGlass = {
+  borderW: 'linear-gradient(135deg,rgba(137,138,141,0.9) 0%,rgba(137,138,141,0.4) 15%,rgba(255,255,255, 0.15) 30%,rgba(255,255,255, 0.02) 85%,rgba(137,138,141,0.9) 100%',
+  borderB:'linear-gradient(315deg,rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.4) 15%,rgba(53,56,68,0.15) 30%,rgba(53,56,68,0.02) 85%,rgba(255,255,255,0.9) 100%'
+}
+
+export const styleShadow = {
+  w: '0 4px 20px rgba(255, 255, 255, 0.2)',
+  b: '0 2px 8px rgba(0, 0, 0, 0.15)',
+}

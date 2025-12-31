@@ -11,7 +11,7 @@ export const rem = (fontSize: number, useRem: boolean = true, base:number = 16):
 type ScrollDirection = "x" | "y" | "both";
 
 export const scroll = (
-  direction: ScrollDirection = "x",
+  direction: ScrollDirection = "y",
   width: number = 5
 ) => css`
   ${direction === "y" &&

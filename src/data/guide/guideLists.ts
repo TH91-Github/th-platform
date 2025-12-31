@@ -92,8 +92,8 @@ export const guideLists : GuideListsType[] = [
         ]
       },
       {
-        id: "modules",
-        path: "modules",
+        id: "module",
+        path: "module",
         title: "모듈",
         desc:[
           '여러 개의 element(component)를 조합해 구성된 복합 컴포넌트',

@@ -11,7 +11,7 @@
   font-size:14px;
   color: var(--color-text);
   outline: none;
-  transition: var(--transition-border), var(--transition-color);
+  transition: var(--transition-border), var(--transition-color), var(--transition-bg);
   line-height:1;
   &:focus {
     border-color: var(--color-point);

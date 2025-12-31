@@ -11,6 +11,8 @@
     }
     .inputItem {
       & > input {
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
       }
@@ -23,6 +25,7 @@
   align-items: center;
   position: relative;
   border:1px solid var(--color-line);
+  transition: var(--transition-border);
   & > i {
     display:block;
     width:25px;
@@ -50,7 +53,11 @@
   z-index:10;
   top: 100%;
   width: 100%;
+  margin-top:2px;
   padding: 8px 10px;
+  border:1px solid var(--color-line);
+  border-radius:5px;
+  background-color: var(--color-origin-on);
   font-size: 14px;
   font-weight: 600;
   color: $color-red;

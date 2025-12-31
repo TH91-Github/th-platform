@@ -21,16 +21,15 @@ $color-disabled:#e7ebee;
 $color-line:#dbdbdb;
 $color-line-black:#40444b;
 // color opacity
-$opacity-w:rgba(255,255,255,0.7);
-$opacity-b: rgba(5,11,33,0.7);
+$opacity-w:rgba(255,255,255,0.5);
+$opacity-b: rgba(5,11,33,0.5);
 
-// tit & text
-// ligh 기준
+// tit & text ligh
 $color-title-b:#353844;
 $color-text-b:#42464d;
 $color-desc-b:#495057;
 $color-sub-text-b:#8d9095;
-// dark 기준 
+// tit & text dark
 $color-title-w:#f1f3f5;
 $color-text-w: #e9ecef;
 $color-desc-w:#dee2e6;
@@ -40,6 +39,20 @@ $color-sub-text-w:#adb5bd;
 $color-dark-bg:#2a2d3e;
 $color-dark-bg-on:#454864;
 
+$glass-border-w:linear-gradient(135deg,
+  rgba(137,138,141,0.9) 0%,
+  rgba(137,138,141,0.4) 15%,
+  rgba(255,255,255, 0.15) 30%,
+  rgba(255,255,255, 0.02) 85%,
+  rgba(137,138,141,0.9) 100%
+);
+$glass-border-b:linear-gradient(135deg,
+  rgba(255,255,255,0.9) 0%,
+  rgba(255,255,255,0.4) 15%,
+  rgba(53,56,68,0.15) 30%,
+  rgba(53,56,68,0.02) 85%,
+  rgba(255,255,255,0.9) 100%
+);
 // box shadow
 $shadow-w:0 4px 20px rgba(255, 255, 255, 0.2);
 $shadow-b:0 2px 8px rgba(0, 0, 0, 0.15);
