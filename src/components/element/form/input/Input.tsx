@@ -20,7 +20,7 @@ interface InputPropsType
   initVal?: string;
   disabled?: boolean;
   error?:boolean;
-  $defaultLine?: 'line' | 'line-bottom' | 'line-left' | 'none';
+  $defaultLine?: 'line' | 'line-bottom' | 'line-left' | 'line-none';
   keyEnter?: ({e,val}: InputKeyboardValType) => void;
   changeEvent?: (e: string) => void;
   focusEvent?: (e?:React.FocusEvent<HTMLInputElement>) => void;
@@ -89,7 +89,7 @@ export function Input({
         className={cn(
           styles.input, 
           'input',
-          $defaultLine !== 'none' && $defaultLine,
+          $defaultLine && styles[$defaultLine],
           error && styles.error
         )}
         value={val}
@@ -104,7 +104,6 @@ export function Input({
     </label>
   );
 }
-
 
 /*
 부모 사용
