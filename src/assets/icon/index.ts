@@ -23,4 +23,6 @@ export { IoList as IconList } from 'react-icons/io5'
 export { LuEllipsis as IconEllipsis } from 'react-icons/lu'
 export { HiOutlineExternalLink as IconOutLink } from "react-icons/hi";
 export { IoIosSearch as IconSearch } from "react-icons/io";
+export { RiArrowGoBackLine as IconBack } from "react-icons/ri";
+export { LuCheck as IconCheck } from "react-icons/lu";
 

@@ -172,8 +172,22 @@ export const iconData = [
   {
     id:'icon-out-link',
     code: 'hi/HiOutlineExternalLink',
-    label: '<IconOutLink',
+    label: 'IconOutLink',
     title:'Out Link',
     keyword:['link','outlink','새 창','아웃링크','링크','url'],
+  },
+  {
+    id:'icon-back',
+    code: 'ri/RiArrowGoBackLine',
+    label: 'IconBack',
+    title:'go Back',
+    keyword:['link','IconBack','뒤로가기','백','back','Backspace','go back'],
+  },
+  {
+    id:'icon-check',
+    code: 'ri/RiArrowGoBlu/LuCheck',
+    label: 'IconCheck',
+    title:'go Back',
+    keyword:['link','IconCheck','LuCheck','체크','check','확인'],
   },
 ]
