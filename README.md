@@ -45,7 +45,7 @@ react-router-dom <br/>
 zustand <br/> 
 swiper@11.2.5 <br/> 
 -D sass <br/>
-
+ㅞㅡhighlight.js
 
 ### 🔷 Node 설치 기준
 node 22.12 권장

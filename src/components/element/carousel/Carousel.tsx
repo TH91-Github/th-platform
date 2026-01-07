@@ -114,6 +114,7 @@ export const Carousel = ({
   return (
     <div 
       className={cn(
+        'carousel-wrap',
         styles.carouselWrap, 
         option.direction ==='vertical'&& styles.vertical, 
         React.Children.toArray(children).length < 2 && styles['not-swiper']
@@ -158,32 +159,31 @@ export const Carousel = ({
         )}
       </div>
       {/* pagination, autoplay */}
-      {(option.pagination || option.autoplay) && (
+      {option.pagination && (
         <div className={styles.control}>
           {option.pagination && (
             <div ref={paginationRef} className={styles.pagination}>
             </div>
           )}
-          {option.autoplay && (
+          {(option.pagination && option.autoplay) && (
             <div className={styles.autoplay}>
               <button
                 type="button"
                 className={cn(styles.btn, styles[isPlaying?'stop':'play'])}
                 onClick={handleAutoPlay}>
-                  {
-                    isPlaying
-                      ? <>
-                        <span className={styles.icon}>
-                          <IconPause />
-                        </span>
-                        <span className="blind">정지</span>
-                      </>
-                      : <>
-                        <span className={styles.icon}>
-                          <IconPlay />
-                        </span>
-                        <span className="blind">재생</span>
-                      </>
+                  { isPlaying
+                    ? <>
+                      <span className={styles.icon}>
+                        <IconPause />
+                      </span>
+                      <span className="blind">정지</span>
+                    </>
+                    : <>
+                      <span className={styles.icon}>
+                        <IconPlay />
+                      </span>
+                      <span className="blind">재생</span>
+                    </>
                   }
               </button>
             </div>

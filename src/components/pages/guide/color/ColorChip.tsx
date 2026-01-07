@@ -7,10 +7,9 @@ import styled from "@emotion/styled";
 interface ColorChipPropsType {
   data: ColorListsDataType,
   afterimage?:boolean,
-  chipType?: 'color' | 'shadow',
+  chipType?:string,
 }
 export const ColorChip = ({data, afterimage, chipType='color'}:ColorChipPropsType) => {
-
   const handleColorClick = async (e:string) => {
     const copySuccess = await copyClipboard(e);
     console.log(copySuccess)
@@ -20,6 +19,7 @@ export const ColorChip = ({data, afterimage, chipType='color'}:ColorChipPropsTyp
     <StyleColorItem
       $bg={chipType !== 'shadow' ? data.code : 'transparent'}
       $boxShadow={chipType !== 'shadow' ? undefined : data.code}
+      className={cn(chipType ==='option' && 'option')}
     >
       <button 
         type="button"
@@ -36,6 +36,9 @@ export const ColorChip = ({data, afterimage, chipType='color'}:ColorChipPropsTyp
         {data.emotion && <span className="chip-text">emotion {data.emotion}</span> }
         {data.root && <span className="chip-text">:root {data.root}</span>}
       </div>
+      {
+        chipType ==='option' && <p className='ref-desc'>투명도 확인용 👆</p>
+      }
     </StyleColorItem>
   )
 }
@@ -48,6 +51,33 @@ const StyleColorItem = styled.div<StyleColorItemType>`
   display:flex;
   flex-direction: column;
   gap:10px;
+  &.option {
+    position:relative;
+    &::before{
+      position:absolute;
+      top:10px;
+      right:0px;
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background: var(--color-point);
+      animation: aniOptionCircle 3s linear infinite;
+      content:'';
+    }
+    @keyframes aniOptionCircle { 
+      0%, 100% { 
+        transform: translateX(0);
+      }
+      50% { 
+        transform: translateX(10px);
+      }
+    }
+    .chip-btn{
+      position:relative;
+      z-index:2;
+    }
+
+  }
   .chip-btn{
     display:block;
     width:100%;
@@ -119,5 +149,12 @@ const StyleColorItem = styled.div<StyleColorItemType>`
     color: var(--color-sub-text);
     transition: var(--transition-color);
   }
-  .
-`
+  .ref-desc{
+    position:absolute;
+    z-index:2;
+    top:25px;
+    left:50%;
+    font-size:12px;
+    white-space: nowrap;
+  }
+`;

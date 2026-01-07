@@ -11,7 +11,7 @@ export const GuideIcon = ({id}:{id:string}) => {
         fonts: <IconFont />,
         breakpoints: <IconBP />,
         element: <IconPart />, // 컴포넌트
-        modules: <IconModule />,
+        module: <IconModule />,
         layout: <IconLayout />,
         hooks: <IconHook />,
         utils: <IconCode />,

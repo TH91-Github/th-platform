@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 
+// 🔹 모바일 체크
 interface UseIsMobileStoreType {
   isMobile: boolean;
   setIsMobile: (value: boolean) => void;
@@ -7,7 +8,6 @@ interface UseIsMobileStoreType {
 
 export const useIsMobileStore = create<UseIsMobileStoreType>((set, get) => ({
   isMobile: false,
-  
   setIsMobile: (value: boolean) => {
     const current = get().isMobile;
     if (current !== value) set({ isMobile: value });

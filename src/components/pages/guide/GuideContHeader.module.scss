@@ -1,6 +1,6 @@
 .header{
   padding:20px 30px;
-  border-top: 1px solid var(--color-line);
+  animation: $fadeUp;
   :global{ 
     .bullet-lists{
       & > li {
@@ -22,7 +22,5 @@
   color:var(--color-desc);
 }
 .linkLists{
-  margin-top:10px;
-  padding-top:10px;
-  border-top:1px solid var(--color-line);
+  margin-top:5px;
 }

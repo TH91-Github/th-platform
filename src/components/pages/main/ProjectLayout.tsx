@@ -1,5 +1,5 @@
 
-import { TitleCarousel } from '../layout/cont/lists/TitleCarousel';
+import { TitleCarousel } from '../../layout/cont/lists/TitleCarousel';
 import styles from './ProjectLayout.module.scss';
 
 export const ProjectLayout = () => {

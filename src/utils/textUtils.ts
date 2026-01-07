@@ -32,3 +32,17 @@ export function partialUndisclosed(
   }
   return domain === undefined ? resultVal : `${resultVal}${cutType}${domain}`;
 } 
+
+// 🔹 코드 작성 들여쓰기 삭제
+export function stripIndent(code: string) {
+  const lines = code.replace(/^\n/, '').split('\n');
+  // 공통 들여쓰는 부분 체크
+  const indent = Math.min(
+    ...lines
+      .filter(line => line.trim().length > 0)
+      .map(line => line.match(/^\s*/)?.[0].length ?? 0)
+  );
+
+  // 공통 들여쓰기 제거
+  return lines.map(line => line.slice(indent)).join('\n');
+}

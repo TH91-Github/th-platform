@@ -1,4 +1,5 @@
-import { TextHighlight } from '@/components/element/text/TextHighlight';
+
+import { TextHighlight } from '@/components/element/highlight/TextHighlight';
 import styles from './PreviewText.module.scss';
 
 // 🔹 자동 완성 목록 단순 목록 노출 및 일치 텍스트 반환. 중복 제거

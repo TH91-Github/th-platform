@@ -4,13 +4,30 @@
   min-height: 500px;
   height: calc(100svh - var(--header-h));
   background: $color-black;
-  
-  // 메인 빛
-  &::after {
-    content: '';
+  &::before, &::after{
     position: absolute;
     top: 0;
     left: 50%;
+    width: 80%;
+    height: 80%;
+    opacity: 0;
+    filter: blur(40px);
+    transform: translateX(-50%);
+    pointer-events: none;
+    content: '';
+  }
+  &::before {
+    // ellipse at center 타원형 그라데이션
+    // transparent 70% 투명
+    background: radial-gradient(
+      ellipse at center,
+      rgba(165, 32, 154, 0.6) 0%,
+      rgba(109, 35, 98, 0.6) 30%,
+      transparent 70%
+    );
+    animation: dropLight 15s 7s ease-in-out infinite;
+  }
+  &::after {
     width: 70%;
     height: 70%;
     background: linear-gradient(
@@ -20,35 +37,8 @@
       rgba(0, 153, 255, 0) 100%
     );
     box-shadow: 0 0 50px rgba(0, 153, 255, 0.1);
-    transform: translateX(-50%);
-    filter: blur(40px);
-    opacity: 0;
     border-radius: 50%;
     animation: dropLight 15s ease-in-out infinite;
-    pointer-events: none;
-  }
-  
-  // 외곽 그림자/글로우 효과
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 80%;
-    height: 80%;
-    // ellipse at center 타원형 그라데이션
-    // transparent 70% 투명
-    background: radial-gradient(
-      ellipse at center,
-      rgba(165, 32, 154, 0.6) 0%,
-      rgba(109, 35, 98, 0.6) 30%,
-      transparent 70%
-    );
-    transform: translateX(-50%);
-    filter: blur(30px);
-    opacity: 0;
-    animation: dropLight 15s 7s ease-in-out infinite;
-    pointer-events: none;
   }
 }
 
@@ -74,6 +64,7 @@
   justify-content: center;
   align-items: center;
   position:absolute;
+  z-index:2;
   top:50%;
   left:50%;
   width:70%;
@@ -84,7 +75,6 @@
 }
 .title{
   position: relative;
-  z-index:1;
   font-size:48px;
   color: $color-title-w;
   & > span {

@@ -24,7 +24,7 @@ export const ColorLists = ({data, depth}:ColorListsPropsType) => {
         {data.lists.map((chipItem) => ( 
           <ColorChip
             data={chipItem}
-            chipType={data.id ==='shadow' ? 'shadow': 'color'}
+            chipType={data.id}
             key={chipItem.code}
           />
         ))}

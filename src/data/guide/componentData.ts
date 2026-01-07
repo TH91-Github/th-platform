@@ -2,6 +2,14 @@ import type { GuideDataType } from "@/types/guide"
 
 export const elementData: GuideDataType[] = [
   {
+    id: 'btn',
+    title: 'Btn',
+    desc: '버튼 컴포넌트',
+    category: 'button',
+    keyword: ['btn', 'button', '버튼', 'disabled', '스타일', 'primary'],
+    link: ''
+  },
+  {
     id: 'modal',
     title: 'Modal',
     desc: '공통 모달 컴포넌트',
@@ -64,7 +72,7 @@ export const moduleData: GuideDataType[] = [
 
 export const layoutData: GuideDataType[] = [
   {
-    id: 'layout',
+    id: 'layout-',
     title: 'layout',
     desc: 'layout',
     category: 'Module',

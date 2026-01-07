@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styles from './Logo.module.scss';
 
-const APP_TITLE = import.meta.env.VITE_APP_TITLE ?? 'Platform';
+const APP_TITLE = import.meta.env.VITE_APP_TITLE;
 
 export const Logo = () => {
   return (

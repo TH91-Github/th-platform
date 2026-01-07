@@ -32,7 +32,7 @@
   &::after {
     bottom:-5px;
     right:-5px;
-    animation: circleLineAni 2.7s infinite;
+    animation: circleLineAni 2.7s  infinite;
   }
   @keyframes circleLineAni {
     0%{
@@ -108,7 +108,7 @@
   padding:10px;
   border:1px dashed var(--color-line);
   border-radius:5px;
-  background:#fff;
+  background: var(--color-bg);
   transition: var(--transition-border);
   &::before{
     position:absolute;
@@ -165,7 +165,7 @@
     width:250px;
     height:250px;
     border-radius:5px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: var(--opacity-bg);
     box-shadow:inset 0px 0px 1px 0px rgba(255,255,255,0.3), 0px 0px 3px 0px rgba(0,0,0,0.1), 0px 0px 3px 0px rgba(0,0,0,0.1);
     backdrop-filter: blur(3px);
   }

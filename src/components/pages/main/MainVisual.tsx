@@ -1,5 +1,5 @@
-import { SplitText } from '../ui/text/SplitText';
-import { TextChageUI } from '../ui/text/TextChageUI';
+import { SplitText } from '../../ui/text/SplitText';
+import { TextChageUI } from '../../ui/text/TextChageUI';
 import styles from './MainVisual.module.scss';
 
 

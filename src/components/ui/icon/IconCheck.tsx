@@ -24,11 +24,13 @@ import {
   IconEllipsis,
   IconOutLink,
   IconSearch,
+  IconBack,
+  IconCheck,
 } from "@/assets/icon";
 
 //🔹 iconData.ts 동일하게
 
-export const IconCheck = {
+export const IconMatchLists = {
   'icon-search': IconSearch,
   'icon-moon': IconMoon,
   'icon-sunny': IconSunny,
@@ -54,4 +56,6 @@ export const IconCheck = {
   'icon-list': IconList,
   'icon-ellipsis': IconEllipsis,
   'icon-out-link': IconOutLink,
+  'icon-back' : IconBack,
+  'icon-check' : IconCheck,
 } as const;

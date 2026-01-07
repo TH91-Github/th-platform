@@ -117,6 +117,7 @@ const AccordionItem = ({
         content !== null && styles[`${accOpt.openIcon}`], // head button 화살표
         accOpt.titFull && styles.full,
         smoothAni && styles.smooth,
+        className,
       )}
     >
       {content
@@ -124,7 +125,7 @@ const AccordionItem = ({
           <div className={styles.accHead}>
             <button
               type="button"
-              className={cn(styles.accBtn, className)}
+              className={cn(styles.accBtn)}
               title={btnTit}
               onClick={handleClick}
             >
@@ -149,7 +150,7 @@ const AccordionItem = ({
         : (
           // 하위 메뉴가 없는 경우
           <div className={styles.accHead}>
-            <span className={cn(styles.accTit, className)}>
+            <span className={cn(styles.accTit)}>
               {jsx ? jsx : btnTit}
             </span>
           </div>

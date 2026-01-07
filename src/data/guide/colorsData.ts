@@ -23,25 +23,25 @@ export const themeColorData = [
         desc:'라이트 테마에서 사용하는 색상',
         lists:[
           {
-            title:'Black',
+            title:'Color',
             code:'#050b21',
             scss:'$color-black',
             root:'var(--color)'
           },
           {
-            title:'White',
+            title:'Color Bg',
             code:'#f5f5ff',
             scss:'$color-white',
             root:'var(--color-bg)'
           },
           {
-            title:'White Origin',
+            title:'Color Origin',
             code:'#ffffff',
             scss:'#fff',
             root:'var(--color-origin)'
           },
           {
-            title:'White Origin On',
+            title:'Color Origin On',
             code:'#ffffff',
             scss:'#fff',
             root:'var(--color-origin-on)'
@@ -134,25 +134,25 @@ export const themeColorData = [
         desc:'다크 테마에서 사용하는 색상',
         lists:[
           {
-            title:'White',
+            title:'Color',
             code:'#f5f5ff',
             scss:'$color-white',
             root:'var(--color)'
           },
           {
-            title:'Black',
+            title:'Color Bg',
             code:'#050b21',
             scss:'$color-black',
             root:'var(--color-bg)'
           },
           {
-            title:'Black Origin',
+            title:'Color Origin',
             code:'#000000',
             scss:'#000',
             root:'var(--color-origin)'
           },
           {
-            title:'Black Origin On',
+            title:'Color Origin On',
             code:'#454864',
             scss:'$color-dark-bg-on',
             root:'var(--color-origin-on)'
@@ -277,6 +277,13 @@ export const colorsData:ColorDataType[] = [
         rgb:'51,58,115',
         scss:'$color-navy',
         emotion:'colors.navy'
+      },
+      {
+        title:'Dark Navy',
+        code:'#03053a',
+        rgb:'3, 5, 58, 1',
+        scss:'$color-dark-navy',
+        emotion:'colors.darkNavy'
       },
       {
         title:'Gray',

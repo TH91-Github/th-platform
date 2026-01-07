@@ -10,8 +10,9 @@ export const GnbMenu = () => {
   const navRefs = useRef<HTMLAnchorElement[]>([]);
   const [barStyle, setBarStyle] = useState({ left: 0, width: 0, top: 0 });
 
-  const navLists = routerList.filter( // nav 필터 필요한 경우.
-    // (item) => item?.view !== 'dev' || DEV_MODE
+  const navLists = routerList.filter(
+    // (item) => item.view !== 'dev' || DEV_MODE
+    // 전체 노출, 조건 필요한 경우 사용
     (item) => item
   );
 

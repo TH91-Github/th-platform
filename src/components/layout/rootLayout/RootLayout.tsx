@@ -1,3 +1,4 @@
+import { Toasts } from "@/components/element/popup/Toasts";
 import { useResizeHandle } from "@/hook/common/useResizeHandle"
 
 // 🔹 최상위 컴포넌트 모음
@@ -6,7 +7,7 @@ export const RootLayout = () => {
   useResizeHandle();
   return(
     <>
-     <div>root</div>
+      <Toasts />
     </>
   )
 }
