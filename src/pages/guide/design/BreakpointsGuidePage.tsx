@@ -1,15 +1,16 @@
 import { TitlePoint } from '@/components/ui/text/TitlePoint';
 import { breakpointData } from '@/data/guide/breakpointData';
+import { useCopyToast } from '@/hook/common/useCopyToast';
 import { useToggle } from '@/hook/common/useToggle';
-import { cn, copyClipboard } from '@/utils/common';
+import { cn } from '@/utils/common';
 import styles from './BreakpointsGuidePage.module.scss';
 
 export const BreakpointsGuidePage = () => {
   const [styleType, setStyleType] = useToggle(true);
+  const { copy } = useCopyToast();
 
-  const handleClickCopy = async (e: string) => {
-    const copySuccess = await copyClipboard(e);
-    console.log(copySuccess)
+  const handleClickCopy = (e: string) => {
+    copy(e,{type:'success'});
   };
 
   return (

@@ -6,8 +6,10 @@ import { Accordion } from '@/components/element/accordion/Accordion';
 import { cn } from '@/utils/common';
 import { GuideIcon } from './GuideIcon';
 import { guideLists } from '@/data/guide/guideLists';
+import { useIsMobile } from '@/store/zustand/common/commonStore';
 
 export const GuideNav = ({isFold}:{isFold:boolean}) => {
+  const isMobile = useIsMobile();
   const { locationIdx } = useLocationPath(guideLists, "id");
 
   const guidePath = useCallback((itemPath: string, childrenPath: string) => {
@@ -26,7 +28,7 @@ export const GuideNav = ({isFold}:{isFold:boolean}) => {
     <Accordion
       data={guideLists}
       initActive={[locationIdx]}
-      smoothAni={true}
+      smoothAni={!isMobile}
       className={cn(styles.nav, isFold && styles.fold)}
     >
       {(accItem, accIdx, actives) => ({

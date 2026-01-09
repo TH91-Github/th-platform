@@ -2,6 +2,10 @@
   .inner{
     position:relative;
   }
+  [class^="guide-cont"]{
+    padding:0 30px 30px;
+  }
+  
 }
 // side menu
 .titleLink{
@@ -37,12 +41,9 @@
 // cont
 .breadcrumbWrap{
   padding:20px 30px;
+  border-bottom:1px solid var(--color-line);
 }
-:global {
-  .guide-cont{
-    padding:0 30px;
-  }
-}
+
 
 [data-theme='dark'] {
   .titleLink{
@@ -54,6 +55,11 @@
 }
 
 @include mob {
+  .guide{
+    [class^="guide-cont"]{
+      padding:0 15px 15px;
+    }
+  }
   .guideNav {
     h2 {
       display:inline-block;
@@ -69,5 +75,8 @@
       background-color: $color-navy;
       color: $color-white; 
     }
+  }
+  .breadcrumbWrap{
+    display:none;
   }
 }

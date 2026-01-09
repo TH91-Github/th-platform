@@ -1,26 +1,35 @@
 .header{
   padding:20px 30px;
-  animation: $fadeUp;
-  :global{ 
-    .bullet-lists{
-      & > li {
-        margin-top:5px;
-        &:first-child {
-          margin-top:0;
-        }
-      }
-    }
-  }
 }
 .title{
   color:var(--color-title);
 }
 .descLists{
   margin-top:20px;
+  & > li {
+    margin-top:5px;
+    &:first-child {
+      margin-top:0;
+    }
+  }
 }
 .desc{
   color:var(--color-desc);
 }
 .linkLists{
   margin-top:5px;
+}
+
+@include mob {
+  .header{
+    padding:0 15px 20px;
+  }
+  .descLists{
+    & > li {
+      font-size:14px;
+      &:first-child {
+        margin-top:0;
+      }
+    }
+  }
 }

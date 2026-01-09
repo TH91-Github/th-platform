@@ -1,0 +1,19 @@
+.info{
+  .tit {
+    font-size: rem(20px);
+  }
+  & > ul{
+    margin-top:15px;
+  }
+  .desc{
+    margin-top:5px;
+    font-size:rem(14px);
+    color: var(--color-desc);
+    &:first-child{ 
+      margin-top:0;
+    }
+  }
+  .codeWrap{
+    margin-top:20px;
+  }
+}

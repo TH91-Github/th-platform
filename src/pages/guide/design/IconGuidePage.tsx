@@ -1,13 +1,14 @@
 import { iconData } from '@/assets/icon/iconData';
 import { IconMatch } from '@/components/ui/icon/IconMatch';
 import { TitlePoint } from '@/components/ui/text/TitlePoint';
-import { copyClipboard } from '@/utils/common';
+import { useCopyToast } from '@/hook/common/useCopyToast';
 import styles from './IconGuidePage.module.scss';
 
 export const IconGuidePage = () => {
-  const handleIconClick = async (e:string) => {
-    const copySuccess = await copyClipboard(e);
-    console.log(copySuccess)
+  const { copy } = useCopyToast();
+
+  const handleIconClick = (e:string) => {
+    copy(e,{type:'success'});
   }
   return( 
     <div>

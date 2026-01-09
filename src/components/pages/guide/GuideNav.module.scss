@@ -13,12 +13,15 @@
     }
   }
   .accBtn{
-    padding-left:10px;
     color:var(--color-sub-text);
   }
   [class*="_accHead_"]{
-    [class*="_accTit_"]{ 
-      padding-left:0;
+    [class*="_accBtn_"]{
+      padding-left:10px;
+    }
+    [class*="_accTit_"]{
+      & > .navLink { 
+      }
     }
   }
 
@@ -83,7 +86,7 @@
   position:relative;
   display:flex;
   flex-direction: column;
-  gap:10px;
+  gap:5px;
   padding:10px 0;
 }
 .depthItem{

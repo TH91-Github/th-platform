@@ -26,7 +26,7 @@ export const ColorsGuidePage = () => {
                       {modeItem.lists.map((chipItem, chipIdx) => ( 
                         <ColorChip
                           data={chipItem}
-                          chipType={modeItem.id ==='shadow' ? 'shadow': 'color'}
+                          chipType={modeItem.id}
                           key={chipItem.code + chipIdx}
                         />
                       ))}

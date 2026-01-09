@@ -2,6 +2,8 @@
   position:relative;
   width:100%;
   max-width:$bp-max-pc;
+  min-width:320px;
+  margin:0 auto;
 }
 .contents{
   position:relative;

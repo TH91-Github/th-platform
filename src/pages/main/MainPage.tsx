@@ -1,8 +1,9 @@
-import { ContactLayout } from "@/components/main/ContactLayout"
-import { DivisionLayout } from "@/components/main/DivisionLayout"
-import { MainVisual } from "@/components/main/MainVisual"
-import { ProjectLayout } from "@/components/main/ProjectLayout"
+import { ContactLayout } from "@/components/pages/main/ContactLayout"
+import { DivisionLayout } from "@/components/pages/main/DivisionLayout"
+import { MainVisual } from "@/components/pages/main/MainVisual"
+import { ProjectLayout } from "@/components/pages/main/ProjectLayout"
 import './MainPage.scss'
+import { GuideLayout } from "@/components/pages/main/GuideLayout"
 
 export const MainPage = () => {
   return (
@@ -17,6 +18,10 @@ export const MainPage = () => {
         <div className="main-item">
           {/* 부문 소개 */}
           <DivisionLayout />
+        </div>
+        {/* 가이드 */}
+        <div className="main-item">
+          <GuideLayout />
         </div>
         <div className="main-item">
           {/* 기타 */}

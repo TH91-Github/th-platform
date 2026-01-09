@@ -1,0 +1,34 @@
+// 🔹 view page 공통
+.viewWrap{
+  position:relative;
+  padding-top:20px;
+  animation: $fadeUp;
+}
+.backBtn{
+  position:absolute;
+  top:20px;
+  right:0;
+  padding:5px;
+  .icon{
+    display:block;
+    width:25px;
+    height:25px;
+    margin:0 auto;
+  }
+}
+
+@include mob {
+  .viewWrap{
+    padding-top:0;
+  }
+  .backBtn{
+    top:0;
+    padding:5px;
+    .icon{
+      display:block;
+      width:20px;
+      height:20px;
+      margin:0 auto;
+    }
+  }
+}

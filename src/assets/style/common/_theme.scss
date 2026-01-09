@@ -16,6 +16,7 @@
   --color-point-bg: #{$color-blue-bg};
   --color-point-text: #{$color-text-w};
   --box-shadow: #{$shadow-b};
+  --text-shadow: #{$shadow-b};
   --opacity-bg: #{$opacity-w};
   --glass-line: #{$glass-border-w};
 }
@@ -34,6 +35,7 @@
   --color-point-bg: #{$color-yellow-bg};
   --color-point-text: #{$color-text-b};
   --box-shadow: #{$shadow-w};
+  --text-shadow: #{$shadow-w};
   --opacity-bg: #{$opacity-b};
   --glass-line: #{$glass-border-b};
 }

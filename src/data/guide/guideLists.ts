@@ -2,6 +2,7 @@ interface RouterDataType {
   id: string,
   path: string,
   title: string,
+  desc?: string[],
 }
 
 export interface GuideChildrenType extends RouterDataType {
@@ -117,10 +118,20 @@ export const guideLists : GuideListsType[] = [
     id: "hooks",
     path: "hooks",
     title: "커스텀 훅",
+    desc:[
+      '컴포넌트 로직을 재사용하기 위한 커스텀 훅',
+      '상태관리, 이벤트 핸들링 등 UI에 종속되지 않는 로직 분리',
+      '여러 컴포넌트에서 공통 로직을 재활용'
+    ]
   },
   {
     id: "utils",
     path: "utils",
     title: "유틸 함수",
+    desc:[
+      'UI와 무관한 순수 함수 기반의 유틸리티 모듈',
+      'React나 비즈니스 로직에 의존하지 않는 범용 함수',
+      '데이터 포맷팅, 계산, 검증 등 반복 로직을 간결하게 처리'
+    ]
   },
 ]
