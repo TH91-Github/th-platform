@@ -1,6 +1,7 @@
 import { useIntersection } from '@/hook/common/useIntersectionObserver';
-import styles from './GuideLayout.module.scss';
 import { cn } from '@/utils/common';
+import { ArrowNavLink } from '@/components/element/button/ArrowNavLink';
+import styles from './GuideLayout.module.scss';
 
 const mainGuideText = ['Component','Modules','Layout','Hook','Utils','Design','ETC','Guide']
 export const GuideLayout = () => {
@@ -23,6 +24,7 @@ export const GuideLayout = () => {
             색상, 타이포그래피부터 재사용 가능한 <br className="mo-only" />컴포넌트와 유틸리티까지 <br />
             효율적이고 일관된 개발을 위한 통합 가이드
           </p>
+          <ArrowNavLink title="Guide 보러가기" link={'/guide'} className={styles.btnNav} />
         </div>
       </div>
       <div className={styles.objectSquare}>

@@ -1,10 +1,13 @@
 import { Toasts } from "@/components/element/popup/Toasts";
-import { useResizeHandle } from "@/hook/common/useResizeHandle"
+import { usePageTitle } from "@/hook/common/usePageTitle";
+import { useMobileHandle } from "@/hook/common/useMobileHandle"
 
-// 🔹 최상위 컴포넌트 모음
+// 🔹 최상위 선언
 export const RootLayout = () => {
+   // 🔹 title 변경
+  usePageTitle();
   // 🔹 mobile check
-  useResizeHandle();
+  useMobileHandle();
   return(
     <>
       <Toasts />

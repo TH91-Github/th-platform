@@ -3,9 +3,10 @@ import { useMemo } from "react";
 import { useLocation } from "react-router-dom";
 
 interface UseLocationPathReturnType<T> {
-  locationIdx: number;
-  locationItem: T | undefined;
-  locationPath: string[];
+  locationIdx: number,
+  locationItem: T | undefined,
+  locationPath: string[],
+  parentPath: string,
   currentPath: string;
 }
 
@@ -26,6 +27,7 @@ export const useLocationPath = <T,>(
       locationIdx:currentIdx, 
       locationItem:currentItem, 
       locationPath:pathArr,
+      parentPath: pathArr[pathArr.length - 2],   // 마지막의 이전(부모)
       currentPath:pathArr[pathArr.length - 1] // 마지막(현재) path name
     }; // idx, obj, path
   }, [location.pathname, data, idKey, index]);

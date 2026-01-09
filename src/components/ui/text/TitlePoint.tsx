@@ -58,7 +58,7 @@ const StyleWrap = styled.div<StyleWrapPropsType>`
       &::before,
       &::after {
         position: absolute;
-        top: ${rem(Math.floor($fontSize * 0.42 * 1.5),$fontRem)};
+        top: ${rem(Math.floor($fontSize * 0.42 * 1.3),$fontRem)};
         width: ${rem(Math.floor($fontSize * 0.3), $fontRem)};
         height: ${rem(Math.floor($fontSize * 0.3), $fontRem)};
         left: ${rem(Math.floor($fontSize * 0.25), $fontRem)};

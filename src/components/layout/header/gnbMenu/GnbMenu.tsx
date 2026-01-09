@@ -45,7 +45,7 @@ export const GnbMenu = () => {
               className={styles.navLink}
               ref={(el) => setNavRef(el, idx)}
             >
-              <span className={styles.navTit}>{navItem.title}</span>
+              <span className={styles.navTit}>{navItem.handle.title}</span>
             </NavLink>
           </li>
         ))}

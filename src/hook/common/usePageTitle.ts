@@ -1,40 +1,31 @@
-// import { routesrList } from '@/router/RouterList';
-// import { useEffect } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useMatches, type Params } from 'react-router-dom';
 
+const INDEXTITLE = import.meta.env.VITE_APP_TITLE ?? '🖥️';
+export interface RouteHandle {
+  title?: string | ((params: Params) => string);
+}
 
-// // 🔹 document title 
-// const INDEXTITLE = process.env.REACT_APP_TITLE ?? '🖥️';
-// const pathFindTitle = (pathNameArr:string[]) => {
-//   const pathName = pathNameArr[pathNameArr.length - 1];
-//   const routerPath = routerList.map(routerItem => {
-//     if (routerItem.path && pathNameArr.includes(routerItem.path)) {
-//       if (!routerItem.title && routerItem.children) {
-//         const childrenList = routerItem.children.map(item => item.path || 'index');
-//         if (childrenList.includes(pathName)) {
-//           return routerItem.children[childrenList.indexOf(pathName)];
-//         }
-//         return routerItem.children[0];
-//       }
-//       return routerItem;
-//     }
-//     return null;
-//   }).filter(Boolean)[0];
+export const usePageTitle = () => {
+  const matches = useMatches();
 
-//   return routerPath?.title ?? null;
-// };
+  const title = [...matches]
+    .reverse()
+    .map(match => {
+      const handle = match.handle as RouteHandle | undefined;
+      if (!handle?.title) return null;
 
-// export const usePageTitle = () => {
-//   const location = useLocation();
+      if (typeof handle.title === 'function') {
+        return handle.title(match.params);
+      }
 
-//   useEffect(() => {
-//     const pathNameArr = location.pathname.slice(1).split("/");
-//     const title = pathFindTitle(pathNameArr);
+      return handle.title;
+    })
+    .find(Boolean);
 
-//     if (title) {
-//       document.title = `${INDEXTITLE}_${title}`;
-//     } else {
-//       document.title = `${INDEXTITLE} - 😁`;
-//     }
-//   }, [location.pathname]);
-// }
+  useEffect(() => {
+    document.title = title
+      ? `${title}`
+      : `${INDEXTITLE}`;
+  }, [title]);
+};
