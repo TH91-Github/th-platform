@@ -1,14 +1,14 @@
-import { Hljs } from "@/components/element/highlight/Hljs";
+import { CodeHljs } from "@/components/element/highlight/CodeHljs";
+import { TabBtns } from "@/components/element/tab/TabBtns";
 import { TitlePoint } from "@/components/ui/text/TitlePoint";
+import type { DemoItemType } from "@/types/guide";
 import { cn } from "@/utils/common";
 import { stripIndent } from "@/utils/textUtils";
-import styles from '../../Detail.module.scss';
 import { useState } from "react";
-import { TabBtns } from "@/components/element/tab/TabBtns";
-import type { DemoItemType } from "@/types/guide";
+import styles from '../../Detail.module.scss';
 
 // 🔹 btn 컴포넌트 설명
-
+type CaseKey = 'case1' | 'case2';
 const DETAIL_TITLE ='TabButton'
 const DEMO_DATA:DemoItemType[] = [
   {
@@ -34,10 +34,11 @@ const EX_CODE = stripIndent(`
 
 export const TabButtonDetail = () => {
   const tabBtns = ['tab-1','tab-2','tab-3']
-  const [tabBtnsVal, setTabBtnsVal] = useState({
-    case1:'',
-    case2:'',
-  })
+  const [tabBtnsVal, setTabBtnsVal] = useState<Record<CaseKey, string>>({
+    case1: '',
+    case2: '',
+  });
+
 
   const handleTabOnChange = (val:string, caseNum:number) => {
     const key = `case${caseNum}`;
@@ -72,8 +73,9 @@ export const TabButtonDetail = () => {
       </div>
       <div className={cn(styles.sectionLists)}>
         {
-          DEMO_DATA.map((demoItem, demoIdx) => (
-            <div className={styles.sectionItem} key={demoIdx}>
+          DEMO_DATA.map((demoItem, demoIdx:number) => {
+            const caseKey = `case${demoIdx + 1}` as CaseKey;
+            return <div className={styles.sectionItem} key={demoIdx}>
               <TitlePoint
                 titleTag={'p'}
                 title={`${DETAIL_TITLE} ${demoItem.tit}`}
@@ -84,6 +86,7 @@ export const TabButtonDetail = () => {
                 {demoItem.desc.map((descItem, descIdx) => (
                   <p className={styles.desc} key={descIdx}>{descItem}</p>
                 ))}
+                <p className={styles.desc}>선택 : {tabBtnsVal[caseKey]}</p>
                 <div className={styles.demo}>
                   <TabBtns
                     data={tabBtns} 
@@ -93,7 +96,7 @@ export const TabButtonDetail = () => {
                 </div>
               </div>
             </div>
-          ))
+          })
         }
       </div>
       <div className={styles.codeWrap}>
@@ -103,7 +106,7 @@ export const TabButtonDetail = () => {
           pointType="underline"
           className={styles.tit}
         />
-        <Hljs
+        <CodeHljs
           code={EX_CODE}
           language={'tsx'}
           className={styles.code}

@@ -18,6 +18,18 @@
       }
     }
   }
+  &:not(.searchBtn){
+    .inputItem {
+      & > input {
+        border-left: transparent;
+      }
+    }
+    &.isFocus{
+      .icon {
+        border-color: var(--color-point);
+      }
+    }
+  }
 }
 .icon {
   display:flex;

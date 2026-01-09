@@ -3,22 +3,21 @@ import { TitlePoint } from "@/components/ui/text/TitlePoint";
 import { cn } from "@/utils/common";
 import styled from "@emotion/styled";
 import styles from '../../Detail.module.scss';
-import { Hljs } from "@/components/element/highlight/Hljs";
+import { CodeHljs } from "@/components/element/highlight/CodeHljs";
 import { stripIndent } from "@/utils/textUtils";
 
 // 🔹 Carousel 컴포넌트 설명
-const DETAIL_TITLE ='Btn';
+const DETAIL_TITLE ='Carousel';
+const EX_CODE = stripIndent(`
+  <Carousel>
+    {data.map((item, idx) => (
+      <div key={idx}>
+        <span>item</span>
+      </div>
+    ))}
+  </Carousel>`
+);
 export const CarouselDetail = () => {
-  const exCode = stripIndent(`
-    <Carousel>
-      {data.map((item, idx) => (
-        <div key={idx}>
-          <span>item</span>
-        </div>
-      ))}
-    </Carousel>`
-    );
-
   return ( 
     <div className={cn('guide-detail',styles.sectionWrap)}>
       <div className={styles.sectionHeading}>
@@ -199,8 +198,8 @@ export const CarouselDetail = () => {
           pointType="underline"
           className={styles.tit}
         />
-        <Hljs
-          code={exCode}
+        <CodeHljs
+          code={EX_CODE}
           language={'tsx'}
           className={styles.code}
         />

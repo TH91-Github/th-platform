@@ -4,6 +4,7 @@ export interface ColorListsDataType {
   scss:string,
   rgb?:string,
   emotion?:string,
+  isText?:boolean,
   root?:string,
 }
 export interface ColorDataType {
@@ -99,13 +100,20 @@ export const themeColorData = [
       {
         id:'shadow',
         title:'Shadow',
-        desc:'라이트 테마에서 사용하는 box-shadow',
+        desc:'라이트 테마에서 사용하는 shadow',
         lists:[
           {
-            title:'Default',
+            title:'Default box shadow',
             code:'0 2px 8px rgba(0, 0, 0, 0.15)',
             scss:'$shadow-b',
             root:'var(--box-shadow)'
+          },
+          {
+            title:'Default text shadow',
+            code:'0px 1px 2px rgba(0,0,0,0.2)',
+            scss:'$shadow-w',
+            root:'var(--text-shadow)',
+            isText:true,
           },
         ]
       },
@@ -196,8 +204,8 @@ export const themeColorData = [
           {
             title:'Desc',
             code:'#dee2e6',
-            scss:'$color-sub-text-w',
-            root:'var(--color-sub-text)'
+            scss:'$color-desc-w',
+            root:'var(--color-desc)'
           },
           {
             title:'Sub Text',
@@ -210,14 +218,21 @@ export const themeColorData = [
       {
         id:'shadow',
         title:'Shadow',
-        desc:'다크 테마에서 사용하는 box-shadow',
+        desc:'다크 테마에서 사용하는 shadow',
         lists:[
           {
-            title:'Text',
-            code:'rgba(255, 255, 255, 0.2)',
-            scss:'$color-text-w',
-            root:'var(--color-text)'
-          }
+            title:'Default box shadow',
+            code:'0 4px 20px rgba(255, 255, 255, 0.2)',
+            scss:'$shadow-w',
+            root:'var(--box-shadow)'
+          },
+          {
+            title:'Default text shadow',
+            code:'0px 2px 2px rgba(255, 255, 255, 0.4)',
+            scss:'$shadow-w',
+            root:'var(--text-shadow)',
+            isText:true,
+          },
         ]
       },
       {
@@ -433,16 +448,30 @@ export const colorsData:ColorDataType[] = [
     desc:'',
     lists:[
       {
-        title:'Shadow White',
+        title:'Box Shadow White',
         code:'0 4px 20px rgba(255, 255, 255, 0.2)',
         scss:'$shadow-w',
         emotion:''
       },
       {
-        title:'Shadow Black',
+        title:'Box Shadow Black',
         code:'0 2px 8px rgba(0, 0, 0, 0.15)',
         scss:'$shadow-b',
         emotion:''
+      },
+      {
+        title:'Text Shadow White',
+        code:'0px 2px 2px rgba(255, 255, 255, 0.4)',
+        scss:'$shadow-w',
+        emotion:'',
+        isText:true,
+      },
+      {
+        title:'Text Shadow Black',
+        code:'0px 1px 2px rgba(0,0,0,0.2)',
+        scss:'$shadow-b',
+        emotion:'',
+        isText:true,
       },
     ]
   },

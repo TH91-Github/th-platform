@@ -1,15 +1,17 @@
-import { useIsMobile } from '@/store/zustand/common/commonStore';
 import { IconArrowLeft, IconClose, IconList } from '@/assets/icon';
+import { bp, media } from '@/assets/style/emotion/variables';
+import { useToggle } from '@/hook/common/useToggle';
+import { useIsMobile } from '@/store/zustand/common/commonStore';
 import { cn } from '@/utils/common';
 import styled from '@emotion/styled';
-import { bp, media } from '@/assets/style/emotion/variables';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 // 🔹 사이드 layout
 interface SideLayoutPropsType {
   sideFixed?: boolean, // pc에서 사이드 고정 선택
   $sideW?: number, // 사이드 고정 넓이
   isFold?:boolean, // 고정이 아닌 경우 메뉴 접기 관련
-  isMoMenu?:boolean, // mo 상태에서 menu on/off
   innerCont?: boolean, // 컨텐츠 1140 가운데 여부
   className?: {
     menu:string,
@@ -17,25 +19,41 @@ interface SideLayoutPropsType {
   }
   children: [React.ReactNode, React.ReactNode], // menu, cont children 전달
   onFoldChange?: () => void,
-  onMoSideChange?: () => void,
+  onMoMenuChange?: () => void, // mo open change 감지
 }
 
 export const SideLayout = ({
-  sideFixed, $sideW, isFold, isMoMenu,
+  sideFixed, $sideW, isFold,
   innerCont, className, children,
-  onFoldChange, onMoSideChange
+  onFoldChange, onMoMenuChange
 }: SideLayoutPropsType) => {
   const isMobile = useIsMobile();
+  const location = useLocation();
+  const [isMoMenu, setIsMoMenu] = useToggle(false);
   const [menuChildren, contChildren] = children;
 
   // pc - menu 접기/펼치기
   const handleSideMenuFold = () => {
     onFoldChange?.()
   }
+
   // mo - side on/off
   const handleMoSideMenu = () => {
-    onMoSideChange?.();
+    setIsMoMenu();
+    onMoMenuChange?.();
   }
+
+  useEffect(() => {
+    if (isMobile && isMoMenu) {
+      setIsMoMenu(false);
+      onMoMenuChange?.();
+    }
+  }, [location.pathname]);
+  
+  useEffect(()=>{
+    setIsMoMenu(false)
+  },[isMobile])
+
   return (
     <StyleWrap 
       className={cn(
@@ -55,7 +73,7 @@ export const SideLayout = ({
         {/* sticky */}
         <div className="menu-inner">
           {menuChildren}
-          {(!sideFixed && !isMobile) && (  /* pc 전용 버튼 */
+          {(!sideFixed && !isMobile && onFoldChange) && (  /* pc 전용 버튼 */
             <button
               type="button"
               className={cn('menu-open', isFold && 'fold')}
@@ -182,9 +200,9 @@ const StyleWrap = styled.div<StyleWrapType>`
           top:0;
           left:0;
           width:100%;
-          height:1000svh;
+          height:100svh;
           background:#fff;
-          padding:20px;
+          padding:20px 15px;
         }
       }
     }
@@ -195,11 +213,14 @@ const StyleWrap = styled.div<StyleWrapType>`
       display:block;
       overflow:hidden;
       position:absolute;
-      top:15px;
-      right:15px;
+      top:10px;
+      left:15px;
       width: 30px;
       height:30px;
       &.open {
+        top:20px;
+        left:auto;
+        right:15px;
         .close{
           transform:translate(-50%, -50%) scale(1);
         }
@@ -227,6 +248,7 @@ const StyleWrap = styled.div<StyleWrapType>`
     }
     .cont{
       width:100%;
+      padding-top:40px;
       border-radius: 0;
     }
   }

@@ -38,7 +38,7 @@ export const elementData: GuideDataType[] = [
     title: 'Tab Button',
     desc: 'Tab 버튼 컴포넌트',
     category: 'Tab',
-    keyword: ['Tab button', 'Tab', 'Tabs', 'Tab Button', '탭 버튼', 'Tab Head', '탭 헤더'],
+    keyword: ['Tab Button', 'Tab', 'Tabs', '탭 버튼', 'Tab Head', '탭 헤더'],
     link: ''
   },
   {
@@ -61,7 +61,7 @@ export const elementData: GuideDataType[] = [
 
 export const moduleData: GuideDataType[] = [
   {
-    id: 'search',
+    id: 'searchModule',
     title: 'Search',
     desc: '공통 검색 모듈',
     category: 'Module',
@@ -72,11 +72,11 @@ export const moduleData: GuideDataType[] = [
 
 export const layoutData: GuideDataType[] = [
   {
-    id: 'layout-',
-    title: 'layout',
-    desc: 'layout',
-    category: 'Module',
-    keyword: ['search', 'module', '검색', '하이라이트', 'input', '찾기', '써치', '모듈', '공통'],
+    id: 'sideLayout',
+    title: 'Side Layout',
+    desc: '사이드 메뉴와 컨텐트로 구성된 레이아웃',
+    category: 'Layout',
+    keyword: ['side layout','사이드','레이아웃'],
     link: ''
   },
 ]

@@ -14,6 +14,7 @@ interface SearchModulePropsType<T extends EssentialSearchType> {
   onPreview?: boolean; // 일치하는 검색어 미리보기
   onConfirm?: (result: SearchResultType) => void;
 }
+
 export const SearchModule = <T extends EssentialSearchType>({
   data = [],
   isBtn = true,
@@ -25,11 +26,17 @@ export const SearchModule = <T extends EssentialSearchType>({
   const isMouseDownInside = useRef(false);
   const inputRef = useRef<InputRefType>(null);
   const [searchVal, setSearchVal] = useState("");
-  const [isPreview, setIsPreview] = useState(onPreview ?? false);
+  const [isFocus, setIsFocus] = useState(false);
+  const [isPreview, setIsPreview] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
   const inputFocus = () => {
+    setIsFocus(true);
     setIsPreview((prev) => !prev);
+  };
+  
+  const inputBlur = () => { 
+    setIsFocus(false);
   };
   
   const inputChange = useCallback((val: string) => {
@@ -48,35 +55,55 @@ export const SearchModule = <T extends EssentialSearchType>({
       setIsPreview(false);
     }
   };
-  
-  const filteredData = useMemo(() => {
-    if (searchVal.length < 2) return []; // 2글자 이상부터
-    // keywrod 하나로
-    const mergedKeywords = data.flatMap(item => item.keyword);
-    // 중복 제거
-    const uniqueKeywords = Array.from(new Set(mergedKeywords));
-    return uniqueKeywords.filter(text =>
-      text.toLowerCase().includes(searchVal.toLowerCase())
-    );
-  }, [data, searchVal]);
 
-  const onKeyword = (val: string) => {
-    const matchIds = data.filter(item =>
-      item.keyword.some(k =>
-        k.toLowerCase().includes(val.toLowerCase())
+  const filteredData = useMemo(() => {
+    if (!onPreview) return;
+    if (searchVal.length < 2) return []; // 2글자 이상부터
+      
+    const mergedKeywords = data.flatMap(item => {
+      if (!Array.isArray(item.keyword)) return [];
+      return item.keyword.filter(
+        (k): k is string => typeof k === 'string'
+      );
+    });
+
+    const lowerSearchVal = searchVal.toLowerCase();
+    
+    // 중복 제거 + 필터링
+    const uniqueSet = new Set(
+      mergedKeywords.filter(text =>
+        text.toLowerCase().includes(lowerSearchVal)
       )
-    ).map(item => item.id);
+    );
+
+    return Array.from(uniqueSet);
+  }, [data, searchVal, onPreview]);
+
+  // matchIds
+  const findMatchIds = useCallback((val: string) => {
+    const lowerVal = val.toLowerCase();
+    return data
+      .filter(item =>
+        item.keyword.some(k =>
+          k.toLowerCase().includes(lowerVal)
+        )
+      )
+      .map(item => item.id);
+  }, [data]);
+
+  const onKeyword = useCallback((val: string) => {
+    inputRef.current?.changeVal(val);
+    const matchIds = findMatchIds(val);
 
     const resultData = {
       text: val,
       matchIds
-    }
+    };
+    
     onConfirm?.(resultData);
-
-    // matchIds 찾는 값이 있다면 input value 수정
     setSearchVal(val);
     setIsPreview(false);
-  };
+  }, [findMatchIds, onConfirm]);
 
   const handleEnter = () => {
     handleClick();
@@ -107,15 +134,20 @@ export const SearchModule = <T extends EssentialSearchType>({
     if (errorMessage) {
       const timer = setTimeout(() => {
         setErrorMessage("");
-      }, 1500); // 3초 후 메시지 제거
-      return () => clearTimeout(timer); // 컴포넌트 언마운트 시 클리어
+      }, 1500);
+      return () => clearTimeout(timer);
     }
   }, [errorMessage]);
 
+  
   return (
     <div 
       ref={SearchModuleRef}
-      className={cn(styles.module, isBtn && styles.searchBtn)}
+      className={cn(
+        styles.module, 
+        isBtn && styles.searchBtn,
+        isFocus && styles.isFocus
+      )}
     >
       {!isBtn && ( // 버튼이 없는 경우 앞에 아이콘
         <span className={cn(styles.icon, styles.ui)}>
@@ -128,12 +160,13 @@ export const SearchModule = <T extends EssentialSearchType>({
         className={styles.inputItem}
         placeholder={placeholder}
         focusEvent={inputFocus}
+        blurEvent={inputBlur}
         keyEnter={handleEnter}
         changeEvent={inputChange}
       />
-      {isPreview && (
+      {(onPreview && isPreview && data.length > 0) && (
         <PreviewText
-          data={filteredData}
+          data={filteredData || []}
           matchVal={searchVal}
           selectKeyword={onKeyword}
         />
@@ -151,5 +184,5 @@ export const SearchModule = <T extends EssentialSearchType>({
         </p>
       )}
     </div>
-  )
-}
+  );
+};

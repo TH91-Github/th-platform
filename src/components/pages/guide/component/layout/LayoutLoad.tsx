@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { NotLoad } from "../NotLoad";
+import { SideLayoutView } from "./detail/SideLayoutView";
 
 // 🔹 상세 페이지 연결
 interface ElementLoadPropsType {
@@ -10,7 +11,7 @@ export const LayoutLoad = ({id, onNotFound}:ElementLoadPropsType) => {
 
   // ✅ 일치하는 컴포넌트 로드
   const componentLoad: { [key: string]: React.ReactNode } = useMemo(() => ({
-    // input: <InputView />,
+    sideLayout: <SideLayoutView />,
     
   }), []);
 

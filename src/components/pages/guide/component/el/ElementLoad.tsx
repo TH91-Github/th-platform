@@ -14,7 +14,6 @@ interface ElementLoadPropsType {
   onNotFound?: () => void;
 }
 export const ElementLoad = ({id, onNotFound}:ElementLoadPropsType) => {
-
   // ✅ 일치하는 컴포넌트 로드
   const componentLoad: { [key: string]: React.ReactNode } = useMemo(() => ({
     btn: <BtnDetail />,
@@ -24,7 +23,6 @@ export const ElementLoad = ({id, onNotFound}:ElementLoadPropsType) => {
     tabButton: <TabButtonDetail />,
     accordion: <AccordionDetail />,
     input: <InputDetail />,
-
   }), []);
 
   // 일치하지 않는 경우 NotView 컴포넌트 

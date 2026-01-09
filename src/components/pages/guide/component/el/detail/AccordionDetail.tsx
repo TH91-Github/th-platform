@@ -1,4 +1,4 @@
-import { Hljs } from "@/components/element/highlight/Hljs";
+import { CodeHljs } from "@/components/element/highlight/CodeHljs";
 import { TitlePoint } from "@/components/ui/text/TitlePoint";
 import { cn } from "@/utils/common";
 import { stripIndent } from "@/utils/textUtils";
@@ -161,7 +161,7 @@ export const AccordionDetail = () => {
           pointType="underline"
           className={styles.tit}
         />
-        <Hljs
+        <CodeHljs
           code={EX_CODE}
           language={'tsx'}
           className={styles.code}

@@ -8,7 +8,7 @@ export function isMobileSizeChk():boolean{
 }
 
 // 🔹 className 조건 처리
-export const cn = (...classNames: (string | false | undefined)[]) => {
+export function cn (...classNames: (string | false | undefined)[]){
   const classSet = new Set(
     classNames.flatMap((className) =>
       typeof className === 'string' ? className.split(' ') : []

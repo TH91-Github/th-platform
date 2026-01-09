@@ -1,6 +1,7 @@
 import { ellipsis } from "@/assets/style/emotion/styles";
 import type { ColorListsDataType } from "@/data/guide/colorsData";
-import { cn, copyClipboard } from "@/utils/common";
+import { useCopyToast } from "@/hook/common/useCopyToast";
+import { cn } from "@/utils/common";
 import styled from "@emotion/styled";
 
 // 🔹 컬러칩
@@ -10,15 +11,16 @@ interface ColorChipPropsType {
   chipType?:string,
 }
 export const ColorChip = ({data, afterimage, chipType='color'}:ColorChipPropsType) => {
-  const handleColorClick = async (e:string) => {
-    const copySuccess = await copyClipboard(e);
-    console.log(copySuccess)
-  }
+  const { copy } = useCopyToast();
 
+  const handleColorClick = async (e:string) => {
+    copy(e,{type:'success'});
+  }
+  
   return (
     <StyleColorItem
       $bg={chipType !== 'shadow' ? data.code : 'transparent'}
-      $boxShadow={chipType !== 'shadow' ? undefined : data.code}
+      $shadow={chipType !== 'shadow' ? undefined : data.code}
       className={cn(chipType ==='option' && 'option')}
     >
       <button 
@@ -27,6 +29,7 @@ export const ColorChip = ({data, afterimage, chipType='color'}:ColorChipPropsTyp
         onClick={() => handleColorClick(data.root ? data.root : data.scss)}
       >
         {afterimage && <span className="afterimage-item"></span>}
+        {data.isText && <span className="is-text">TEST Title</span>}
       </button>
       <div className="chip-info">
         <p className="chip-tit">{data.title}</p>
@@ -45,7 +48,7 @@ export const ColorChip = ({data, afterimage, chipType='color'}:ColorChipPropsTyp
 
 interface StyleColorItemType {
   $bg:string,
-  $boxShadow?:string,
+  $shadow?:string,
 }
 const StyleColorItem = styled.div<StyleColorItemType>`
   display:flex;
@@ -86,8 +89,8 @@ const StyleColorItem = styled.div<StyleColorItemType>`
     border: 1px solid transparent;
     background-color: ${({$bg}) => $bg};
     transition: var(--transition-border);
-    ${({$boxShadow}) => $boxShadow && `
-      box-shadow: ${$boxShadow};
+    ${({$shadow}) => $shadow && `
+      box-shadow: ${$shadow};
     `}
     &.afterimage{
       position:relative;
@@ -156,5 +159,10 @@ const StyleColorItem = styled.div<StyleColorItemType>`
     left:50%;
     font-size:12px;
     white-space: nowrap;
+  }
+  .is-text{
+    ${({$shadow}) => $shadow && `
+      text-shadow: ${$shadow};
+    `}
   }
 `;

@@ -8,20 +8,20 @@ import { createPortal } from "react-dom";
 
 // 🔹 모달, 팝업 
 interface ModalPropsType {
-  isDimmed?: boolean; // dimmed on/off EX: 2중 모달 시 
-  isUnder?: boolean; // 2중 모달일 경우 딤드보다 아래로
-  autoCloseSecond?: number; // 자동 닫기 시간초 1000 단위
-  customClass?:string,
-  $width?: number;
-  $align?: 'center' | 'left' | 'right';
-  children?:React.ReactNode;
+  isDimmed?: boolean, // dimmed on/off EX: 2중 모달 시 
+  isUnder?: boolean, // 2중 모달일 경우 딤드보다 아래로
+  autoCloseSecond?: number, // 자동 닫기 시간초 1000 단위
+  className?:string,
+  $width?: number,
+  $align?: 'center' | 'left' | 'right',
+  children?:React.ReactNode,
   onClose: () => void; // ⭐ 필수
 }
 export const Modal = ({
   isDimmed = true,
   isUnder,
   autoCloseSecond,
-  customClass = 'modal',
+  className,
   $width = 300,
   $align = 'center',
   children,
@@ -109,7 +109,7 @@ export const Modal = ({
       <StyleWrap 
         className={cn(
           'modal-wrap', 
-          customClass,
+          className,
           isClosing && 'modal-close',
         )}
         $width={$width}
@@ -190,6 +190,9 @@ text-align: ${({$align}) => $align};
   position:relative;
 }
 .btn-close {
+  display:flex;
+  justify-content:center;
+  align-items:cetner;
   position:absolute;
   top:10px;
   right:10px;
@@ -235,7 +238,9 @@ text-align: ${({$align}) => $align};
 }
 ${media.mob}{
   .modal-inner{
-    width:90%;
+    width:calc(100% - 30px);
+    max-width:100%;
+    outline:0;
   }
 }
 `;

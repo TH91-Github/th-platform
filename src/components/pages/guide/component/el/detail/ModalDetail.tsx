@@ -1,11 +1,11 @@
 import { Btn } from "@/components/element/button/Btn";
+import { CodeHljs } from "@/components/element/highlight/CodeHljs";
 import { Modal } from "@/components/element/modal/Modal";
 import { TitlePoint } from "@/components/ui/text/TitlePoint";
 import { cn } from "@/utils/common";
+import { stripIndent } from "@/utils/textUtils";
 import { useState } from "react";
 import styles from '../../Detail.module.scss';
-import { Hljs } from "@/components/element/highlight/Hljs";
-import { stripIndent } from "@/utils/textUtils";
 
 // 🔹 modal 컴포넌트 설명
 interface DemoItemType {
@@ -15,6 +15,11 @@ interface DemoItemType {
   case3: boolean;
 };
 const DETAIL_TITLE ='Modal';
+const EX_CODE = stripIndent(`
+  <Modal onClose={handlePopupClick}>
+    <p>Modal Test</p>
+  </Modal>`
+);
 export const ModalDetail = () => {
   const [demo, setDemo] = useState<DemoItemType>({
     case1:false,
@@ -30,11 +35,6 @@ export const ModalDetail = () => {
     }));
   };
 
-  const exCode = stripIndent(`
-    <Modal onClose={handlePopupClick}>
-      <p>Modal Test</p>
-    </Modal>`
-  );
   return ( 
     <div className={cn('guide-detail', styles.sectionWrap)}>
       <div className={styles.sectionHeading}>
@@ -149,8 +149,8 @@ export const ModalDetail = () => {
           pointType="underline"
           className={styles.tit}
         />
-        <Hljs
-          code={exCode}
+        <CodeHljs
+          code={EX_CODE}
           language={'tsx'}
           className={styles.code}
         />

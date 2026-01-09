@@ -2,18 +2,17 @@ import { Btn } from "@/components/element/button/Btn";
 import { TitlePoint } from "@/components/ui/text/TitlePoint";
 import { cn } from "@/utils/common";
 import styles from '../../Detail.module.scss';
-import { Hljs } from "@/components/element/highlight/Hljs";
+import { CodeHljs } from "@/components/element/highlight/CodeHljs";
 import { stripIndent } from "@/utils/textUtils";
 
 // 🔹 btn 컴포넌트 설명
 const DETAIL_TITLE ='Btn';
+const EX_CODE = stripIndent(`
+  <Btn>
+    <span>Btn</span>
+  </Btn>`
+);
 export const BtnDetail = () => {
-
-  const exCode = stripIndent(`
-    <Btn>
-      <span>Btn</span>
-    </Btn>`
-  );
   
   return ( 
     <div className={cn('guide-detail',styles.sectionWrap)}>
@@ -198,8 +197,8 @@ export const BtnDetail = () => {
           pointType="underline"
           className={styles.tit}
         />
-        <Hljs
-          code={exCode}
+        <CodeHljs
+          code={EX_CODE}
           language={'tsx'}
           className={styles.code}
         />

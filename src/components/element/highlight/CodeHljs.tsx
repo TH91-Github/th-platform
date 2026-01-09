@@ -3,9 +3,9 @@ import 'highlight.js/styles/atom-one-dark.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn, copyClipboard, escapeSanitizedHtml } from "@/utils/common";
 import { Btn } from "@/components/element/button/Btn";
-import styles from './Hljs.module.scss';
+import styles from './CodeHljs.module.scss';
 
-interface HljsPropsType {
+interface CodeHljsPropsType {
   language?: string,
   code: string,
   isLineNumber?: boolean,
@@ -13,14 +13,14 @@ interface HljsPropsType {
   isCopied?:boolean,
   className?: string,
 }
-export const Hljs = ({
+export const CodeHljs = ({
   language = 'javascript',
   code = 'Test',
   isLineNumber = true,
   badgeLang = true,
   isCopied = true,
   className
-}: HljsPropsType) => {
+}: CodeHljsPropsType) => {
   const codeRef = useRef<HTMLElement>(null!);
   const [copied, setCopied] = useState(false);
 
@@ -59,7 +59,7 @@ export const Hljs = ({
         </div>
       )}
       <pre className={styles.hljsPre}>
-        <code ref={codeRef} className={languageClass} />
+        <code ref={codeRef} className={languageClass} data-name="hljs" />
       </pre>
       <div className={styles.hljsToolbar}>
         { badgeLang && (

@@ -3,6 +3,12 @@
   overflow: hidden;
   position:relative;
   border-radius:5px;
+  code[data-name*="hljs"]{
+    padding:10px 200px 10px 0;
+    background-color: $color-dark-navy;
+    line-height:22px;
+    @include scroll('x');
+  }
 }
 
 .hljsNumbers {
@@ -35,7 +41,7 @@
 }
 .hljsPre {
   flex: 1;
-  overflow-x:auto;
+  overflow:hidden;
   margin:0;
   padding:0 10px;
   background-color: $color-dark-navy;
@@ -45,7 +51,7 @@
   display:flex;
   gap:10px;
   position:absolute;
-  bottom:10px;
+  top:10px;
   right:10px;
   .badgeLanguage, .copyButton {
     padding:5px 8px;
@@ -56,28 +62,38 @@
     font-weight:400;
     line-height:1;
     color:#fff;
+    transition: var(--transition-bg);
   }
 }
 
-:global {
-  .hljs-wrap{
-    .hljs{ 
-      padding:10px 200px 10px 0;
-      background-color: $color-dark-navy;
-      line-height:22px;
-    }
-  }
-}
 
 @include mob {
-
-  :global {
-  .hljs-wrap{
-    .hljs{ 
+  .hljsWrap{
+    code[data-name*="hljs"]{
       padding:10px;
-      background-color: $color-dark-navy;
-      line-height:22px;
+      font-size:14px;
+      line-height:20px;
     }
   }
-}
+  .hljsPre {
+    padding:0px;
+  }
+  .hljsNumbers {
+    padding:10px 5px;
+    .number{
+      font-size:12px;
+      line-height:20px;
+    }
+  }
+  .hljsToolbar{
+    gap:5px;
+    top:2px;
+    right:2px;
+    .badgeLanguage, .copyButton {
+      padding:2px 5px;
+      border-radius:2px;
+      font-size:12px;
+    }
+  }
+
 }
