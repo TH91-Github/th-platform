@@ -1,0 +1,11 @@
+.main{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  min-height: var(--min-h);
+}
+.title{
+  font-size:rem(56px);
+  color: $color-title-w;
+}

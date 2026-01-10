@@ -1,0 +1,64 @@
+@keyframes fadeOutBg {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes floatUpBounce {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+}
+
+.intro {
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: var(--min-h);
+  background-color: $color-dark-navy;
+  overflow: hidden;
+  transition: opacity 2s .3s ease;
+  &.fadeOut{
+    opacity:0;
+  }
+}
+
+.heading {
+  text-align: center;
+  color: $color-title-w;
+  will-change: transform, opacity;
+  &.moveUp {
+    .title{
+      animation: floatUpBounce 1.5s ease-out forwards;
+    }
+    .text {
+      animation: floatUpBounce 1.5s .1s ease-out forwards;
+    }
+  }
+}
+
+.title {
+  font-size: rem(48px);
+}
+
+.text {
+  font-size: rem(28px);
+}
+
+.icon {
+  width: rem(56px);
+  height: rem(56px);
+}

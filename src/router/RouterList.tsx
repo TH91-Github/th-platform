@@ -7,6 +7,7 @@ import { DivisionPage } from "@/pages/division/DivisionPage";
 import { GuidePage } from "@/pages/guide/GuidePage";
 import { PortfolioPage } from "@/pages/portfolio/PortfolioPage";
 import { GUIDE_LIST } from "./guide/GuideLists";
+import { RunPage } from "@/pages/run/RunPage";
 
 export const routerList = [
   {
@@ -19,35 +20,13 @@ export const routerList = [
     children: [...GUIDE_LIST],
   },
   {
-    id: 'about',
-    path: '/about',
-    element: <AboutPage />,
+    id: 'run',
+    path: 'run',
+    element: <RunPage />,
     handle: {
-      title: 'About',
-    },
+      title: 'RunPulse',
+    }
   },
-  {
-    id: 'portfolio',
-    path: '/portfolio',
-    element: <PortfolioPage />,
-    handle: {
-      title: 'Portfolio',
-    },
-  },
-  {
-    id: 'division',
-    path: '/division',
-    element: <DivisionPage />,
-    handle: {
-      title: 'Division',
-    },
-  },
-  {
-    id: 'contact',
-    path: '/contact',
-    element: <ContactPage />,
-    handle: {
-      title: 'Contact',
-    },
-  },
+
+
 ];
