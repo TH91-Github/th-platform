@@ -11,21 +11,9 @@ export const MainPage = () => {
       {/* visual */}
       <MainVisual />
       <div className="main-conent">
-        <div className="main-item">
-          {/* project lists */}
-          <ProjectLayout />
-        </div>
-        <div className="main-item">
-          {/* 부문 소개 */}
-          <DivisionLayout />
-        </div>
         {/* 가이드 */}
         <div className="main-item">
           <GuideLayout />
-        </div>
-        <div className="main-item">
-          {/* 기타 */}
-          <ContactLayout />
         </div>
       </div>
     </div>
