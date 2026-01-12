@@ -180,14 +180,21 @@ export const iconData = [
     id:'icon-back',
     code: 'ri/RiArrowGoBackLine',
     label: 'IconBack',
-    title:'go Back',
+    title:'Go Back',
     keyword:['link','IconBack','뒤로가기','백','back','Backspace','go back'],
   },
   {
     id:'icon-check',
     code: 'ri/RiArrowGoBlu/LuCheck',
     label: 'IconCheck',
-    title:'go Back',
+    title:'Check',
     keyword:['link','IconCheck','LuCheck','체크','check','확인'],
+  },
+  {
+    id:'icon-folder-add',
+    code: 'fa6/FaFolderPlus',
+    label: 'IconFolderAdd',
+    title:'Folder Add',
+    keyword:['IconFolderAdd','folder','add','추가','폴더','생성'],
   },
 ]

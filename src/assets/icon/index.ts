@@ -25,4 +25,4 @@ export { HiOutlineExternalLink as IconOutLink } from "react-icons/hi";
 export { IoIosSearch as IconSearch } from "react-icons/io";
 export { RiArrowGoBackLine as IconBack } from "react-icons/ri";
 export { LuCheck as IconCheck } from "react-icons/lu";
-
+export { FaFolderPlus as IconFolderAdd} from "react-icons/fa6";

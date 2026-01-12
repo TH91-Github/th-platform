@@ -26,6 +26,7 @@ import {
   IconSearch,
   IconBack,
   IconCheck,
+  IconFolderAdd,
 } from "@/assets/icon";
 
 //🔹 iconData.ts 동일하게
@@ -58,4 +59,5 @@ export const IconMatchLists = {
   'icon-out-link': IconOutLink,
   'icon-back' : IconBack,
   'icon-check' : IconCheck,
+  'icon-folder-add' : IconFolderAdd,
 } as const;
