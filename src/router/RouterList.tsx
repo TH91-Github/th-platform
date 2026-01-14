@@ -19,14 +19,14 @@ export const routerList = [
     },
     children: [...GUIDE_LIST],
   },
-  {
-    id: 'run',
-    path: 'run',
-    element: <RunPage />,
-    handle: {
-      title: 'RunPulse',
-    }
-  },
+  // {
+  //   id: 'run',
+  //   path: 'run',
+  //   element: <RunPage />,
+  //   handle: {
+  //     title: 'RunPulse',
+  //   }
+  // },
 
 
 ];

@@ -8,7 +8,7 @@ export const ToolMenu = () => {
   return (
     <div className={styles['tool-menu']}>
       {/* 로그인 */}
-      <AuthBtn />
+      {/* <AuthBtn /> */}
       {/* 다크/라이트 */}
       <ThemeToggle />
     </div>
