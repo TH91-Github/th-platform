@@ -9,88 +9,108 @@
   position: absolute;
   top:50%;
   left:50%;
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
   transform: translate(-50%, -50%);
   &::before, &::after{
     display: block;
     position: absolute;
-    top:2px;
-    left: 50%;
-    width: 100%;
-    height: 2px;
-    border-radius:2px;
     background-color: var(--color);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    transform: translateX(-50%);
+    transition: var(--transition-bg), var(--transition-transform);
     content:'';
-  }
-  &::after{
-    top:auto;
-    bottom:2px;
-    transform: translateX(-10%);
   }
   .icon{
     display: block;
     position: absolute;
-    left: 50%;
-    width: 100%;
-    height: 2px;
-    border-radius:2px;
     background-color: var(--color);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    transform: translate(-30%, -50%);
+    transition: var(--transition-bg), var(--transition-transform), var(--transition-opacity);
   }
-  &.open {
-    &::before{
-      top: 50%;
+  &.bar{
+    &::before, &::after{
+      top:2px;
+      left: 50%;
       width: 100%;
       height: 2px;
-      border-radius: 2px;
-      transform: translate(-50%, -50%) rotate(-45deg);
+      border-radius:2px;
+      transform: translateX(-50%);
     }
     &::after{
-      top: 50%;
-      width: 100%;
-      height: 2px;
-      border-radius: 2px;
-      transform: translate(-50%, -50%) rotate(-135deg);
+      top:auto;
+      bottom:2px;
+      transform: translateX(0%);
     }
     .icon{
-      opacity: 0;
-      transform: translate(200px, -50%);
+      left: 50%;
+      width: 100%;
+      height: 2px;
+      border-radius:2px;
+      transform: translate(-20%, -50%);
+    }
+    &.open {
+      &::before{
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      &::after{
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        transform: translate(-50%, -50%) rotate(-135deg);
+      }
+      .icon{
+        opacity: 0;
+        transform: translate(200px, -50%);
+      }
+    }
+  }
+  &.circle {
+    &::before, &::after{
+      top:50%;
+      left:50%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      transform: translate(-50%, calc(-50% - 10px));
+    }
+    &::after{
+      transform: translate(-50%, calc(-50% + 10px));
+    }
+    .icon{
+      top:50%;
+      left:50%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+    &.open {
+      &::before{
+        width:3px;
+        height:100%;
+        border-radius:3px;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+      &::after{
+        width:3px;
+        height:100%;
+        border-radius:3px;
+        transform: translate(-50%, -50%) rotate(-135deg);
+      }
+      .icon{
+        transform: translate(200px, -50%);
+        opacity:0;
+      }
     }
   }
 }
-:global {
+
+@include mob {
   .moreBtnWrap{
-    &.circle {
-      &::before, &::after{
-        top:0;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-      }
-      &::after{
-        bottom:2px;
-      }
-      .icon{
-        left: 50%;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        transform: translate(-50%, -50%);
-      }
-      &.open {
-        &::before{
-          width: 3px;
-          border-radius: 3px;
-        }
-        &::after{
-          width: 3px;
-          border-radius: 3px;
-        }
-      }
-    }
+    width:30px;
+    height:30px;
   }
 }

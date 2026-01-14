@@ -56,9 +56,15 @@ const AccordionItem = ({
     contentEl.style.height = totalH + 'px';
   };
 
+  const resetStyle = () => {
+    const contentEl = contentRef.current;
+    contentEl?.removeAttribute('style' );
+  }
   useEffect(() => { // smoothAni 옵션
-    if (!smoothAni) return;
-
+    if (!smoothAni) {
+      resetStyle()
+      return 
+    };
     const contentEl = contentRef.current;
     const innerEl = innerRef.current;
     if (!contentEl || !innerEl) return;
@@ -88,7 +94,10 @@ const AccordionItem = ({
   }, [isActive, smoothAni]);
 
   useEffect(() => { // resize - 높이 재지정
-    if (!smoothAni) return;
+    if (!smoothAni) {
+      resetStyle()
+      return
+    };
 
     const handleResize = () => {
       if (resizeTimer.current) {
@@ -126,7 +135,7 @@ const AccordionItem = ({
             <button
               type="button"
               className={cn(styles.accBtn)}
-              title={btnTit}
+              title={`${btnTit} ${isActive ? '닫기' : '더 보기'}`}
               onClick={handleClick}
             >
               {jsx ? jsx : btnTit}

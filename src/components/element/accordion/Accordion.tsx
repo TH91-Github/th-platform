@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from './Accordion.module.scss';
 import { cn } from '@/utils/common';
 import { MemoAccordionItem } from './AccordionItem';
@@ -14,6 +14,7 @@ interface AccordionProps<T> {
   mode?: "single" | "multiple"; // 하나만 열기 or 각 open
   className?: string;
   initActive?: number[]; // 초기 활성화 필요한 목록
+  allClose?: boolean,
   smoothAni?: boolean; // 부드럽게
   accOpt?: {
     titFull?: boolean,
@@ -29,6 +30,7 @@ export const Accordion = <T,>({
   mode = "multiple",
   className,
   initActive = [],
+  allClose,
   smoothAni = false,
   accOpt = { titFull: true, openIcon: 'arrow' },
   children,
@@ -36,6 +38,7 @@ export const Accordion = <T,>({
   const [isActives, setIsActives] = useState<number[]>(
     mode === 'single' ? (initActive.length > 0 ? [initActive[0]] : []) : [...initActive]
   );
+
   const handleChange = useCallback((index: number) => {
     setIsActives(prevState => {
       const isIndexActive = prevState.includes(index);
@@ -47,6 +50,12 @@ export const Accordion = <T,>({
         : [...prevState, index];  // 추가
     });
   }, [setIsActives, mode]);
+
+  // initActive 변경
+  useEffect(() => {
+    if(allClose) setIsActives([])
+  }, [allClose]);
+  
   return (
     <div
       className={cn(

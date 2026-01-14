@@ -8,6 +8,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/virtual';
+import 'swiper/css/effect-cards';
+import 'swiper/css/effect-creative';
+
 import styles from "./Carousel.module.scss";
 
 export type CarouselOptType = SwiperProps;
@@ -16,9 +19,11 @@ interface CarouselPropsType {
   ref?: React.Ref<CarouselRefType>,
   children: React.ReactNode, // slide item
   carouselOpt?: CarouselOptType, // carouse 옵션
-  className?:string,
-  onCarousel?: (e:SwiperClass) => void;
-  onChangeEvent?: () => void;
+  className?: string, // swiper(carousel)
+  swiperClassName?: string, // wrap 전체
+  slideClaseeName?: string, // swiper-slide
+  onCarousel?: (e: SwiperClass) => void;
+  onChangeEvent?: (e: SwiperClass) => void;
 }
 
 export interface CarouselRefType { // ref 옵션
@@ -29,11 +34,11 @@ export interface CarouselRefType { // ref 옵션
 
 // 기본 옵션 설정
 const DEFAULT_OPT: CarouselOptType = {
+  slidesPerView: 1,
   spaceBetween: 10,
-  observer: true,
-  observeParents: true,
   watchOverflow: true,
-  virtual: false
+  observer: false,
+  observeParents: false,
 };
 
 export const Carousel = ({
@@ -41,6 +46,8 @@ export const Carousel = ({
   children,
   carouselOpt,
   className,
+  swiperClassName,
+  slideClaseeName,
   onCarousel,
   onChangeEvent,
 }: CarouselPropsType) => {
@@ -49,30 +56,73 @@ export const Carousel = ({
   const prevBtnRef = useRef<HTMLButtonElement | null>(null);
   const nextBtnRef = useRef<HTMLButtonElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(true);
-  const option = useMemo(() => ({ ...DEFAULT_OPT, ...carouselOpt }), [carouselOpt]);
+  const option = useMemo<CarouselOptType>(() => {
+    return { ...DEFAULT_OPT, ...carouselOpt };
+  }, [carouselOpt]);
+
+  const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
 
   const modules = useMemo(() => {
-    const base = [Navigation, Pagination, A11y, Autoplay, Virtual, FreeMode, Scrollbar, Mousewheel];
-    if (option.effect === "cards") base.push(EffectCards);
-    if (option.effect === "creative") base.push(EffectCreative);
-    return base;
-  }, [option.effect]);
+    const result = [A11y];
+
+    if (option.navigation) result.push(Navigation);
+    if (option.pagination) result.push(Pagination);
+    if (option.autoplay) result.push(Autoplay);
+    if (option.freeMode) result.push(FreeMode);
+    if (option.scrollbar) result.push(Scrollbar);
+    if (option.mousewheel) result.push(Mousewheel);
+    if (option.virtual) result.push(Virtual);
+    if (option.effect === 'cards') result.push(EffectCards);
+    if (option.effect === 'creative') result.push(EffectCreative);
+
+    return result;
+  }, [
+    option.navigation,
+    option.pagination,
+    option.autoplay,
+    option.freeMode,
+    option.scrollbar,
+    option.mousewheel,
+    option.virtual,
+    option.effect
+  ]);
+
+  useEffect(() => {
+    if (!option.autoplay) {
+      setIsPlaying(false);
+    }
+  }, [option.autoplay]);
 
   const handleAutoPlay = useCallback(() => {
     if (!swiperRef.current) return;
     const swiper = swiperRef.current.swiper;
 
-    isPlaying ? swiper.autoplay.stop() : swiper.autoplay.start();
+    if (!swiper.autoplay) return;
+    if (isPlaying) {
+      swiper.autoplay.stop();
+    } else {
+      swiper.autoplay.start();
+    }
     setIsPlaying(prev => !prev);
   }, [isPlaying]);
 
-  const handleChange = () => {
-    onChangeEvent && onChangeEvent();
-  };
+  const updateScrollableState = useCallback((swiper: SwiperClass) => {
+    const isScrollable = !swiper.isLocked;
 
-  const handleOnSwiper = (swiper:SwiperClass) => {
-    onCarousel && onCarousel(swiper);
-  }
+    // swiper.el === .swiper
+    swiper.el.dataset.scrollable = String(isScrollable);
+  }, []);
+
+  const handleChange = useCallback((swiper: SwiperClass) => {
+    onChangeEvent?.(swiper);
+  }, [onChangeEvent]);
+
+  const handleOnSwiper = useCallback((swiper: SwiperClass) => {
+    onCarousel?.(swiper);
+    updateScrollableState(swiper);
+  }, [onCarousel, updateScrollableState]);
+
+
 
   useEffect(() => {
     if (!swiperRef.current) return;
@@ -110,49 +160,52 @@ export const Carousel = ({
     carouselSlideTo: index => swiperRef.current?.swiper.slideTo(index),
     carouselUpdate: () => swiperRef.current?.swiper.update()
   }));
-  
+
+
   return (
-    <div 
+    <div
       className={cn(
         'carousel-wrap',
-        styles.carouselWrap, 
-        option.direction ==='vertical'&& styles.vertical, 
-        React.Children.toArray(children).length < 2 && styles['not-swiper']
+        styles.carouselWrap,
+        className,
+        option.direction === 'vertical' && styles.vertical,
+        childrenArray.length < 2 && styles['not-swiper']
       )}
     >
       <div className={styles.inner}>
         <Swiper
           ref={swiperRef}
           modules={modules}
-          virtual={option.virtual ? { slides: React.Children.toArray(children) } : undefined}
-          slidesPerView={option.slidesPerView}
+          className={cn(styles.carousel, swiperClassName)}
           {...option}
+          virtual={option.virtual ? { slides: childrenArray } : undefined}
           navigation={false} // 초기 사용 x 옵션 판단 후 재지정
           pagination={false} // 초기 사용 x 옵션 판단 후 재지정
           onSwiper={handleOnSwiper}
           onSlideChange={handleChange}
-          className={cn(styles.carousel, className)}
+          onResize={updateScrollableState}
+          onUpdate={updateScrollableState}
         >
-          {React.Children.toArray(children).map((childEl, index) => (
-            <SwiperSlide key={index} className={cn(styles.slide)}>
+          {!option.virtual && childrenArray.map((childEl, index) => (
+            <SwiperSlide key={index} className={cn(styles.slide, slideClaseeName)}>
               {childEl}
             </SwiperSlide>
           ))}
         </Swiper>
         {(option.navigation) && (
-          <div className={styles.navigation}>
-            <button 
+          <div className={cn(styles.navigation, 'carousel-navigation')}>
+            <button
               ref={prevBtnRef}
               type="button"
-              className={cn(styles.btn, styles.prev)}>
-              <span className={styles.icon}><IconArrowLeft /></span>
+              className={cn(styles.btn, styles.prev, 'btn prev')}>
+              <i className={styles.icon}><IconArrowLeft /></i>
               <span className="blind">이전</span>
             </button>
-            <button 
+            <button
               ref={nextBtnRef}
               type="button"
-              className={cn(styles.btn, styles.next)}>
-              <span className={styles.icon}><IconArrowRight /></span>
+              className={cn(styles.btn, styles.next, 'btn next')}>
+              <i className={styles.icon}><IconArrowRight /></i>
               <span className="blind">다음</span>
             </button>
           </div>
@@ -160,31 +213,31 @@ export const Carousel = ({
       </div>
       {/* pagination, autoplay */}
       {option.pagination && (
-        <div className={styles.control}>
+        <div className={cn(styles.control, 'carousel-control')}>
           {option.pagination && (
-            <div ref={paginationRef} className={styles.pagination}>
+            <div ref={paginationRef} className={cn(styles.pagination, 'carousel-pagination')}>
             </div>
           )}
           {(option.pagination && option.autoplay) && (
-            <div className={styles.autoplay}>
+            <div className={cn(styles.autoplay, 'carousel-autoplay')}>
               <button
                 type="button"
-                className={cn(styles.btn, styles[isPlaying?'stop':'play'])}
+                className={cn(styles.btn, styles[isPlaying ? 'stop' : 'play'])}
                 onClick={handleAutoPlay}>
-                  { isPlaying
-                    ? <>
-                      <span className={styles.icon}>
-                        <IconPause />
-                      </span>
-                      <span className="blind">정지</span>
-                    </>
-                    : <>
-                      <span className={styles.icon}>
-                        <IconPlay />
-                      </span>
-                      <span className="blind">재생</span>
-                    </>
-                  }
+                {isPlaying
+                  ? <>
+                    <i className={styles.icon}>
+                      <IconPause />
+                    </i>
+                    <span className="blind">정지</span>
+                  </>
+                  : <>
+                    <i className={styles.icon}>
+                      <IconPlay />
+                    </i>
+                    <span className="blind">재생</span>
+                  </>
+                }
               </button>
             </div>
           )}
