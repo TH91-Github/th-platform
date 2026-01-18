@@ -2,6 +2,7 @@ import { SplitText } from '../../ui/text/SplitText';
 import { TextChageUI } from '../../ui/text/TextChageUI';
 import styles from './MainVisual.module.scss';
 
+
 const APP_TITLE = import.meta.env.VITE_APP_TITLE;
 const MAIN_SUB_TEXT = [
   ['기록 공유 플랫폼 서비스','개발 가이드','메모, 가계부, 일정, 여행'],

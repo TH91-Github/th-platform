@@ -20,8 +20,9 @@ interface CarouselPropsType {
   children: React.ReactNode, // slide item
   carouselOpt?: CarouselOptType, // carouse 옵션
   className?: string, // swiper(carousel)
-  swiperClassName?: string, // wrap 전체
+  swiperClassName?:string, // wrap 전체
   slideClaseeName?: string, // swiper-slide
+  enableAfterInit?:number,
   onCarousel?: (e: SwiperClass) => void;
   onChangeEvent?: (e: SwiperClass) => void;
 }
@@ -48,6 +49,7 @@ export const Carousel = ({
   className,
   swiperClassName,
   slideClaseeName,
+  enableAfterInit,
   onCarousel,
   onChangeEvent,
 }: CarouselPropsType) => {
@@ -120,9 +122,22 @@ export const Carousel = ({
   const handleOnSwiper = useCallback((swiper: SwiperClass) => {
     onCarousel?.(swiper);
     updateScrollableState(swiper);
-  }, [onCarousel, updateScrollableState]);
 
-
+    // ✅ 생성 후 -> 시간차 이후 -> 값이 필요한 경우 : data-carousel = on 
+    if (enableAfterInit !== undefined) {
+      const delay = Math.max(enableAfterInit, 500);
+      swiper.el.dataset.carousel = 'off';
+      const timer = window.setTimeout(() => {
+        if (!swiper.destroyed) {
+          swiper.el.dataset.carousel = 'on';
+        }
+      }, delay);
+      // swiper destroy 시 정리
+      swiper.on('destroy', () => {
+        clearTimeout(timer);
+      });
+    }
+  }, [onCarousel, updateScrollableState, enableAfterInit]);
 
   useEffect(() => {
     if (!swiperRef.current) return;

@@ -28,6 +28,7 @@ export const GuideNav = ({isFold}:{isFold:boolean}) => {
     <Accordion
       data={guideLists}
       initActive={[locationIdx]}
+      allClose={isMobile}
       smoothAni={!isMobile}
       className={cn(styles.nav, isFold && styles.fold)}
     >

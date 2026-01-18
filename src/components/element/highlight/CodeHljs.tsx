@@ -1,4 +1,4 @@
-import hljs from "highlight.js";
+import hljs from 'highlight.js';
 import 'highlight.js/styles/atom-one-dark.css';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { cn, copyClipboard, escapeSanitizedHtml } from "@/utils/common";
