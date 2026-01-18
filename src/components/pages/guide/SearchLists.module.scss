@@ -43,7 +43,16 @@
 }
 
 @include mob {
+  .listsWrap{ 
+    & > ul {
+      gap:10px;
+      & > li {
+        width: calc( (100% - 10px) / 2);
+      }
+    }
+  }
   .btn{
+    width:100%;
     padding:10px;
   }
   .category {

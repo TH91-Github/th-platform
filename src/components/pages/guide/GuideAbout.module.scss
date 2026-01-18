@@ -466,7 +466,11 @@
     100% { transform:translate(-50%, -1px) scale(0);}
   }
 }
+
 @include mob {
+  .aboutInner{
+    padding:0 15px;
+  }
   .aboutHeader{
     margin-top:10px;
     .title{ 

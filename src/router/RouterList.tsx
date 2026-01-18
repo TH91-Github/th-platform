@@ -8,6 +8,8 @@ import { GuidePage } from "@/pages/guide/GuidePage";
 import { PortfolioPage } from "@/pages/portfolio/PortfolioPage";
 import { GUIDE_LIST } from "./guide/GuideLists";
 import { RunPage } from "@/pages/run/RunPage";
+import { HubPage } from "@/pages/hub/HubPage";
+import { HubMain } from "@/components/pages/hub/HubMain";
 
 export const routerList = [
   {
@@ -18,6 +20,24 @@ export const routerList = [
       title: 'Guide',
     },
     children: [...GUIDE_LIST],
+  },
+  {
+    id: 'hub',
+    path: '/hub',
+    element: <HubPage />,
+    handle: {
+      title: 'Hub',
+    },
+    children: [
+      {
+        id: 'hub-main',
+        index:true,
+        element: <HubMain />,
+        handle: {
+          title: 'Hub',
+        },
+      },
+    ]
   },
   // {
   //   id: 'run',

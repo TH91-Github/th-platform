@@ -9,7 +9,7 @@ export const GuideLayout = () => {
     threshold: 0.3,
     freezeOnceVisible: true,
   });
-
+  
   return(
     <div 
       ref={observerRef} 
