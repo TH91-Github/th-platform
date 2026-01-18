@@ -4,6 +4,9 @@
 ※ ui 스타일링은 React 19 버전부터 styled-components 유지보수 중심으로 변경됨에 따라
 호환성과 확장성을 고려해 CSS Module과 emotion 병행하여 사용.
 
+- <a href="https://github.com/TH91-Github/react-record" target="_blank" rel="noopener noreferrer">이전 참고 URL</a>
+
+
 ## 배포
 - vercel 사용 예정
 
@@ -34,25 +37,25 @@
 - zustand : api 사용하지 않는 UI 상태 프로젝트 내부 값
 
 <hr /> 
+
 ### 🔷 프로젝트 스택
-| 분류             | 라이브러리/패키지 이름                        | 설명                                      |
-| -------------- | ----------------------------------- | --------------------------------------- |
-| **기본**         | `react`, `react-dom`                | React 19 
-| **번들러 / 개발환경** | `vite`                              | 빠른 개발 서버 및 빌드 환경 구성                     |
-| **타입**         | `typescript`                        | TypeScript 사용         |
-| **라우팅**        | `react-router-dom`                  | SPA 구조의 라우팅 처리 및 페이지 이동 관리              |
-| **상태 관리**      | `@reduxjs/toolkit`, `react-redux`   | Redux Toolkit 기반 전역 상태 (API 전용 상태) 관리               |
-|                | `zustand`                           | 간단한 전역/로컬 상태 관리 라이브러리         |
-| **스타일링**       | `@emotion/react`, `@emotion/styled` | CSS-in-JS 방식의 컴포넌트 단위 스타일링              |
-|                | `sass`                              | 전역 스타일 및 공통 스타일 관리를 위한 SCSS 사용          |
-| **UI / 아이콘**   | `react-icons`                       | React svg 아이콘 사용                      |
-| **캐러셀**        | `swiper`                            | 슬라이드, 캐러셀 swiper.js                        |
-| **콘텐츠 처리**     | `dompurify`                         | HTML 콘텐츠 렌더링 시 XSS 방지를 위한 Sanitizing 처리 |
-| **하이라이팅**   | `highlight.js`                      | 코드 하이라이팅                      
+| 분류 | 라이브러리/패키지 이름 | 설명 |
+| ---- | ---------------------- | ---- |
+| **기본** | `react`, `react-dom` | React 19 |
+| **번들러 / 개발환경** | `vite` | 빠른 개발 서버 및 빌드 환경 구성 |
+| **타입** | `typescript` | TypeScript 사용 |
+| **라우팅** | `react-router-dom` | SPA 구조의 라우팅 처리 및 페이지 이동 관리 |
+| **상태 관리** | `@reduxjs/toolkit`, `react-redux` | Redux Toolkit 기반 전역 상태 (API 전용 상태) 관리 |
+|  | `zustand` | UI /로컬 상태 관리 라이브러리 |
+| **스타일링** | `sass, Module` | 전역 스타일 및 공통 스타일 관리를 위한 SCSS 사용 |
+|  | `@emotion/react`, `@emotion/styled` | CSS-in-JS 방식의 컴포넌트 단위 스타일링 |
+| **UI / 아이콘** | `react-icons` | React svg 아이콘 사용 |
+| **캐러셀** | `swiper` | 슬라이드, 캐러셀 swiper.js |
+| **콘텐츠 처리** | `dompurify` | HTML 콘텐츠 렌더링 시 XSS 방지를 위한 Sanitizing 처리 |
+| **하이라이팅** | `highlight.js` | 코드 하이라이팅 |
 
 
-
-### 🔷 Node 설치 기준
+### 🔷 Node 기준
 node 22.12.0
 
 #### 🔷 실행
