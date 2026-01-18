@@ -14,6 +14,17 @@
 .inner{
   position:relative;
 }
+.carousel {
+  min-width: 0;
+}
+.carousel[data-scrollable="false"] {
+  justify-content: center;
+  cursor: default;
+}
+
+.carousel[data-scrollable="true"] {
+  cursor: grab;
+}
 
 .navigation{
   position:absolute;
@@ -85,7 +96,7 @@
 :global {
   .carousel-wrap{
     .swiper-pagination-bullet{
-      margin:0;
+      margin:0 !important;
       background-color: var(--color-sub-text);
       cursor: pointer;
       opacity:1;
@@ -93,12 +104,18 @@
         background-color: var(--color-point);
       }
     }
-    .swiper-pagination-progressbar-fill{
-      background-color: var(--color-point);
-    }
     .swiper-button-disabled{
       color: $color-disabled;
-      opacity:0.5;
+    }
+    .swiper-pagination-progressbar-fill {
+      background-color: var(--color-point);
+    }
+  }
+  [data-theme='dark'] {
+    .carousel-wrap{
+      .swiper-button-disabled{
+        opacity:0.3;
+      }
     }
   }
 }

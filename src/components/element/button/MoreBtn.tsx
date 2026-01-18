@@ -1,21 +1,30 @@
-import { useState } from 'react';
-import styles from './MoreBtn.module.scss'
 import { cn } from '@/utils/common';
+import styles from './MoreBtn.module.scss';
 
 // 🔹 더보기 버튼
 interface MoreBtnPropsType {
-  uiType?: 'bar' | 'circle'
+  isOpen: boolean,
+  uiType?: 'bar' | 'circle',
+  className?: string,
+  onClick: () => void,
 }
-export const MoreBtn = ({uiType}: MoreBtnPropsType) => {
-  const [active, setActive] = useState(false);
+export const MoreBtn = ({isOpen, className, uiType='bar', onClick}: MoreBtnPropsType) => {
   const handleMoreClick = () => {
-    setActive(!active);
+    onClick?.();
   }
   return (
-    <div className={`${styles.moreBtnWrap} ${cn(uiType ==='circle' && 'circle')}`}>
+    <div className={cn(
+        styles.moreBtnWrap, 
+        className,
+      )}
+    >
       <button
         type="button"
-        className={`${styles.btn} ${active ? styles.open : ''}`}
+        className={cn(
+          styles.btn,
+          styles[uiType],
+          isOpen && styles.open
+        )}
         onClick={handleMoreClick}
       >
         <span className="blind">더보기</span>
