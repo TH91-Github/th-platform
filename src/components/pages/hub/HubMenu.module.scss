@@ -1,0 +1,53 @@
+.menu{
+  padding:30px 0;
+}
+
+.logo{
+  text-align:center;
+  .icon {
+    position: relative;
+    width:30px;
+    height:30px;
+    color:$color-title-w;
+    &::before, &::after{
+      position:absolute;
+      width:3px;
+      height:3px;
+      border-radius:50%;
+      content:'';
+    }
+    &::before {
+      top:13px;
+      left:18px;
+      background-color:$color-green;
+      animation: ledAni 1.3s ease infinite;
+    }
+    &::after{
+       top:21px;
+      left:18px;
+      background-color:$color-red;
+      animation: ledAni 1.3s ease infinite;
+    }
+  }
+  @keyframes ledAni {
+    0% {
+      transform:scale(0);
+      opacity:0;
+    }
+    50% {
+      opacity:1;
+    }
+    100%{
+      transform:scale(1.5);
+      opacity:0;
+    }
+  }
+}
+
+[data-theme='dark'] {
+  .logo {
+    .icon{
+      color:$color-title-b;
+    }
+  }
+}

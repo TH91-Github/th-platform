@@ -59,7 +59,7 @@ export function useIntersection<T extends HTMLElement>({
 /*
  ✅ 사용 방법
   const { observerRef, observerToggle } = useIntersection();
-  const { observerRef, isIntersecting } = useIntersection<HTMLDivElement>({
+  const { observerRef, observerVisible } = useIntersection<HTMLDivElement>({
     threshold: 0.5
   });
 
