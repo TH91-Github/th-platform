@@ -48,7 +48,8 @@ export const HubCategory = () => {
                   <TitlePoint 
                     pointType="underline"
                     title={listItem.title}
-                    $fixFontSize={18}
+                    $fontRem={false}
+                    $fontSize={18}
                   />
                   <div className={styles.totalNum}>
                     <i>{HubCategoryIconMap[`${totalItem.totalCategory}${capitalizeWords(listItem.id)}`]}</i>

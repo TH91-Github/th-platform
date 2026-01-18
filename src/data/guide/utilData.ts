@@ -12,6 +12,7 @@ export const utilData: GuidePopupDataType[] = [
       tit:'cn 조건 처리 함수',
       desc:[
         'cn(...)',
+        '라이브러리 사용 x',
         '특정 class를 사용하기 위함',
         `? 'on' : '' 조건 처리 시 불필요한 공백 없음`,
         ' 조건 && className 사용' 
