@@ -8,7 +8,7 @@ import { HubCalendar } from './HubCalendar';
 export const HubMain = () => {
 
   const handleAddClick = () => {
-
+    console.log('방 만들기 클릭');
   }
   return (
     <div className={styles.hubMain}>
