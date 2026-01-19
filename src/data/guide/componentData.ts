@@ -57,6 +57,16 @@ export const elementData: GuideDataType[] = [
     keyword: ['Input', '입력', '인풋', '텍스트 입력', '비밀번호 입력', 'form', '폼', '입력폼'],
     link: ''
   },
+  {
+    id: 'calendar',
+    title: 'Calendar',
+    desc: '달력 컴포넌트',
+    category: 'calendar',
+    keyword: ['calendar', '일정','캘린더','달력','일정선택','날짜','요일','기간'],
+    link: ''
+  },
+
+  
 ]
 
 export const moduleData: GuideDataType[] = [

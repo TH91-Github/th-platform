@@ -1,14 +1,16 @@
 import { useEffect, useMemo } from "react";
 import { NotLoad } from "../NotLoad";
-import { ModalDetail } from "./detail/ModalDetail";
+import { AccordionDetail } from "./detail/AccordionDetail";
 import { BtnDetail } from "./detail/BtnDetail";
 import { CarouselDetail } from "./detail/CarouselDetail";
-import { ToastDetail } from "./detail/ToastDetail";
-import { TabButtonDetail } from "./detail/TabButtonDetail";
-import { AccordionDetail } from "./detail/AccordionDetail";
 import { InputDetail } from "./detail/InputDetail";
+import { ModalDetail } from "./detail/ModalDetail";
+import { TabButtonDetail } from "./detail/TabButtonDetail";
+import { ToastDetail } from "./detail/ToastDetail";
+import { CalendarDetail } from "./detail/CalendarDetail";
 
 // 🔹 상세 페이지 연결 (상세 페이지 예제 하드 코딩)
+// componentData.ts
 interface ElementLoadPropsType {
   id: string,
   onNotFound?: () => void;
@@ -23,6 +25,7 @@ export const ElementLoad = ({id, onNotFound}:ElementLoadPropsType) => {
     tabButton: <TabButtonDetail />,
     accordion: <AccordionDetail />,
     input: <InputDetail />,
+    calendar:<CalendarDetail />,
   }), []);
 
   // 일치하지 않는 경우 NotView 컴포넌트 
