@@ -2,8 +2,8 @@
   overflow: hidden;
   position: relative;
   min-height: 500px;
-  height: calc(100svh - var(--header-h));
-  background: $color-black;
+  height: 100svh;
+  background-color: $color-black;
   &::before, &::after{
     position: absolute;
     top: 0;
@@ -67,8 +67,8 @@
   z-index:2;
   top:50%;
   left:50%;
-  width:70%;
-  height:50%;
+  width:80%;
+  height:80%;
   transform:translate(-50%, -50%);
   text-align:center;
   pointer-events: none;

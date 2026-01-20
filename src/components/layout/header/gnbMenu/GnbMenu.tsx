@@ -2,10 +2,10 @@ import { routerList } from '@/router/RouterList';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './GnbMenu.module.scss';
 import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/utils/common';
 
 // const DEV_MODE = import.meta.env.DEV;
-
-export const GnbMenu = () => {
+export const GnbMenu = ({isOpen}:{isOpen:boolean}) => {
   const location = useLocation();
   const navRefs = useRef<HTMLAnchorElement[]>([]);
   const [barStyle, setBarStyle] = useState({ left: 0, width: 0, top: 0 });
@@ -36,7 +36,7 @@ export const GnbMenu = () => {
   }, [activeIndex, location]);
 
   return (
-    <div className={styles.gnb}>
+    <div className={cn(styles.gnb, isOpen && styles.open)}>
       <ul className={styles.lists}>
         {navLists.map((navItem, idx) => (
           <li key={idx} className={styles.navItem}>

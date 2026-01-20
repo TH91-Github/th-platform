@@ -11,18 +11,17 @@ export const AuthBtn = () => {
   }
   return (
     <div className={styles.auth}>
-      {
-        !isLogin
-          ? (
-            <button
-              type="button"
-              className={styles.btn}
-              onClick={handleLoginClick}
-            >
-              <IconLogin />
-            </button>
-          )
-          : '로그아웃'
+      { !isLogin
+        ? (
+          <button
+            type="button"
+            className={styles.btn}
+            onClick={handleLoginClick}
+          >
+            <IconLogin />
+          </button>
+        )
+        : '로그아웃'
       }
     </div>
   )

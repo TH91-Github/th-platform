@@ -153,7 +153,7 @@ const StyleWrap = styled.div<StyleWrapType>`
     flex-grow:1;
     position:relative;
     width:calc(100% - ${({$sideW}) => $sideW}px);
-    min-height: calc(var(--min-h) - 20px);
+    min-height: calc(var(--min-h) - 10px);
     border-top-left-radius:10px;
     border: 1px solid var(--color-line);
     background-color: var(--color-origin-on);

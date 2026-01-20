@@ -1,4 +1,9 @@
 .guide{
+  position:relative;
+  width:100%;
+  max-width:$bp-pc;
+  margin: 0 auto;
+  padding-top: var(--header-h);
   .inner{
     position:relative;
   }
@@ -44,23 +49,14 @@
   border-bottom:1px solid var(--color-line);
 }
 
-
-[data-theme='dark'] {
-  .titleLink{
-    .icon{
-      background-color: $color-white;
-      color: $color-blue;
-    }
-  }
-}
-
 @include mob {
   .guide{
+    padding:0;
     [class^="guide-cont"]{
-      padding:0 15px 15px;
+      padding:0 15px 30px;
     }
   }
-  .guideNav {
+  .guideNavLists {
     h2 {
       display:inline-block;
     }
@@ -76,7 +72,13 @@
       color: $color-white; 
     }
   }
-  .breadcrumbWrap{
-    display:none;
+}
+
+[data-theme='dark'] {
+  .titleLink{
+    .icon{
+      background-color: $color-white;
+      color: $color-blue;
+    }
   }
 }

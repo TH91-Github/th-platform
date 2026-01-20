@@ -4,7 +4,7 @@
   max-width:$bp-pc;
   min-height:var(--min-h);
   margin:0 auto;
-  padding:10px 30px 0;
+  padding:var(--header-h) 30px 0;
 }
 .side{
   width:60px;
