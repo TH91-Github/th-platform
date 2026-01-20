@@ -7,14 +7,19 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies / build
 node_modules
 dist
 dist-ssr
+
+# Env
 *.local
 .env
 
-vite.config.js
-vite.config.mjs
+# Vite config
+# (공통 빌드 설정이므로 Git으로 관리함)
+# vite.config.js
+# vite.config.mjs
 
 # Editor directories and files
 .vscode/*
