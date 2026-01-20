@@ -3,7 +3,6 @@
   z-index: 10;
   top: 0;
   width: 100%;
-  max-width: $bp-pc;
   height: var(--header-h);
   margin:0 auto;
   border-bottom:1px solid var(--color-line);
@@ -61,8 +60,6 @@
 @include mob {
   .inner{
     gap:10px;
-    &.full {
-      padding:0 15px;
-    }
+    padding:0 15px;
   }
 }

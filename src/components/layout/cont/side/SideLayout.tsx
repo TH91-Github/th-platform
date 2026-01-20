@@ -113,7 +113,7 @@ const StyleWrap = styled.div<StyleWrapType>`
   position:relative;
   width:100%;
   margin:0 auto;
-  padding:20px 0 0;
+  padding:20px 30px 0;
   &.inner{
     max-width:${bp.tablet}px;
     padding: 20px 30px;
@@ -179,9 +179,8 @@ const StyleWrap = styled.div<StyleWrapType>`
       z-index:2;
       top: calc( var(--header-h));
       max-height: var(--min-h);
-      padding:20px 20px 20px 30px;
+      padding:20px 20px 20px 0;
     }
-      
   }
 
   ${media.mob}{
@@ -248,7 +247,7 @@ const StyleWrap = styled.div<StyleWrapType>`
     }
     .cont{
       width:100%;
-      padding-top:40px;
+      padding-top:60px;
       border-radius: 0;
     }
   }

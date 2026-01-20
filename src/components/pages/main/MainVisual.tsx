@@ -10,6 +10,7 @@ const MAIN_SUB_TEXT = [
   ['로그인/회원 가입 후','디자인부터 컴포넌트 등','기록 서비스 준비 중'],
   ['기록을 저장하고 공유!','확인부터 사용까지 일관성 있게 사용하기','개발 진행 중'],
 ]
+
 export const MainVisual = () => {
   return (
     <div className={styles.visual}>

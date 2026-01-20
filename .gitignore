@@ -16,11 +16,6 @@ dist-ssr
 *.local
 .env
 
-# Vite config
-# (공통 빌드 설정이므로 Git으로 관리함)
-# vite.config.js
-# vite.config.mjs
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
