@@ -181,6 +181,11 @@ const StyleWrap = styled.div<StyleWrapType>`
       max-height: var(--min-h);
       padding:20px 20px 20px 0;
     }
+    .cont {
+      border-top-left-radius:10px;
+      border: 1px solid var(--color-line);
+      box-shadow: var(--box-shadow);
+    }
   }
 
   ${media.mob}{
