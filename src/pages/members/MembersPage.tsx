@@ -8,6 +8,7 @@ import { cn } from '@/utils/common';
 import { useNavigate } from 'react-router-dom';
 import styles from './MembersPage.module.scss';
 import { useDelayRenderToggle } from '@/hook/common/useDelayRenderToggle';
+import { useEffect } from 'react';
 
 
 export const MembersPage = () => {
@@ -17,8 +18,14 @@ export const MembersPage = () => {
   const { isRender, isOpen, toggle, } = useDelayRenderToggle({ delay: 1300  }); 
 
   // 로그인 상태에서 잘못 접근했을 경우
+  useEffect(() => {
+    if (isUser) {
+      navigate('/');
+    }
+  }, [isUser, navigate]);
+
   if (isUser) {
-    return navigate('/');
+    return null; // or <></>
   }
 
   return (
