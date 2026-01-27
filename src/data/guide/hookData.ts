@@ -16,14 +16,12 @@ export const hookData: GuidePopupDataType[] = [
       code: `
         const [toggle, setToggle] = useToggle(false);
 
-        // 상태 확인
-        isOpen // boolean
-
+        toggle // 상태확인
         // 상태 변경
-        toggleCtrl.toggle();      // true <-> false
-        toggleCtrl.open();        // true
-        toggleCtrl.close();       // false
-        toggleCtrl.set(boolean);  // 지정한 값으로 설정`
+        setToggle.toggle();      // true <-> false
+        setToggle.open();        // true
+        setToggle.close();       // false
+        setToggle.set(boolean);  // 지정한 값으로 설정`
     },
   },
   {
