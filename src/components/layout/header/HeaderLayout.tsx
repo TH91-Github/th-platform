@@ -1,23 +1,48 @@
 
-import { cn } from '@/utils/common';
-import styles from './HeaderLayout.module.scss';
-import { useToggle } from '@/hook/common/useToggle';
+import { MoreBtn } from '@/components/element/button/MoreBtn';
 import { LogoIcon } from '@/components/ui/icon/LogoIcon';
+import { useHeaderScrollState } from '@/hook/layout/useHeaderScrollState';
+import { useIsMobile } from '@/store/zustand/common/commonStore';
+import { cn } from '@/utils/common';
+import { useLocation } from 'react-router-dom';
 import { GnbMenu } from './gnbMenu/GnbMenu';
+import styles from './HeaderLayout.module.scss';
 import { ToolMenu } from './toolMenu/ToolMenu';
+import { useHeaderMenu } from '@/hook/layout/useHeaderMenu';
 
+// 🔹 header 
 export const HeaderLayout = () => {
-  const [isFull, useIsFull] = useToggle(true);
+  const location = useLocation();
+  const isMobile = useIsMobile();
+  const isScrolled = useHeaderScrollState();
+  const { isMenuOpen, handleMenuToggle } = useHeaderMenu({
+    isMobile,
+    pathname: location.pathname,
+  });
+
+  // header bg 투명 필요한 url
+  const isTransparent = location.pathname === '/' && !isScrolled;
 
   return (
-    <div className={styles.header}>
-      <div className={styles.header}>
-        <div className={cn(isFull ? styles.full : 'cont-inner', styles.inner)}>
-          <LogoIcon />
-          <GnbMenu />
-          <ToolMenu />
-        </div>
+    <header
+      className={cn(
+        styles.header,
+        isTransparent && styles.transparent,
+        isScrolled && styles.scroll
+      )}
+    >
+      <div className={styles.inner}>
+        <LogoIcon />
+        <GnbMenu isOpen={isMenuOpen} />
+        <ToolMenu />
+
+        {isMobile && (
+          <MoreBtn
+            isOpen={isMenuOpen}
+            onClick={handleMenuToggle}
+          />
+        )}
       </div>
-    </div>
-  )
-}
+    </header>
+  );
+};

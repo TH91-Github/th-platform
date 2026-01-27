@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
+import { useEffect, useState } from 'react';
 
 interface TypingTextProps {
   text: string[];

@@ -142,7 +142,7 @@ export const DateGrid = ({
   return (
     <div 
       ref={dateGridRef} 
-      className={styles.dateGrid}
+      className={cn(styles.dateGrid, 'date-grid')}
     >
       {days.map(dayCell => {
         const selected = isSelected(dayCell.date);
@@ -170,7 +170,7 @@ export const DateGrid = ({
             <span className={styles.day}>{dayCell.date.getDate()}</span>
             {(isHolidays && dayCell.holidays) && (
               <span className={cn(styles.holiday, 'holiday-day','blind')}>
-                {dayCell.holidays.map((holidayItem) => <span>{holidayItem.label}</span>)}
+                {dayCell.holidays.map((holidayItem) => <span key={holidayItem.d}>{holidayItem.label}</span>)}
               </span>
             )}
             { rendered && (

@@ -1,14 +1,14 @@
 
 import { ThemeToggle } from '@/components/common/theme/ThemeToggle';
+// import { LoginBtn } from '@/components/common/auth/LoginBtn';
 import styles from './ToolMenu.module.scss';
-import { AuthBtn } from '@/components/common/auth/AuthBtn';
 
 export const ToolMenu = () => {
-  
+
   return (
-    <div className={styles['tool-menu']}>
+    <div className={styles.toolMenu}>
       {/* 로그인 */}
-      {/* <AuthBtn /> */}
+      {/* <LoginBtn /> */}
       {/* 다크/라이트 */}
       <ThemeToggle />
     </div>

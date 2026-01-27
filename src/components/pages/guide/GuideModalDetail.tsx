@@ -1,9 +1,9 @@
 import type { PopupDataType } from '@/types/guide';
-import styles from './GuideModalDetail.module.scss';
 import { TitlePoint } from '@/components/ui/text/TitlePoint';
 import { stripIndent } from '@/utils/textUtils';
 import { CodeHljs } from '@/components/element/highlight/CodeHljs';
 import { OutLink } from '@/components/ui/text/OutLink';
+import styles from './GuideModalDetail.module.scss';
 
 interface GuideModalDetailPropsType {
   data: PopupDataType,

@@ -14,18 +14,18 @@ import { useIsMobile } from '@/store/zustand/common/commonStore';
 export const GuidePage = () => {
   const location = useLocation();
   const showGuide = location.pathname === "/guide" || location.pathname === "/guide/";
-  const [isFold, setIsFold] = useToggle(false);
-  const [isMoMenuOpen, setIsMoMenuOpen] = useToggle(false);
+  const [isFold, setIsFold] = useToggle();
+  const [isMoMenuOpen, setIsMoMenuOpen] = useToggle();
   const isMobile = useIsMobile();
   
   return (
     <div className={styles.guide}>
       <SideLayout
         isFold={isFold}
-        onFoldChange={setIsFold}
-        onMoMenuChange={setIsMoMenuOpen}
+        onFoldChange={() => setIsFold.toggle()}
+        onMoMenuChange={() => setIsMoMenuOpen.toggle()}
       >
-        <div className={cn(styles.guideNav, isFold && styles.fold)}>
+        <div className={cn(styles.guideNavLists, isFold && styles.fold)}>
           <h2>
             <NavLink to="/guide" className={styles.titleLink}>
               <span className={styles.icon}>
@@ -35,20 +35,21 @@ export const GuidePage = () => {
             </NavLink>
           </h2>
           <div className={styles.guideLists}>
-            {
-              (isMoMenuOpen || !isMobile) &&
-              <GuideNav 
-                isFold={isFold}
-              />
-            }
+            <GuideNav 
+              isFold={isFold}
+            />
           </div>
         </div>
         {showGuide
           ? <GuideAbout />
           : <>
-            <div className={styles.breadcrumbWrap}>
-              <Breadcrumb data={breadcrumbLists(location.pathname)} />
-            </div>
+            {
+              !isMobile &&(
+                <div className={styles.breadcrumbWrap}>
+                  <Breadcrumb data={breadcrumbLists(location.pathname)} />
+                </div>
+              )
+            }
             <GuideContHeader />
             <Outlet />
           </>}

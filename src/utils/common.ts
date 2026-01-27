@@ -66,16 +66,18 @@ export const randomNum = (_max:number, name?:string) :string => {
 } 
 
 // (비교리스트, 지정id값) 리스트 내 id 비교 중복 값 없는 id 지정
-export function randomIdChk (listId:any[], name:string) { 
-  const idName = name ?? "random"
-  let uniqueId = '';
-  for(let idNum = 0 ; idNum < 1; idNum++){
-    let createId = { id : randomNum(9999, idName)}
-    listId.findIndex((idItem) => idItem.id === createId.id) >= 0 && idNum--;
-    uniqueId = createId.id;
-  }
-  return uniqueId;
+export function randomIdChk(
+  usedIds: string[],
+  name = 'random'
+): string {
+  let id: string;
+  do {
+    id = randomNum(9999, name);
+  } while (usedIds.includes(id));
+
+  return id;
 }
+
 
 // 숫자 천 단위 콤마 ex) 1,000
 export const numberComma = (num: number): string => {

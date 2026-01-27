@@ -29,7 +29,7 @@ export const SideLayout = ({
 }: SideLayoutPropsType) => {
   const isMobile = useIsMobile();
   const location = useLocation();
-  const [isMoMenu, setIsMoMenu] = useToggle(false);
+  const [isMoMenu, setToggle] = useToggle(false);
   const [menuChildren, contChildren] = children;
 
   // pc - menu 접기/펼치기
@@ -39,19 +39,19 @@ export const SideLayout = ({
 
   // mo - side on/off
   const handleMoSideMenu = () => {
-    setIsMoMenu();
+    setToggle.toggle();
     onMoMenuChange?.();
   }
 
   useEffect(() => {
     if (isMobile && isMoMenu) {
-      setIsMoMenu(false);
+      setToggle.close()
       onMoMenuChange?.();
     }
   }, [location.pathname]);
   
   useEffect(()=>{
-    setIsMoMenu(false)
+    setToggle.close()
   },[isMobile])
 
   return (
@@ -113,7 +113,7 @@ const StyleWrap = styled.div<StyleWrapType>`
   position:relative;
   width:100%;
   margin:0 auto;
-  padding:20px 0 0;
+  padding:20px 30px 0;
   &.inner{
     max-width:${bp.tablet}px;
     padding: 20px 30px;
@@ -153,11 +153,8 @@ const StyleWrap = styled.div<StyleWrapType>`
     flex-grow:1;
     position:relative;
     width:calc(100% - ${({$sideW}) => $sideW}px);
-    min-height: calc(var(--min-h) - 20px);
-    border-top-left-radius:10px;
-    border: 1px solid var(--color-line);
+    min-height: calc(var(--min-h) - 10px);
     background-color: var(--color-origin-on);
-    box-shadow: var(--box-shadow);
     transition: var(--transition-bg), var(--transition-border);
   }
   .mo-menu-btn{
@@ -179,9 +176,13 @@ const StyleWrap = styled.div<StyleWrapType>`
       z-index:2;
       top: calc( var(--header-h));
       max-height: var(--min-h);
-      padding:20px 20px 20px 30px;
+      padding:20px 20px 20px 0;
     }
-      
+    .cont {
+      border-top-left-radius:10px;
+      border: 1px solid var(--color-line);
+      box-shadow: var(--box-shadow);
+    }
   }
 
   ${media.mob}{
@@ -253,16 +254,3 @@ const StyleWrap = styled.div<StyleWrapType>`
     }
   }
 `;
-/*
-사용 방법
-<SideLayout>
-  <div>
-  
-  </div>
-  <div>
-    cont contChildren
-  
-  </div> 
-</SideLayout>
-
-*/

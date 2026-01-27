@@ -1,4 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
+import type { AuthStateType, UserDataType } from "@/types/auth/auth";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 // 📍테스트용 
 const testState = {
@@ -14,3 +15,28 @@ export const testSlice = createSlice({
     },
   },
 })
+
+// 📍 Login user 정보 
+const initialState: AuthStateType = {
+  user: null,
+  loginTime: null,
+};
+
+export const authSlice = createSlice({
+  name: "auth",
+  initialState: initialState,
+  reducers: {
+    // 구글 신규 가입 시 바로 로그아웃 되는 문제 보안 
+    actionUserLogin(state, action: PayloadAction<{ user: UserDataType }>) {
+      state.user = action.payload.user;
+      state.loginTime = new Date();
+    },
+    actionUserLogout(state) {
+      state.user = null;
+      state.loginTime = null;
+    },
+  },
+});
+
+export const { actionTest } = testSlice.actions;
+export const { actionUserLogin, actionUserLogout} = authSlice.actions;

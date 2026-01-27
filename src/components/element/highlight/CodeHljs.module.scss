@@ -6,7 +6,8 @@
   code[data-name*="hljs"]{
     padding:10px 200px 10px 0;
     background-color: $color-dark-navy;
-    line-height:22px;
+    font-size:14px;
+    line-height:24px;
     @include scroll('x');
   }
 }
@@ -36,7 +37,7 @@
   }
   .number{
     font-size:14px;
-    line-height:22px;
+    line-height:24px;
   }
 }
 .hljsPre {
@@ -71,8 +72,6 @@
   .hljsWrap{
     code[data-name*="hljs"]{
       padding:10px;
-      font-size:14px;
-      line-height:20px;
     }
   }
   .hljsPre {
@@ -80,10 +79,6 @@
   }
   .hljsNumbers {
     padding:10px 5px;
-    .number{
-      font-size:12px;
-      line-height:20px;
-    }
   }
   .hljsToolbar{
     gap:5px;

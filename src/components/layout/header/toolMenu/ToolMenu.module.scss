@@ -1,7 +1,15 @@
 
-.tool-menu{
+.toolMenu{
   display:flex;
   align-items: center;
   gap:10px;
+  height:100%;
 }
 
+
+@include mob {
+  .toolMenu{
+    flex-grow:1;
+    justify-content: end;
+  }
+}

@@ -16,4 +16,10 @@
   .codeWrap{
     margin-top:20px;
   }
+  .code{
+    position:relative;
+    [class*="hljs-comment"]{
+      font-size:14px;
+    }
+  }
 }

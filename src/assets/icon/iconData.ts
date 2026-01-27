@@ -13,21 +13,28 @@ export const iconData = [
     code:'bs/BsMoonStarsFill',
     label:'IconMoon',
     title:'Moon',
-    keyword:['icon','moon','달','초승달','dark','밤','crescent']
+    keyword:['icon','moon','IconMoon','달','초승달','dark','밤','crescent']
   },
   {
     id:'icon-sunny',
     code:'bs/MdSunny',
     label:'IconSunny',
     title:'Sunny',
-    keyword:['icon','sunny','sun','해','태양','뜨거운','hot']
+    keyword:['icon','sunny', 'IconSunny', 'sun','해','태양','뜨거운','hot']
   },
   {
     id:'icon-login',
     code:'fa/FaUser',
     label:'IconLogin',
     title:'Login',
-    keyword:['icon','유저', 'user','FaUser','로그인','login']
+    keyword:['icon','유저','회원','IconLogin','user','FaUser','로그인','login']
+  },
+  {
+    id:'icon-logout',
+    code:'fa/FaUserAltSlash',
+    label:'IconLogout',
+    title:'Logout',
+    keyword:['icon','유저', '회원', 'user','IconLogout','로그아웃','logout']
   },
   {
     id:'icon-arrow-left',
@@ -287,5 +294,12 @@ export const iconData = [
     label: 'IconKey',
     title:'Key',
     keyword:['IconKey','IoKeyOutline','key','열쇠','키','열다','공개','비공개','잠금'],
+  },
+  {
+    id:'icon-google',
+    code: 'fc/FcGoogle',
+    label: 'IconGoogle',
+    title:'Key',
+    keyword:['IconGoogle','FcGoogle','fc','구글','google','logo','color google'],
   },
 ]

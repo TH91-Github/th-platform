@@ -1,3 +1,5 @@
+import { colors, colorsText } from "@/assets/style/emotion/variables"
+
 export interface ColorListsDataType {
   title: string,
   code:string,
@@ -25,13 +27,13 @@ export const themeColorData = [
         lists:[
           {
             title:'Color',
-            code:'#050b21',
+            code:colors.black,
             scss:'$color-black',
             root:'var(--color)'
           },
           {
             title:'Color Bg',
-            code:'#f5f5ff',
+            code: colors.white,
             scss:'$color-white',
             root:'var(--color-bg)'
           },
@@ -143,13 +145,13 @@ export const themeColorData = [
         lists:[
           {
             title:'Color',
-            code:'#f5f5ff',
+            code: colors.white,
             scss:'$color-white',
             root:'var(--color)'
           },
           {
             title:'Color Bg',
-            code:'#050b21',
+            code:colors.black,
             scss:'$color-black',
             root:'var(--color-bg)'
           },
@@ -260,70 +262,70 @@ export const colorsData:ColorDataType[] = [
     lists:[
       {
         title:'Blue',
-        code:'#395acc',
+        code:colors.blue,
         rgb:'57,90,204',
         scss:'$color-blue',
         emotion:'colors.blue'
       },
       {
         title:'Yellow',
-        code:'#ffb000',
+        code:colors.yellow,
         rgb:'255,176,0',
         scss:'$color-yellow',
         emotion:'colors.yellow'
       },
       {
         title:'Red',
-        code:'#e8392c',
+        code:colors.red,
         rgb:'232,57,44',
         scss:'$color-red',
         emotion:'colors.red'
       },
       {
         title:'Green',
-        code:'#0C9463',
+        code:colors.green,
         rgb:'12,148,99',
         scss:'$color-green',
         emotion:'colors.green'
       },
       {
         title:'Navy',
-        code:'#333A73',
+        code:colors.navy,
         rgb:'51,58,115',
         scss:'$color-navy',
         emotion:'colors.navy'
       },
       {
         title:'Dark Navy',
-        code:'#03053a',
+        code:colors.darkNavy,
         rgb:'3, 5, 58, 1',
         scss:'$color-dark-navy',
         emotion:'colors.darkNavy'
       },
       {
         title:'Gray',
-        code:'#898a8d',
+        code:colors.gray,
         rgb:'137,138,141',
         scss:'$color-gray',
         emotion:'colors.gray'
       },
       {
         title:'Disabled',
-        code:'#e7ebee',
+        code: colors.disabled,
         rgb:'231,235,238',
         scss:'$color-disabled',
         emotion:'colors.disabled'
       },
       {
         title:'Line',
-        code:'#dbdbdb',
+        code:colors.line,
         rgb:'219,219,219',
         scss:'$color-line',
         emotion:'colors.line'
       },
       {
         title:'Line Black',
-        code:'#40444b',
+        code:colors.lineBlack,
         rgb:'64,68,75',
         scss:'$color-line-black',
         emotion:'colors.lineBlack'
@@ -337,42 +339,42 @@ export const colorsData:ColorDataType[] = [
     lists:[
       {
         title:'White',
-        code:'#f5f5ff',
+        code:colors.white,
         rgb:'245,245,255',
         scss:'$color-white',
         emotion:'colors.white'
       },
       {
         title:'Black',
-        code:'#050b21',
+        code:colors.black,
         rgb:'5,11,33',
         scss:'$color-black',
         emotion:'colors.black'
       },
       {
         title:'Dark BG',
-        code:'#2a2d3e',
+        code:colors.darkBg,
         rgb:'42,45,62',
         scss:'$color-dark-bg',
         emotion:'colors.darkBg'
       },
       {
         title:'Dark BG On',
-        code:'#454864',
+        code:colors.darkBgOn,
         rgb:'69,72,100',
         scss:'$color-dark-bg-on',
         emotion:'colors.darkBgOn'
       },
       {
         title:'Blue BG',
-        code:'#e3e4fc',
+        code:colors.blueBg,
         rgb:'227,228,252',
         scss:'$color-blue-bg',
         emotion:'colors.blueBg'
       },
       {
         title:'Yellow BG',
-        code:'#f6f3ee',
+        code:colors.yellowBg,
         rgb:'246,246,238',
         scss:'$color-yellow-bg',
         emotion:'colors.yellowBg'
@@ -386,59 +388,59 @@ export const colorsData:ColorDataType[] = [
     lists:[
       {
         title:'Title Black',
-        code:'#353844',
+        code:colorsText.titleB,
         rgb:'53,56,68',
         scss:'$color-title-b',
-        emotion:''
+        emotion:'colorsText.titleB'
       },
       {
         title:'Text Black',
-        code:'#42464d',
+        code:colorsText.textB,
         rgb:'66,70,77',
         scss:'$color-text-b',
-        emotion:''
+        emotion:'colorsText.textB'
       },
       {
         title:'Desc Black',
-        code:'#495057',
+        code:colorsText.descB,
         rgb:'73,80,87',
         scss:'$color-desc-b',
-        emotion:''
+        emotion:'colorsText.descB'
       },
       {
         title:'Sub Text Black',
-        code:'#8d9095',
+        code:colorsText.subTextB,
         rgb:'141,144,149',
         scss:'$color-sub-text-b',
-        emotion:''
+        emotion:'colorsText.subTextB'
       },
       {
         title:'title White',
-        code:'#f1f3f5',
+        code:colorsText.titleW,
         rgb:'241,243,245',
         scss:'$color-title-w',
-        emotion:''
+        emotion:'colorsText.titleW'
       },
       {
         title:'Text White',
-        code:'#e9ecef',
+        code:colorsText.textW,
         rgb:'233,236,239',
         scss:'$color-text-w',
-        emotion:''
+        emotion:'colorsText.textW'
       },
       {
         title:'Desc White',
-        code:'#dee2e6',
+        code:colorsText.descW,
         rgb:'222,226,230',
         scss:'$color-desc-w',
-        emotion:''
+        emotion:'colorsText.descW'
       },
       {
         title:'Sub Text White',
-        code:'#adb5bd',
+        code:colorsText.subTextW,
         rgb:'173,181,189',
         scss:'$color-sub-text-w',
-        emotion:''
+        emotion:'colorsText.subTextW'
       }
     ]
   },

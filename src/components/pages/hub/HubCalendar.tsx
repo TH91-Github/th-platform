@@ -20,25 +20,24 @@ export const HubCalendar = () => {
       <div className={styles.heading}>
         <span>Calendar</span>
       </div>
-      <div className={styles.calendar}>
-        <Calendar
-          selectDates={range}
-          events={[
-            { date: '2026-01-15', label:'test' },
-            { date: '2026-01-15', label: '회의' },
-            { date: '2026-01-20', label: '휴가' },
-          ]}
-          onChange={onChange}
-          isReadonly={false}
-          dayRender={(_, events) => {
-            if (!events || events.length === 0) return null;
+      <Calendar
+        daysClassName={styles.calendarDay}
+        selectDates={range}
+        events={[
+          { date: '2026-01-15', label:'test' },
+          { date: '2026-01-15', label: '회의' },
+          { date: '2026-01-20', label: '휴가' },
+        ]}
+        onChange={onChange}
+        isReadonly={false}
+        dayRender={(_, events) => {
+          if (!events || events.length === 0) return null;
 
-            return events.map((event, i) => (
-              <span key={i} className="dd">{event.label}</span>
-            ));
-          }}
-        />
-      </div>
+          return events.map((event, i) => (
+            <span key={i} className="dd">{event.label}</span>
+          ));
+        }}
+      />
     </div>
   )
 }

@@ -21,6 +21,9 @@ svg {
   height: 100%;
 }
 
+canvas{ 
+  pointer-events: none;
+}
 h1,h2,h3,h4,h5,h6,
 .title,.tit,.tit-s {
   letter-spacing: -0.4px;

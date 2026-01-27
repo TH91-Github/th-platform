@@ -4,18 +4,26 @@ export const hookData: GuidePopupDataType[] = [
   {
     id: 'toggle',
     title: 'useToggle',
-    desc: 'boolean값 toggle',
+    desc: 'boolean 상태를 toggle 제어',
     category: 'state',
-    keyword: ['toggle','useState','useToggle','토글'],
+    keyword: ['toggle', 'boolean', 'useState', 'useToggle', '토글'],
     link: '',
-    popInfo:{
-      tit:'useToggle()',
-      desc:[
-        'toggle, toggleChange 구성되어 있습니다.',
-        'toggleChange(), toggleChange(false), toggleChange(true) 사용'
+    popInfo: {
+      tit: 'useToggle(initialState?)',
+      desc: [
+        'boolean 상태를 toggle / open / close / set 메서드로 제어합니다.',
       ],
-      code:`
-        const [isToggle, setIsToggle] = useToggle();`
+      code: `
+        const [toggle, setToggle] = useToggle(false);
+
+        // 상태 확인
+        isOpen // boolean
+
+        // 상태 변경
+        toggleCtrl.toggle();      // true <-> false
+        toggleCtrl.open();        // true
+        toggleCtrl.close();       // false
+        toggleCtrl.set(boolean);  // 지정한 값으로 설정`
     },
   },
   {
@@ -108,6 +116,51 @@ export const hookData: GuidePopupDataType[] = [
         // 사용
         copy('복사할 Value');
         copy('복사할 Value',{type:'success'});`
+    },
+  },
+  {
+    id: 'ani-close-toggle',
+    title: 'useCloseAniToggle',
+    desc: 'on/off 애니메이션 class 제어',
+    category: 'state',
+    keyword: ['toggle', 'animation', '애니메이션','on/off 모션','효과'],
+    link: '',
+    popInfo:{
+      tit:'useCloseAniToggle(options?)',
+      desc:[
+        'DOM 렌더링과 애니메이션 상태를 분리하여 자연스러운 UI 전환을 제공',
+        'CSS transition 기반으로 동작하며 외부 클릭 시 자동 닫기를 지원',
+      ],
+      code:`
+        {
+          isRender, // 렌더용 { isRender && <div>...</div> }
+          isOpen, // on,open
+          isClosing, // off 사라지는 모션 제어용
+          toggle, // on / off 변경 setState
+          close, // 강제 닫기 
+          containerRef, // ref 제외 영역 클릭 시 닫기
+        } = useCloseAniToggle({ duration: 500 }); `
+    },
+  },
+  {
+    id: 'ani-delay-rendar-toggle',
+    title: 'useDelayRenderToggle',
+    desc: 'on/off 애니메이션 class 제어',
+    category: 'state',
+    keyword: ['toggle', 'animation', '애니메이션','on/off 모션','딜레이', 'delay'],
+    link: '',
+    popInfo:{
+      tit:'useDelayRenderToggle(delay?)',
+      desc:[
+        'DOM 렌더링과 상태 변경을 시간차를 주고 활용하는 hook',
+        'toggle 발생 시 isOpen 즉각 반응하고 isRender 설정 delay 이후 발생',
+      ],
+      code:`
+        {
+          isRender, // 렌더용 { isRender && <div>...</div> }
+          isOpen, // 즉시 
+          toggle, // on / off 변경 setState
+        } = useDelayRenderToggle({ duration: 1000 }); `
     },
   },
 ]

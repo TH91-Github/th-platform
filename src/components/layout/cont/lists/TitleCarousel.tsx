@@ -33,7 +33,7 @@ export const TitleCarousel = ({
       >
         <Carousel
           carouselOpt={carouselOpt && carouselOpt}
-          className={cn(styles.carousel,carouselClass)}
+          swiperClassName={cn(styles.carousel)}
         >
           {children}
         </Carousel>

@@ -16,10 +16,8 @@
   &.fullCont {
     max-width:100%;
     padding:0;
-    :global{ 
-      .swiper {
-        width:100%;
-      }
+    .carousel{
+      width:100%;
     }
   }
 }
@@ -28,7 +26,7 @@
     max-width: $bp-tablet;
     &.fullCont {
       :global{ 
-        .swiper {
+        .carousel{
           padding:0 calc((100% - ($bp-tablet) + 60px) / 2);
         }
       }
@@ -39,10 +37,8 @@
   .tc-carousel{
     max-width: $bp-tablet;
     &.fullCont {
-      :global{ 
-        .swiper {
-          padding:0 30px;
-        }
+      .carousel{
+        padding:0 30px;
       }
     }
   }
@@ -58,10 +54,8 @@
     margin-top:10px;
     padding:0 15px;
     &.fullCont {
-      :global{ 
-        .swiper {
-          padding:0 15px;
-        }
+      .carousel{
+        padding:0 15px;
       }
     }
   }

@@ -2,21 +2,21 @@ import { routerList } from '@/router/RouterList';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './GnbMenu.module.scss';
 import { useEffect, useRef, useState } from 'react';
+import { cn } from '@/utils/common';
 
 // const DEV_MODE = import.meta.env.DEV;
-
-export const GnbMenu = () => {
+export const GnbMenu = ({isOpen}:{isOpen:boolean}) => {
   const location = useLocation();
   const navRefs = useRef<HTMLAnchorElement[]>([]);
   const [barStyle, setBarStyle] = useState({ left: 0, width: 0, top: 0 });
 
   const navLists = routerList.filter(
-    // (item) => item.view !== 'dev' || DEV_MODE
-    // 전체 노출, 조건 필요한 경우 사용
-    (item) => item
+    // hideNav Gnb에 사용 안하는 router 
+    (item) => !item.hideNav && item
   );
 
   const activeIndex = navLists.findIndex(
+    
     (item) => item.path === location.pathname
   );
 
@@ -36,7 +36,7 @@ export const GnbMenu = () => {
   }, [activeIndex, location]);
 
   return (
-    <div className={styles.gnb}>
+    <div className={cn(styles.gnb, isOpen && styles.open)}>
       <ul className={styles.lists}>
         {navLists.map((navItem, idx) => (
           <li key={idx} className={styles.navItem}>

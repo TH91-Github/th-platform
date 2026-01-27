@@ -1,3 +1,4 @@
+import { ParticleNetwork } from '@/components/isolated/particle-network/ParticleNetwork';
 import { SplitText } from '../../ui/text/SplitText';
 import { TextChageUI } from '../../ui/text/TextChageUI';
 import styles from './MainVisual.module.scss';
@@ -12,6 +13,8 @@ const MAIN_SUB_TEXT = [
 export const MainVisual = () => {
   return (
     <div className={styles.visual}>
+      {/* 비주얼 요소 */}
+      <ParticleNetwork />
       <div className={styles.center}>
         <h2 className={styles.title}>
           <SplitText

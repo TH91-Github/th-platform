@@ -31,7 +31,7 @@ export const media = {
 
 export const colors = {
   black:'#050b21',
-  white:'#f5f5ff',
+  white:'#fcfcfc',
   gray:'#898a8d',
   red:'#e8392c',
   green:'#0C9463',
@@ -67,4 +67,8 @@ export const styleGlass = {
 export const styleShadow = {
   w: '0 4px 20px rgba(255, 255, 255, 0.2)',
   b: '0 2px 8px rgba(0, 0, 0, 0.15)',
+}
+
+export const timing = {
+  out :'cubic-bezier(.16, 1, .3, 1)',
 }

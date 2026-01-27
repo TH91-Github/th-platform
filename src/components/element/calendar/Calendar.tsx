@@ -4,6 +4,7 @@ import styles from './Calendar.module.scss';
 import { DateGrid } from './DateGrid';
 import { Week } from './Week';
 import { cn } from '@/utils/common';
+import { IconArrowLeft, IconArrowRight } from '@/assets/icon';
 
 // 🔹 Calendar
 interface CalendarTPropsType extends CalendarBasePropsType {
@@ -41,11 +42,19 @@ export const Calendar = ({
       className={cn(styles.calendar, className)}
     >
       <div className={styles.heading}>
-        <button onClick={() => moveMonth(-1)}>◀</button>
-        <span>
+        <button 
+          onClick={() => moveMonth(-1)}
+        >
+          <i><IconArrowLeft /></i>
+        </button>
+        <span className={styles.ym}>
           {year}.{month + 1}
         </span>
-       <button onClick={() => moveMonth(1)}>▶</button>
+       <button 
+          onClick={() => moveMonth(1)}
+        >
+          <i><IconArrowRight /></i>
+        </button>
       </div>
       <Week className={weekClassName} />
       <DateGrid

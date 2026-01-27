@@ -11,7 +11,6 @@ export function capitalizeWords( text: string, upperFirst: boolean = true) {
   }).join(' ');
 }
 
-
 // 🔹 value 일부 비공개 
 export function partialUndisclosed(
   eVal: string, // 전체 val 
@@ -23,13 +22,15 @@ export function partialUndisclosed(
   let resultVal: string;
 
   if (localPart.length < 1) return eVal
-  // 숨기려는 value가 시작점 보다 작을 때
-  else if (localPart.length <= cutNum) {
-    // 로컬 파트가 3자 이하인 경우 그대로 반환
-    resultVal = `${localPart.slice(0, (cutNum - 1))}${closedText.repeat(localPart.length - (cutNum - 1))}`;
+
+  if (localPart.length <= cutNum) {
+    // 짧은 경우 마지막 1자리만 ***
+    resultVal = localPart.slice(0, -1) + closedText;
   } else {
-    resultVal = `${localPart.slice(0, 3)}${closedText.repeat(localPart.length - 3)}`;
+    // 긴 경우 앞 cutNum자리 표시
+    resultVal = `${localPart.slice(0, cutNum)}${closedText.repeat(localPart.length - cutNum)}`;
   }
+
   return domain === undefined ? resultVal : `${resultVal}${cutType}${domain}`;
 } 
 
