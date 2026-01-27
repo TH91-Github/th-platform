@@ -1,0 +1,16 @@
+.formModule{
+  width:100%;
+}
+.formInner{
+  display:flex;
+  flex-direction: column;
+  gap:10px;
+  width:100%;
+}
+.tit{
+  font-size:rem(18px);
+  font-weight:500;
+}
+.btnWrap{
+  margin-top:20px;
+}

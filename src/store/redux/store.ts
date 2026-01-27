@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { testSlice } from "./sliceActions";
+import { authSlice, testSlice } from "./sliceActions";
 
 // 🔹 외부 stroe - api data redux
 export const reduxStore = configureStore({
   reducer: { 
-    storeTest: testSlice.reducer, // 테스트 확인용
+    test: testSlice.reducer, // 테스트 확인용
+    auth: authSlice.reducer, // 유저정보
   },
   devTools:true,
 })
@@ -12,4 +13,4 @@ export const reduxStore = configureStore({
 export type RootState = ReturnType<typeof reduxStore.getState>
 export type AppDispatch = typeof reduxStore.dispatch;
 
-export const { actionTest } = testSlice.actions;
+export const selectAuthUser = (state: RootState) => state.auth.user;

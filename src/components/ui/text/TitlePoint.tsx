@@ -77,7 +77,12 @@ const StyleWrap = styled.div<StyleWrapPropsType>`
           top: ${
             $fixFontSize
               ? `${Math.floor($fixFontSize * 0.42 * 1.3)}px`
-              : rem(Math.floor($fontSize * 0.42 * 1.3), $fontRem)
+              : rem(Math.floor($fontSize * 0.42 * 1.4), $fontRem)
+          };
+          left: ${
+            $fixFontSize
+              ? `${Math.floor($fixFontSize * 0.25)}px`
+              : rem(Math.floor($fontSize * 0.25), $fontRem)
           };
           width: ${
             $fixFontSize
@@ -89,11 +94,7 @@ const StyleWrap = styled.div<StyleWrapPropsType>`
               ? `${Math.floor($fixFontSize * 0.3)}px`
               : rem(Math.floor($fontSize * 0.3), $fontRem)
           };
-          left: ${
-            $fixFontSize
-              ? `${Math.floor($fixFontSize * 0.25)}px`
-              : rem(Math.floor($fontSize * 0.25), $fontRem)
-          };
+          
           border-radius: 50%;
           background-color: ${$activeColor ?? 'var(--color-point)'};
           content: '';

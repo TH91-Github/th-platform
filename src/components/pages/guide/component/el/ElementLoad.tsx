@@ -2,12 +2,12 @@ import { useEffect, useMemo } from "react";
 import { NotLoad } from "../NotLoad";
 import { AccordionDetail } from "./detail/AccordionDetail";
 import { BtnDetail } from "./detail/BtnDetail";
+import { CalendarDetail } from "./detail/CalendarDetail";
 import { CarouselDetail } from "./detail/CarouselDetail";
 import { InputDetail } from "./detail/InputDetail";
 import { ModalDetail } from "./detail/ModalDetail";
 import { TabButtonDetail } from "./detail/TabButtonDetail";
 import { ToastDetail } from "./detail/ToastDetail";
-import { CalendarDetail } from "./detail/CalendarDetail";
 
 // 🔹 상세 페이지 연결 (상세 페이지 예제 하드 코딩)
 // componentData.ts

@@ -10,26 +10,26 @@ interface Props {
 }
 
 export const useHeaderMenu = ({ isMobile, pathname }: Props) => {
-  const [isMenuOpen, toggleMenu] = useToggle(false);
+  const [isMenuOpen, setToggle] = useToggle();
   const { lockScroll, unlockScroll } = useBodyScrolLock();
 
   // 라우터 이동 시 메뉴 닫기
   useEffect(() => {
-    toggleMenu(false);
+    setToggle.close();
     unlockScroll();
   }, [pathname]);
 
   // PC 전환 시 강제 닫기
   useEffect(() => {
     if (!isMobile) {
-      toggleMenu(false);
+      setToggle.close()
       unlockScroll();
     }
   }, [isMobile]);
 
   const handleMenuToggle = () => {
     isMenuOpen ? unlockScroll() : lockScroll();
-    toggleMenu();
+    setToggle.toggle();
   };
 
   return {

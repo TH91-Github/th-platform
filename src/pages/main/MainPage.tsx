@@ -1,9 +1,6 @@
-import { ContactLayout } from "@/components/pages/main/ContactLayout"
-import { DivisionLayout } from "@/components/pages/main/DivisionLayout"
-import { MainVisual } from "@/components/pages/main/MainVisual"
-import { ProjectLayout } from "@/components/pages/main/ProjectLayout"
-import './MainPage.scss'
 import { GuideLayout } from "@/components/pages/main/GuideLayout"
+import { MainVisual } from "@/components/pages/main/MainVisual"
+import './MainPage.scss'
 
 export const MainPage = () => {
   return (

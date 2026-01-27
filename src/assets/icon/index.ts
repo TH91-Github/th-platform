@@ -1,5 +1,6 @@
 export { BsMoonStarsFill as IconMoon } from 'react-icons/bs'
 export { FaUser as IconLogin } from 'react-icons/fa'
+export { FaUserAltSlash as IconLogout } from 'react-icons/fa'
 export { MdSunny as IconSunny } from 'react-icons/md'
 export { IoIosArrowBack as IconArrowLeft } from 'react-icons/io'
 export { IoIosArrowForward as IconArrowRight } from 'react-icons/io'
@@ -27,8 +28,6 @@ export { RiArrowGoBackLine as IconBack } from "react-icons/ri";
 export { LuCheck as IconCheck } from "react-icons/lu";
 export { FiFolderPlus as IconFolderAdd} from "react-icons/fi";
 export { IoMdShare as IconShare} from "react-icons/io";
-
-
 export { MdLocalAirport as IconAirport} from "react-icons/md";
 export { IoChatboxEllipsesOutline as IconChat} from "react-icons/io5";
 export { IoCalendarOutline as IconCalendar} from "react-icons/io5";
@@ -42,4 +41,4 @@ export { LuUsersRound as IconTogether} from "react-icons/lu";
 export { BsBookmarkCheck as IconBookmark} from "react-icons/bs";
 export { GoBookmarkSlash as IconUnBookmark} from "react-icons/go";
 export { IoKeyOutline as IconKey} from "react-icons/io5";
-
+export { FcGoogle as IconGoogle} from "react-icons/fc";

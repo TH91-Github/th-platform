@@ -19,7 +19,7 @@ export const BreakpointsGuidePage = () => {
         <button
           type="button"
           className={styles.btn}
-          onClick={() => setStyleType()}
+          onClick={() => setStyleType.toggle()}
         >
           <span>{styleType ? 'SCSS' : 'Emotion'} 기준</span>
         </button>

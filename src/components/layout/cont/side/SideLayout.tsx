@@ -29,7 +29,7 @@ export const SideLayout = ({
 }: SideLayoutPropsType) => {
   const isMobile = useIsMobile();
   const location = useLocation();
-  const [isMoMenu, setIsMoMenu] = useToggle(false);
+  const [isMoMenu, setToggle] = useToggle(false);
   const [menuChildren, contChildren] = children;
 
   // pc - menu 접기/펼치기
@@ -39,19 +39,19 @@ export const SideLayout = ({
 
   // mo - side on/off
   const handleMoSideMenu = () => {
-    setIsMoMenu();
+    setToggle.toggle();
     onMoMenuChange?.();
   }
 
   useEffect(() => {
     if (isMobile && isMoMenu) {
-      setIsMoMenu(false);
+      setToggle.close()
       onMoMenuChange?.();
     }
   }, [location.pathname]);
   
   useEffect(()=>{
-    setIsMoMenu(false)
+    setToggle.close()
   },[isMobile])
 
   return (
@@ -154,10 +154,7 @@ const StyleWrap = styled.div<StyleWrapType>`
     position:relative;
     width:calc(100% - ${({$sideW}) => $sideW}px);
     min-height: calc(var(--min-h) - 10px);
-    border-top-left-radius:10px;
-    border: 1px solid var(--color-line);
     background-color: var(--color-origin-on);
-    box-shadow: var(--box-shadow);
     transition: var(--transition-bg), var(--transition-border);
   }
   .mo-menu-btn{
@@ -252,21 +249,8 @@ const StyleWrap = styled.div<StyleWrapType>`
     }
     .cont{
       width:100%;
-      padding-top:60px;
+      padding-top:40px;
       border-radius: 0;
     }
   }
 `;
-/*
-사용 방법
-<SideLayout>
-  <div>
-  
-  </div>
-  <div>
-    cont contChildren
-  
-  </div> 
-</SideLayout>
-
-*/
