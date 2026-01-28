@@ -24,8 +24,8 @@
 
 ### 🔷 style 
 - assets/style/ : 공통 스타일 작성
-- modules.scss <br />
-- emotion : 동적 및 일반 css로 표현하기 효율적이지 못하는 컴포넌트 내 사용
+- modules.scss 
+- emotion : 동적 및 일반 css로 표현하기 효율적이지 못하는 컴포넌트 내 사용<br />
 ※ 개별 modules 스타일 따로 관리하지 않고 같은 폴더 내 작성하여 관리.
 
 ### 🔷 type 
