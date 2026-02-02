@@ -70,6 +70,7 @@ export const CodeHljs = ({
         { isCopied && (
           <Btn 
             className={styles.copyButton}
+            freeHeight={true}
             onClick={handleCopyClick}>
               <span>{copied ? '복사 완료' : '복사'}</span>
           </Btn> 

@@ -8,6 +8,9 @@
   vertical-align: middle;
   color: var(--color-text);
   transition: var(--transition-bg), var(--transition-color), var(--transition-border);
+  &:not(.freeMinH){
+    min-height:40px;
+  }
   & > span {
     font-weight:400;
     text-shadow: $shadow-text-b;

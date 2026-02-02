@@ -16,15 +16,15 @@ export interface InputRefType {
 }
 interface InputPropsType
   extends React.InputHTMLAttributes<HTMLInputElement> {
-  ref?: React.Ref<InputRefType>;
-  initVal?: string;
-  disabled?: boolean;
-  error?:boolean;
-  $defaultLine?: 'line' | 'line-bottom' | 'line-left' | 'line-none';
-  keyEnter?: ({e,val}: InputKeyboardValType) => void;
-  changeEvent?: (e: string) => void;
-  focusEvent?: (e?:React.FocusEvent<HTMLInputElement>) => void;
-  blurEvent?: (e?:React.FocusEvent<HTMLInputElement>) => void;
+  ref?: React.Ref<InputRefType>,
+  initVal?: string,
+  disabled?: boolean,
+  error?:boolean,
+  $defaultLine?: 'line' | 'line-bottom' | 'line-left' | 'line-none',
+  keyEnter?: ({e,val}: InputKeyboardValType) => void,
+  changeEvent?: (e: string) => void,
+  focusEvent?: (e?:React.FocusEvent<HTMLInputElement>) => void,
+  blurEvent?: (e?:React.FocusEvent<HTMLInputElement>) => void,
 }
 
 export function Input({ 

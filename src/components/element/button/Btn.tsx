@@ -7,6 +7,7 @@ interface BtnPropsType extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   skeleton?: boolean,
   ellipsis?: boolean,
   size?:'inline' | 'full' | 'small',
+  freeHeight?: boolean,
   className?:string,
   children: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void,
@@ -18,6 +19,7 @@ export const Btn = ({
   ellipsis = false,
   skeleton = false,
   size = 'inline',
+  freeHeight,
   className,
   children, 
   onClick, 
@@ -32,11 +34,12 @@ export const Btn = ({
       className={cn(
         styles.btn, 
         className,
+        freeHeight && styles.freeMinH,
         styles[!ghost ? bType : `${bType}-border`],
         styles[size],
         ellipsis && styles.ellipsis,
         skeleton && styles.skeleton,
-        disabled && styles.disabled
+        disabled && styles.disabled,
       )}
       disabled={disabled}
       onClick={onClick}
