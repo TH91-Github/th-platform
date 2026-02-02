@@ -41,6 +41,20 @@ button {
   }
 }
 
+input {
+  font-weight: 400;
+  font-family: 'Pretendard', sans-serif;
+}
+
+input:autofill,
+input:autofill:active {
+  -webkit-text-fill-color: var(--color-text);
+  -webkit-box-shadow: 0 0 0px 1000px var(--color-origin-on) inset;
+  box-shadow: 0 0 0px 1000px var(--color-origin-on) inset;
+  border:1px solid var(--color-line);
+  transition: none;
+}
+
 code, pre {
   font-family: inherit;
 }
