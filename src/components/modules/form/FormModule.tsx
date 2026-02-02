@@ -5,17 +5,23 @@ import styles from './FormModule.module.scss';
 import { cn } from "@/utils/common";
 
 // 🔹 form module
+
+// input Type
 export interface FormInputType {
   id: string, // 필수
   label: string, // 타이틀
   type?: 'text' | 'password';
   required?: boolean, // 필수 여부
-  error?: boolean, 
+  placeholder?: boolean, // label 사용 
+  desc?: string, // 추가 설명
+  errorMessage?: string, 
 }
 
+// module props type
 interface FormModulePropsType {
-  className?: string;
-  inputs: FormInputType[];
+  inputs: FormInputType[],
+  requiredText?:string, // ex)필수입력 텍스트 표시
+  className?: string,
   btnTitle?: string;
   confirm: (values: Record<string, string>) => void;
 }
@@ -23,6 +29,7 @@ interface FormModulePropsType {
 export const FormModule = ({
   className,
   inputs,
+  requiredText,
   btnTitle = '확인',
   confirm,
 }: FormModulePropsType) => {
@@ -42,10 +49,8 @@ export const FormModule = ({
         ref?.focus?.();
         return;
       }
-
       values[input.id] = value;
     }
-
     confirm(values);
   };
 
@@ -54,18 +59,26 @@ export const FormModule = ({
       onSubmit={handleSubmit} 
       className={cn(styles.formModule, className)}
     >
+      {requiredText && <p className={styles.requiredText}>{requiredText}</p>}
       <div className={styles.formInner}>
-        {inputs.map(({ id, label, type = 'text', error }) => (
-          <div key={id} className={cn(styles.item, error && styles.error)}>
-            <p className={styles.tit}>{label}</p>
+        {inputs.map(({ 
+          id, label, required, type = 'text', placeholder, desc, errorMessage 
+        }) => (
+          <div key={id} className={cn(styles.inputItem, errorMessage && styles.error)}>
+            <p className={cn(styles.tit, (requiredText && required)&& styles.required)}>{label}</p>
             <Input
               id={id}
               type={type}
-              error={error}
+              required={required}
+              error={!!errorMessage}
+              placeholder={ placeholder ? label + ' 입력해주세요.' : undefined}
               ref={(el) => {
                 inputRefs.current[id] = el;
               }}
             />
+            {(desc || errorMessage) && <p className={styles.desc}>
+              { errorMessage ? errorMessage : desc}
+            </p>}
           </div>
         ))}
       </div>

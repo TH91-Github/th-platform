@@ -6,11 +6,10 @@ import styles from './MainVisual.module.scss';
 
 const APP_TITLE = import.meta.env.VITE_APP_TITLE;
 const MAIN_SUB_TEXT = [
-  ['기록 공유 플랫폼 서비스','개발 가이드','메모, 가계부, 일정, 여행'],
-  ['로그인/회원 가입 후','디자인부터 컴포넌트 등','기록 서비스 준비 중'],
-  ['기록을 저장하고 공유!','확인부터 사용까지 일관성 있게 사용하기','개발 진행 중'],
+  ['Customer Satisfaction','Communication','Contact Us'],
+  ['Teamwork Spirit','FE/BE','서울시 강남구 학동로3길 10'],
+  ['Professional Mind','Design','T 02-2017-2501'],
 ]
-
 export const MainVisual = () => {
   return (
     <div className={styles.visual}>

@@ -10,7 +10,6 @@ import styles from './MembersPage.module.scss';
 import { useDelayRenderToggle } from '@/hook/common/useDelayRenderToggle';
 import { useEffect } from 'react';
 
-
 export const MembersPage = () => {
   const navigate = useNavigate();
   const isUser = useAppSelector(selectAuthUser);
@@ -31,10 +30,10 @@ export const MembersPage = () => {
   return (
     <div className={cn(styles.membersWrap, isOpen ? styles.signup : styles.login)}>
       <div className={styles.inner}>
-        <div className={styles.loginWrap}>
-          {!isRender && <Login className={styles.login} modeChange={toggle} /> }
+        <div className={cn(styles.memberForm, styles.loginWrap)}>
+          {!isRender && <Login modeChange={toggle} /> }
         </div>
-        <div className={styles.signupWrap}>
+        <div className={cn(styles.memberForm, styles.signupWrap)}>
           {isRender && <SignUp modeChange={toggle} /> }
         </div>
         <div className={styles.cover}>
