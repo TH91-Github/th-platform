@@ -3,20 +3,6 @@
   flex-direction: column;
   gap:20px;
 }
-.btn{
-  width:150px;
-  padding:5px 10px;
-  border:1px solid var(--color-line);
-  border-radius:5px;
-  background-color: #fff;
-  color:var(--color-point);
-  transition: var(--transition-bg), var(--transition-color);
-  &:hover, &:focus {
-    background-color: var(--color-point);
-    color:#fff;
-  }
-}
-
 .breakpointLists{
   display: flex;
   flex-wrap:wrap;

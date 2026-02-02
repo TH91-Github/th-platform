@@ -33,24 +33,17 @@
   padding:10px;
   border:1px solid red;
 }
-.loginWrap{
+.memberForm{
   display:flex;
   justify-content: center;
   align-items: center;
   width:calc(50% - 5px);
   transition: var(--transition-opacity);
 }
-
 .signupWrap{
-
   width:calc(50% - 5px);
   transition: var(--transition-opacity);
 }
-
-.signupBtn{
-  
-}
-
 .cover{
   overflow: hidden;
   position:absolute;

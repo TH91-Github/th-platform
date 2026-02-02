@@ -1,9 +1,8 @@
-import { cn } from '@/utils/common';
-import styles from './Login.module.scss';
-import { IconGoogle, IconUser } from '@/assets/icon';
+import { IconGoogle, IconLock } from '@/assets/icon';
 import { FormModule, type FormInputType } from '@/components/modules/form/FormModule';
+import { cn } from '@/utils/common';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import styles from './Members.module.scss';
 
 interface LoginPropsType {
   className?: string,
@@ -12,10 +11,9 @@ interface LoginPropsType {
 const APP_TITLE = import.meta.env.VITE_APP_TITLE ?? '';
 
 export const Login = ({className, modeChange}:LoginPropsType) => {
-  const navigate = useNavigate();
   const [inputs, setInputs] = useState<FormInputType[]>([
-    { id: 'loginId', label: '아이디', required: true, error: false },
-    { id: 'password', label: '비밀번호', type: 'password', required: true, error: false },
+    { id: 'loginId', label: '아이디', required: true, errorMessage: '' },
+    { id: 'password', label: '비밀번호', type: 'password', required: true, errorMessage: '' },
   ]);
 
   const loginForm = (values: Record<string, string>) => {
@@ -44,22 +42,17 @@ export const Login = ({className, modeChange}:LoginPropsType) => {
     e.preventDefault();
   }
 
-  // signup 전환
-  const handleSignUp = () => {
-    navigate('?signup')
-  }
-
   return(
-    <div className={cn(styles.loginWrap, className)}>
+    <div className={cn(styles.membersInner, className)}>
       <div className={styles.icon}>
-        <i><IconUser /></i>
+        <i><IconLock /></i>
       </div>
       <h2 className={styles.title}>{APP_TITLE} 로그인</h2>
       
       <FormModule
         inputs={inputs}
         btnTitle="로그인"
-        className={styles.loginForm}
+        className={styles.formWrap}
         confirm={loginForm} 
       />
 
@@ -78,12 +71,12 @@ export const Login = ({className, modeChange}:LoginPropsType) => {
           </button>
         </form>
       </div>
-      <div className={styles.signupBox}>
+      <div className={styles.modeBox}>
         <span className={styles.text}>아이디가 없어요?</span>
         <button 
           type="button"
-          title="회원가입 하기"
-          className={styles.signupBtn}
+          title="회원가입하러 가기"
+          className={styles.modeBtn}
           onClick={modeChange}
         >
           <span>"가입하기"</span>

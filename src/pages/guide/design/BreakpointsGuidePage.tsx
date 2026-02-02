@@ -4,6 +4,7 @@ import { useCopyToast } from '@/hook/common/useCopyToast';
 import { useToggle } from '@/hook/common/useToggle';
 import { cn } from '@/utils/common';
 import styles from './BreakpointsGuidePage.module.scss';
+import { Btn } from '@/components/element/button/Btn';
 
 export const BreakpointsGuidePage = () => {
   const [styleType, setStyleType] = useToggle(true);
@@ -16,13 +17,13 @@ export const BreakpointsGuidePage = () => {
   return (
     <div className={styles.bp}>
       <div className={styles.btns}>
-        <button
+        <Btn
           type="button"
           className={styles.btn}
           onClick={() => setStyleType.toggle()}
         >
           <span>{styleType ? 'SCSS' : 'Emotion'} 기준</span>
-        </button>
+        </Btn>
       </div>
       {breakpointData.map((item, idx) => (
         <div className={styles.item} key={idx}>
