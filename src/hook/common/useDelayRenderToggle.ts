@@ -13,7 +13,7 @@ export const useDelayRenderToggle = ({
   const timerRef = useRef<number | null>(null);
 
   const clearTimer = () => {
-    if (timerRef.current) {
+    if (timerRef.current !== null) {
       clearTimeout(timerRef.current);
       timerRef.current = null;
     }
@@ -21,10 +21,8 @@ export const useDelayRenderToggle = ({
 
   const open = useCallback(() => {
     clearTimer();
-
     // ✅ open은 즉시
     setIsOpen(true);
-
     timerRef.current = window.setTimeout(() => {
       setIsRender(true);
     }, delay);
@@ -32,18 +30,24 @@ export const useDelayRenderToggle = ({
 
   const close = useCallback(() => {
     clearTimer();
-
     // ✅ close도 즉시
     setIsOpen(false);
-
     timerRef.current = window.setTimeout(() => {
       setIsRender(false);
     }, delay);
   }, [delay]);
 
   const toggle = useCallback(() => {
-    isOpen ? close() : open();
+    if (isOpen) {
+      close();
+    } else {
+      open();
+    }
   }, [isOpen, open, close]);
+
+  useEffect(() => {
+    clearTimer();
+  }, [delay]);
 
   useEffect(() => {
     return () => clearTimer();

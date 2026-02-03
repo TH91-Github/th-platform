@@ -5,7 +5,6 @@ import styles from './FormModule.module.scss';
 import { cn } from "@/utils/common";
 
 // 🔹 form module
-
 // input Type
 export interface FormInputType {
   id: string, // 필수
@@ -22,7 +21,10 @@ interface FormModulePropsType {
   inputs: FormInputType[],
   requiredText?:string, // ex)필수입력 텍스트 표시
   className?: string,
-  btnTitle?: string;
+  btnTitle?: string, // submit 버튼
+  disabled?:boolean,
+  resetKey?: number, // 초기화 - 렌더링하기 위함
+  onInputFocus?: (focusedId: string) => void;
   confirm: (values: Record<string, string>) => void;
 }
 
@@ -31,6 +33,9 @@ export const FormModule = ({
   inputs,
   requiredText,
   btnTitle = '확인',
+  disabled,
+  resetKey = 0,
+  onInputFocus,
   confirm,
 }: FormModulePropsType) => {
   const inputRefs = useRef<Record<string, InputRefType | null>>({});
@@ -67,7 +72,7 @@ export const FormModule = ({
           <div key={id} className={cn(styles.inputItem, errorMessage && styles.error)}>
             <p className={cn(styles.tit, (requiredText && required)&& styles.required)}>{label}</p>
             <Input
-              id={id}
+              key={`${id}-${resetKey}`}
               type={type}
               required={required}
               error={!!errorMessage}
@@ -75,6 +80,7 @@ export const FormModule = ({
               ref={(el) => {
                 inputRefs.current[id] = el;
               }}
+              focusEvent={() => onInputFocus?.(id)}
             />
             {(desc || errorMessage) && <p className={styles.desc}>
               { errorMessage ? errorMessage : desc}
@@ -83,10 +89,28 @@ export const FormModule = ({
         ))}
       </div>
       <div className={styles.btnWrap}>
-        <Btn type="submit" bType="primary" size="full">
+        <Btn 
+          type="submit" 
+          bType="primary" 
+          size="full"
+          disabled={!!disabled}
+        >
           <span>{btnTitle}</span>
         </Btn>
       </div>
     </form>
   );
 };
+
+
+/* 
+** EX)
+const [inputs, setInputs] = useState<FormInputType[]>([
+  { 
+    id: 'email', label: '이메일', required: true, errorMessage: '', placeholder: true,
+    desc:'한글을 포함할 수 없으며, @ 포함되어야 합니다.'
+  },
+  { id: 'password-1', label: '비밀번호', type: 'password', required: true, errorMessage: '', placeholder: true,},
+  { id: 'password-2', label: '비밀번호 확인', type: 'password', required: true, errorMessage: '', placeholder: true,},
+]);
+*/

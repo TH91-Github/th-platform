@@ -1,29 +1,35 @@
 import { IconUser } from '@/assets/icon';
 import { FormModule, type FormInputType } from '@/components/modules/form/FormModule';
-import { validateEmail, validateLoginId, validateNickName, validatePassword, validatePasswordConfirm } from '@/utils/auth';
+import { validateEmail, validatePassword, validatePasswordConfirm } from '@/utils/auth';
 import { useState } from 'react';
 import styles from './Members.module.scss';
+import { signUpWithEmail } from '@/firebase/auth/signup';
+import { Loading } from '@/components/ui/effect/Loading';
+import { Modal } from '@/components/element/modal/Modal';
+import { Btn } from '@/components/element/button/Btn';
+import { cn } from '@/utils/common';
 
 interface SignUpPropsType {
   modeChange : () => void
 }
 export const SignUp = ({modeChange}: SignUpPropsType) => {
-  // 이메일, 간편 아이디, 닉네임, 비밀번호, 비밀번호 확인
+  const [formResetKey, setFormResetKey] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [alertMessage, setAlertMessage] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
+  // 이메일, 비밀번호, 비밀번호 확인
   const [inputs, setInputs] = useState<FormInputType[]>([
     { 
       id: 'email', label: '이메일', required: true, errorMessage: '', placeholder: true,
       desc:'한글을 포함할 수 없으며, @ 포함되어야 합니다.'
     },
-    { 
-      id: 'loginId', label: '간편 아이디', errorMessage: '', placeholder: true,
-      desc:'특수문자, 한글을 사용할 수 없으며, 4~20자의 영문 대/소문자 포함하여 사용해주세요.'
-    },
-    { id: 'nickName', label: '닉네임/이름', errorMessage: '', placeholder: true,},
     { id: 'password-1', label: '비밀번호', type: 'password', required: true, errorMessage: '', placeholder: true,},
     { id: 'password-2', label: '비밀번호 확인', type: 'password', required: true, errorMessage: '', placeholder: true,},
   ]);
 
-  // 에러 메시지 업데이트 함수
+  // 에러 메시지 업데이트
   const updateErrorMessage = (fieldId: string, message: string) => {
     setInputs((prev) =>
       prev.map((input) =>
@@ -38,11 +44,15 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
     );
   };
 
+  // 에러 있는 input 포커스 in error 해제
+  const handleFocus = (focusedId: string) => {
+    updateErrorMessage(focusedId, '');
+  };
 
-  const signupForm = (values: Record<string, string>) => {
+  // ✅ 회원 가입 
+  const signupForm = async (values: Record<string, string>) => {
     // 에러 메시지 초기화
     clearAllErrors();
-
     let isValid = true;
 
     // 이메일 검증
@@ -52,26 +62,13 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
       isValid = false;
     }
 
-    // login id
-    const loginIdError = validateLoginId(values.loginId ?? '');
-    if (loginIdError) {
-      updateErrorMessage('loginId', loginIdError);
-      isValid = false;
-    }
-
-    // nickname
-    const nickNameError = validateNickName(values.nickName ?? '');
-    if (nickNameError) {
-      updateErrorMessage('nickName', nickNameError);
-      isValid = false;
-    }
     // password
     const passwordError = validatePassword(values['password-1'] ?? '');
     if (passwordError) {
       updateErrorMessage('password-1', passwordError);
       isValid = false;
     }
-
+    // password 확인
     const passwordConfirmError = validatePasswordConfirm(
       values['password-1'] ?? '',
       values['password-2'] ?? ''
@@ -83,49 +80,50 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
     }
 
     if (!isValid) return;
-    console.log(values);
-    // ✅ 로그인 API 호출
+    try {
+      // loading
+      setIsLoading(true);
+
+      // 회원가입 요청
+      await signUpWithEmail({
+        email: values.email,
+        password: values['password-1'],
+      });
+      setAlertMessage({
+        success: true,
+        message: '회원가입이 완료되었습니다.',
+      });
+      setFormResetKey(prev => prev +1);
+    } catch (error: any) {
+      // Firebase Auth 이메일 중복
+      if (error.code === 'auth/email-already-in-use') {
+        updateErrorMessage('email', '이미 가입된 이메일입니다.');
+        isValid = false;
+        return;
+      }
+      // 그 외 에러
+      setAlertMessage({
+        success: false,
+        message: '회원가입에 실패했습니다.',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
-  console.log(new Date().getTime())
-
-  // const signupPush = () => {
-  //   const resultData  = {
-  //     id:'',
-  //     email: '',
-  //     loginId: '',
-  //     nickName: '',
-  //     password: '',// 가짜 비밀번호로 #secret-암호문자 랜덤으로 넣어줘
-  //     signupTime: new Date().getTime(),
-  //     lastLogInTime: "",
-  //     theme:"light",
-  //     uid: '',
-  //     rank:'0',
-  //     permission:false,
-  //     profile:'-',
-  //   }
-  // }
-
-
-  // export interface UserDataType { // 🔹 DB 유저 정보
-  //   id: string; // 필드 id
-  //   email: string; // 가입 email
-  //   simpleID: string; // 간편 ID
-  //   nickName: string; // 이름 or 닉네임
-  //   password: string; // 임의 비번 암호화 - 잠금 암호 걸때 사용
-  //   rank: 'basic' | 'admin'; // 회원등급
-  //   signupTime: Date; // 계정 생성 시간
-  //   theme: {
-  //     color:string; // 색상 저장
-  //     mode: 'dark' | 'light';
-  //   };
-  //   permission:boolean; // 계정 승인 / 비승인
-  //   profile: string; // 프로필 이미지 
-  //   uid: string; // 고유 uid - firebase
-  // }
+  const handlePopupClick = () => {
+    setAlertMessage({
+      success:false,
+      message:''
+    })
+  }
 
   return(
-    <div className={styles.membersInner}>
+    <div className={cn(
+        styles.signup, styles.membersInner, styles.ani,
+        isLoading && styles.lock
+      )}
+    >
       <div className={styles.icon}>
         <i><IconUser /></i>
       </div>
@@ -135,7 +133,10 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
         btnTitle="회원가입"
         requiredText="필수 입력"
         className={styles.formWrap}
-        confirm={signupForm} 
+        disabled={isLoading}
+        resetKey={formResetKey}
+        onInputFocus={handleFocus}
+        confirm={signupForm}
       />
       <div className={styles.modeBox}>
         <span className={styles.text}>계정이 있다면! </span>
@@ -148,6 +149,22 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
           <span>"로그인하기"</span>
         </button>
       </div>
+      { isLoading && <Loading dimmed={true} mode="body"/> }
+      { alertMessage && (
+        <Modal onClose={handlePopupClick}>
+          <div className={styles.alert}>
+            <p className={styles.tit}>{alertMessage.message}</p>
+            <div className={styles.btnWrap}>
+              <Btn
+                bType="primary"
+                onClick={handlePopupClick}
+              >
+                <span>확인</span>
+              </Btn>
+            </div>
+          </div>          
+        </Modal>
+      )}
     </div>
   )
 }
