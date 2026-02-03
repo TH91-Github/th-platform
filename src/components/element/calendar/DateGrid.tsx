@@ -43,7 +43,6 @@ export const DateGrid = ({
     )
   ),[year, month]);
   
-  console.log( days)
   // 선택 업데이트
   const updateRange = (next: DateRange) => {
     if (!selectDates) {

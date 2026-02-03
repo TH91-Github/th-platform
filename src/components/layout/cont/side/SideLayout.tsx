@@ -45,13 +45,13 @@ export const SideLayout = ({
 
   useEffect(() => {
     if (isMobile && isMoMenu) {
-      setToggle.close()
+      setToggle.off()
       onMoMenuChange?.();
     }
   }, [location.pathname]);
   
   useEffect(()=>{
-    setToggle.close()
+    setToggle.off()
   },[isMobile])
 
   return (

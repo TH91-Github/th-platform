@@ -15,14 +15,14 @@ export const useHeaderMenu = ({ isMobile, pathname }: Props) => {
 
   // 라우터 이동 시 메뉴 닫기
   useEffect(() => {
-    setToggle.close();
+    setToggle.off();
     unlockScroll();
   }, [pathname]);
 
   // PC 전환 시 강제 닫기
   useEffect(() => {
     if (!isMobile) {
-      setToggle.close()
+      setToggle.off()
       unlockScroll();
     }
   }, [isMobile]);

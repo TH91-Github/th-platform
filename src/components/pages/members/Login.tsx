@@ -5,12 +5,11 @@ import { useState } from 'react';
 import styles from './Members.module.scss';
 
 interface LoginPropsType {
-  className?: string,
   modeChange?: () => void,
 }
 const APP_TITLE = import.meta.env.VITE_APP_TITLE ?? '';
 
-export const Login = ({className, modeChange}:LoginPropsType) => {
+export const Login = ({modeChange}:LoginPropsType) => {
   const [inputs, setInputs] = useState<FormInputType[]>([
     { id: 'loginId', label: '아이디', required: true, errorMessage: '' },
     { id: 'password', label: '비밀번호', type: 'password', required: true, errorMessage: '' },
@@ -43,19 +42,17 @@ export const Login = ({className, modeChange}:LoginPropsType) => {
   }
 
   return(
-    <div className={cn(styles.membersInner, className)}>
+    <div className={cn(styles.login, styles.membersInner, styles.ani)}>
       <div className={styles.icon}>
         <i><IconLock /></i>
       </div>
       <h2 className={styles.title}>{APP_TITLE} 로그인</h2>
-      
       <FormModule
         inputs={inputs}
         btnTitle="로그인"
         className={styles.formWrap}
         confirm={loginForm} 
       />
-
       <div className={styles.authenticationDivider}>
         <span>or</span>
       </div>

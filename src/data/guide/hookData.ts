@@ -11,7 +11,7 @@ export const hookData: GuidePopupDataType[] = [
     popInfo: {
       tit: 'useToggle(initialState?)',
       desc: [
-        'boolean 상태를 toggle / open / close / set 메서드로 제어합니다.',
+        'boolean 상태를 toggle / on / off / set 메서드로 제어합니다.',
       ],
       code: `
         const [toggle, setToggle] = useToggle(false);
@@ -19,8 +19,8 @@ export const hookData: GuidePopupDataType[] = [
         toggle // 상태확인
         // 상태 변경
         setToggle.toggle();      // true <-> false
-        setToggle.open();        // true
-        setToggle.close();       // false
+        setToggle.on();        // true
+        setToggle.off();       // false
         setToggle.set(boolean);  // 지정한 값으로 설정`
     },
   },

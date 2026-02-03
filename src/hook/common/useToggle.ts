@@ -3,8 +3,8 @@ import { useCallback, useState } from "react";
 // 🔹 기본 toggle
 interface UseTogglePropsType {
   toggle: () => void;
-  open: () => void;
-  close: () => void;
+  on: () => void;
+  off: () => void;
   set: (value: boolean) => void;
 }
 
@@ -17,11 +17,11 @@ export const useToggle = (
     setState((prev) => !prev);
   }, []);
 
-  const open = useCallback(() => { // true
+  const on = useCallback(() => { // true
     setState(true);
   }, []);
 
-  const close = useCallback(() => { // false
+  const off = useCallback(() => { // false
     setState(false);
   }, []);
 
@@ -31,7 +31,7 @@ export const useToggle = (
 
   return [
     state,
-    { toggle, open, close, set },
+    { toggle, on, off, set },
   ];
 };
 

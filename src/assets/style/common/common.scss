@@ -143,15 +143,7 @@ i {
   }
 }
 
-.fade-up {
-  animation: fadeUpAni .3s ease both;
-  &.duration-m{
-    animation-duration: 0.5s;
-  }
-}
-.fade-down{
-  animation: fadeDownAni .3s ease both;
-}
+// 전역 animation
 @keyframes fadeInAni {
   from {  opacity:0; }
   to { opacity:1; }
