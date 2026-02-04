@@ -10,8 +10,8 @@ import { GUIDE_LIST } from "./guide/GuideLists";
 import { HubPage } from "@/pages/hub/HubPage";
 import { HubMain } from "@/components/pages/hub/HubMain";
 import { MyPage } from "@/pages/members/MyPage";
-import { RunPage } from "@/pages/run/RunPage";
 import { MembersPage } from "@/pages/members/MembersPage";
+import { RunPage } from "@/pages/run/RunPage";
 
 export const routerList = [
   {
@@ -94,16 +94,15 @@ export const routerList = [
     handle: {
       title: 'Members',
     },
-    children: [
-      {
-        id: 'mypage',
-        path: 'mypage',
-        element: <MyPage />,
-        handle: {
-          title: 'MyPage',
-        },
-      },
-    ],
     hideNav: true,  
   },
+  {
+    id: 'mypage',
+    path: 'mypage',
+    element: <MyPage />,
+    handle: {
+      title: 'MyPage',
+    },
+    hideNav: true,
+  }
 ];

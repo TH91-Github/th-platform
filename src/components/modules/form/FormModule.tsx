@@ -93,6 +93,7 @@ export const FormModule = ({
           type="submit" 
           bType="primary" 
           size="full"
+          title={btnTitle}
           disabled={!!disabled}
         >
           <span>{btnTitle}</span>

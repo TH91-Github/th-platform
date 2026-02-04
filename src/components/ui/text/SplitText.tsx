@@ -3,7 +3,7 @@ import styles from './SplitText.module.scss';
 import { cn } from '@/utils/common';
 
 interface AnimationOptType {
-  delay?: number,
+  delay?: number, // 시작 딜레이 0.1~ 
   speed?: number, // 각 글자의 애니메이션 지속 시간 (default: 0.3)
   stopTime?: number, // 애니메이션 사이클 끝나고 대기 시간
   delayStep?: number, // 순차 딜레이: 0(없음), 1(0.1), 2(0.2)...

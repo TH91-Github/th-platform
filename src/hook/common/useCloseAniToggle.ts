@@ -24,7 +24,6 @@ export const useCloseAniToggle = ({
     timerRef.current = window.setTimeout(() => {
       setIsRender(false);
       setIsClosing(false);
-      console.log('??')
     }, duration);
   }, [isRender, isClosing, duration]);
 

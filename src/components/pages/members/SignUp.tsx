@@ -1,13 +1,16 @@
 import { IconUser } from '@/assets/icon';
+import { Btn } from '@/components/element/button/Btn';
+import { Modal } from '@/components/element/modal/Modal';
 import { FormModule, type FormInputType } from '@/components/modules/form/FormModule';
-import { validateEmail, validatePassword, validatePasswordConfirm } from '@/utils/auth';
+import { Loading } from '@/components/ui/effect/Loading';
+import { fireBaseSignUp } from '@/firebase/auth/signup';
+import { validateEmail, validatePassword, validatePasswordConfirm } from '@/utils/auth/auth';
+import { cn } from '@/utils/common';
 import { useState } from 'react';
 import styles from './Members.module.scss';
-import { signUpWithEmail } from '@/firebase/auth/signup';
-import { Loading } from '@/components/ui/effect/Loading';
-import { Modal } from '@/components/element/modal/Modal';
-import { Btn } from '@/components/element/button/Btn';
-import { cn } from '@/utils/common';
+import { useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '@/firebase';
 
 interface SignUpPropsType {
   modeChange : () => void
@@ -85,15 +88,19 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
       setIsLoading(true);
 
       // 회원가입 요청
-      await signUpWithEmail({
+      await fireBaseSignUp({
         email: values.email,
         password: values['password-1'],
       });
+      // 회원 가입하면 자동으로 로그인 상태 방지
+      await signOut(auth);
+
       setAlertMessage({
         success: true,
         message: '회원가입이 완료되었습니다.',
       });
       setFormResetKey(prev => prev +1);
+
     } catch (error: any) {
       // Firebase Auth 이메일 중복
       if (error.code === 'auth/email-already-in-use') {
@@ -102,20 +109,17 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
         return;
       }
       // 그 외 에러
-      setAlertMessage({
-        success: false,
-        message: '회원가입에 실패했습니다.',
-      });
+      updateErrorMessage('email', '회원가입에 실패했습니다.');
     } finally {
       setIsLoading(false);
     }
   };
 
   const handlePopupClick = () => {
-    setAlertMessage({
-      success:false,
-      message:''
-    })
+    if (alertMessage?.success) {
+      modeChange();
+    }
+    setAlertMessage(null)
   }
 
   return(

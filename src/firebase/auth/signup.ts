@@ -1,14 +1,14 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { collection, doc, writeBatch, serverTimestamp, runTransaction, } from 'firebase/firestore';
 import { auth, fireDB } from '@/firebase';
 import type { UserDataType } from '@/types/auth/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, runTransaction, writeBatch } from 'firebase/firestore';
 
 // 🔹 firebase 회원 가입
-interface SignUpParamsType {
+interface FireBaseSignUpType {
   email: string;
   password: string;
 }
-export const signUpWithEmail = async ({ email, password }: SignUpParamsType) => {
+export const fireBaseSignUp = async ({ email, password }: FireBaseSignUpType) => {
   let userCredential = null;
 
   try {
@@ -38,18 +38,17 @@ export const signUpWithEmail = async ({ email, password }: SignUpParamsType) => 
     });
 
     // ✅ userDB 저장
-    const userCollectionRef = collection(fireDB, 'userDB');
-    const newUserDocRef = doc(userCollectionRef);
+    const newUserDocRef = doc(fireDB, 'userDB', uid);
+    const now = Date.now();
 
     const userData: UserDataType = {
-      id: newUserDocRef.id,
       uid,
       email,
       simpleID,
       nickName: simpleID,
       rank: 'basic',
-      signupTime: serverTimestamp() as any,
-      lastLoginTime: serverTimestamp() as any,
+      signupTime: now,
+      lastLoginTime: now,
       theme: 'light',
       permission: true,
       profile: '',
@@ -59,9 +58,10 @@ export const signUpWithEmail = async ({ email, password }: SignUpParamsType) => 
     batch.set(newUserDocRef, userData);
 
     // simpleID  email 정보 포함 -> 간편 id 로그인 시 사용
-    const simpleIDMapRef = doc(fireDB, 'userSimpleID_list', simpleID);
-    batch.set(simpleIDMapRef, { 
-      email, uid, createdAt: serverTimestamp() 
+    batch.set(doc(fireDB, 'userSimpleID_list', simpleID), {
+      email,
+      uid,
+      createdAt: now, // 🔥 통일
     });
 
     await batch.commit();
