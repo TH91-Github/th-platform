@@ -19,7 +19,7 @@ export const testSlice = createSlice({
 // 📍 Login user 정보 
 const initialState: AuthStateType = {
   user: null,
-  loginTime: null,
+  loginTime: 0,
 };
 
 export const authSlice = createSlice({
@@ -29,11 +29,11 @@ export const authSlice = createSlice({
     // 구글 신규 가입 시 바로 로그아웃 되는 문제 보안 
     actionUserLogin(state, action: PayloadAction<{ user: UserDataType }>) {
       state.user = action.payload.user;
-      state.loginTime = new Date();
+      state.loginTime = Date.now();
     },
     actionUserLogout(state) {
       state.user = null;
-      state.loginTime = null;
+      state.loginTime = 0;
     },
   },
 });
