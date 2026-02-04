@@ -299,7 +299,7 @@ export const iconData = [
     id:'icon-google',
     code: 'fc/FcGoogle',
     label: 'IconGoogle',
-    title:'Goggle',
+    title:'Google',
     keyword:['IconGoogle','FcGoogle','fc','구글','google','logo','color google'],
   },
 ]
