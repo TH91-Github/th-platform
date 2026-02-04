@@ -63,6 +63,17 @@
   }
 }
 
+@mixin contInner{
+  position:relative;
+  max-width:$bp-pc;
+  margin:0 auto;
+  padding:0 30px;
+  @include mob {
+    padding: 0 15px;
+    max-width: 100%;
+  }
+}
+
 @mixin scroll($direction: 'y', $width: 5px) {
   @if $direction =='y' {
     overflow-y: auto;
@@ -151,7 +162,6 @@
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
-
 
 // data-observer 사용하는 경우
 @mixin observer {

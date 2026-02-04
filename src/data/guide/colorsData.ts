@@ -415,7 +415,7 @@ export const colorsData:ColorDataType[] = [
         emotion:'colorsText.subTextB'
       },
       {
-        title:'title White',
+        title:'Title White',
         code:colorsText.titleW,
         rgb:'241,243,245',
         scss:'$color-title-w',

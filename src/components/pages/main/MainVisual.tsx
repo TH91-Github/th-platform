@@ -21,7 +21,7 @@ export const MainVisual = () => {
             value={APP_TITLE}
             animationName="fadeIn"
             animationOpt={{
-              delay: 1,
+              delay: 0.5,
               speed: 3,
               delayStep: 1
             }}

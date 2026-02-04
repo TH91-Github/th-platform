@@ -13,17 +13,25 @@
 .env
 
 ### 폴더 구조 및 파일
-- assets/ style, font, img, svg 등 관리
-- components/ 공통 컴포넌트 외 pages 경로 폴더 생성 후 하위 구조 진행
-- pages/ router 연결된 페이지 ~Page.tsx
-- utils/ 공통 함수
-- type/ 최소 2곳 이상에서 사용하는 type 폴더 만들어서 진행
-- router/  <br />
-※ 개별 컴포넌트 폴더는 시작 대문자(PascalCase) 단순 분류는 소문자(camelCase)로 시작
+- assets/ : style, font, img, svg 등 관리
+- components/ : 공통 컴포넌트 외 pages 경로 폴더 생성 후 하위 구조 진행
+- data/ : 단순 노출 고정 데이터 & 테스트 data 관리
+- firebase/ : firebase 메서드, 기능 관리
+- hook/ : hook 관리 
+- pages/ : router 연결된 페이지 ~Page.tsx
+- router/ 
+- utils/ : 공통 함수
+- type/ : 최소 2곳 이상에서 사용하는 type 폴더 만들어서 진행
+- 개별 컴포넌트 파일 & .module 시작 대문자(PascalCase) 
+- 폴더소문자(camelCase)로 시작
 
 ### 🔷 style 
-기본 CSS를 그대로 유지하면서 특정 컴포넌트만 복사해도 다른 프로젝트에서 바로 재사용 가능하도록
-공통 스타일은 가볍게, 컴포넌트는 유연하게 가져갈 수 있는 구조를 목표로 하고 있습니다.<br /><br />
+- css module과 emotion 사용 중
+- module 사용법과 emotion 사용을 경험하기 위함.
+- assets/style/ : 공통 스타일 작성
+- modules.scss : 컴포넌트와 동일 위치 네이밍 동일하게 Btn.module.scss
+- assets/style/common : font, root, global, theme
+- assets/style/emotion : 변수로 지정된 스타일
 
 기본 스타일은 CSS Module을 사용해 구조를 단순하게 유지하고 
 컴포넌트 단위로 동적 스타일이 필요로 하는 컴포넌트는 Emotion을 병행하고 있습니다.

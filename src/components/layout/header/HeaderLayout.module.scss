@@ -24,9 +24,7 @@
   gap:20px;
   align-items: center;
   height:100%;
-  max-width:$bp-pc;
-  margin:0 auto;
-  padding:0 30px;
+  @include contInner;
 }
 .headerMenu{
   flex-grow:1;
