@@ -12,6 +12,7 @@ import { HubMain } from "@/components/pages/hub/HubMain";
 import { MyPage } from "@/pages/members/MyPage";
 import { MembersPage } from "@/pages/members/MembersPage";
 import { RunPage } from "@/pages/run/RunPage";
+import { UserProtectedRoute } from "./ProtectedRoute";
 
 export const routerList = [
   {
@@ -87,22 +88,27 @@ export const routerList = [
     },
     hideNav: true,
   },
-  {
-    id: 'members',
-    path: '/members',
-    element: <MembersPage />,
-    handle: {
-      title: 'Members',
-    },
-    hideNav: true,  
-  },
-  {
-    id: 'mypage',
-    path: 'mypage',
-    element: <MyPage />,
-    handle: {
-      title: 'MyPage',
-    },
+  { // user 로그인 시 접근 제한
+    element: <UserProtectedRoute />,
+    children: [
+      {
+        id: 'members',
+        path: '/members',
+        element: <MembersPage />,
+        handle: {
+          title: 'Members',
+        },
+        hideNav: true,  
+      },
+      {
+        id: 'mypage',
+        path: 'mypage',
+        element: <MyPage />,
+        handle: {
+          title: 'MyPage',
+        },
+      }
+    ],
     hideNav: true,
   }
 ];
