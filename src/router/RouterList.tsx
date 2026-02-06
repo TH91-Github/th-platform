@@ -12,7 +12,8 @@ import { HubMain } from "@/components/pages/hub/HubMain";
 import { MyPage } from "@/pages/members/MyPage";
 import { MembersPage } from "@/pages/members/MembersPage";
 import { RunPage } from "@/pages/run/RunPage";
-import { UserProtectedRoute } from "./ProtectedRoute";
+import { GuestOnlyRoute, UserProtectedRoute } from "./ProtectedRoute";
+import { NoticePage } from "@/pages/notice/NoticePage";
 
 export const routerList = [
   {
@@ -23,6 +24,14 @@ export const routerList = [
       title: 'Guide',
     },
     children: [...GUIDE_LIST],
+  },
+  {
+    id: 'notice',
+    path: '/notice',
+    element: <NoticePage />,
+    handle: {
+      title: 'Notice',
+    },
   },
   {
     id: 'hub',
@@ -88,8 +97,8 @@ export const routerList = [
     },
     hideNav: true,
   },
-  { // user 로그인 시 접근 제한
-    element: <UserProtectedRoute />,
+  { // 게스트(비로그인)에서만 접근 가능
+    element: <GuestOnlyRoute />,
     children: [
       {
         id: 'members',
@@ -100,6 +109,12 @@ export const routerList = [
         },
         hideNav: true,  
       },
+    ],
+    hideNav: true,
+  },
+  { // user 로그인 시 이용 가능
+    element: <UserProtectedRoute />,
+    children: [
       {
         id: 'mypage',
         path: 'mypage',

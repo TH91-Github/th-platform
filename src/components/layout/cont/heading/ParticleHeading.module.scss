@@ -1,0 +1,22 @@
+.headWrap{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  position:relative;
+  width:100%;
+  height:300px;
+  background-color: $color-dark-navy;
+  transition: var(--transition-bg);
+  .heading{
+    text-align:center;
+  }
+  .title{
+    font-size: rem(36px);
+    color:$color-title-w;
+  }
+  .desc{
+    margin-top:8px;
+    font-size:14px;
+    color: $color-desc-w;
+  }
+}
