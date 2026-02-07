@@ -14,6 +14,7 @@ export interface FormInputType {
   placeholder?: boolean, // label 사용 
   desc?: string, // 추가 설명
   errorMessage?: string, 
+  initVal?: string,
 }
 
 // module props type
@@ -67,7 +68,8 @@ export const FormModule = ({
       {requiredText && <p className={styles.requiredText}>{requiredText}</p>}
       <div className={styles.formInner}>
         {inputs.map(({ 
-          id, label, required, type = 'text', placeholder, desc, errorMessage 
+          id, label, required, type = 'text', 
+          initVal, placeholder, desc, errorMessage 
         }) => (
           <div key={id} className={cn(styles.inputItem, errorMessage && styles.error)}>
             <p className={cn(styles.tit, (requiredText && required)&& styles.required)}>{label}</p>
@@ -77,6 +79,7 @@ export const FormModule = ({
               required={required}
               error={!!errorMessage}
               placeholder={ placeholder ? label + ' 입력해주세요.' : undefined}
+              initVal={initVal}
               ref={(el) => {
                 inputRefs.current[id] = el;
               }}
@@ -102,7 +105,6 @@ export const FormModule = ({
     </form>
   );
 };
-
 
 /* 
 ** EX)

@@ -1,17 +1,18 @@
 
 import { MoreBtn } from '@/components/element/button/MoreBtn';
 import { LogoIcon } from '@/components/ui/icon/LogoIcon';
+import { useHeaderMenu } from '@/hook/layout/useHeaderMenu';
 import { useHeaderScrollState } from '@/hook/layout/useHeaderScrollState';
 import { useIsMobile } from '@/store/zustand/common/commonStore';
 import { cn } from '@/utils/common';
+import { memo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { GnbMenu } from './gnbMenu/GnbMenu';
 import styles from './HeaderLayout.module.scss';
 import { ToolMenu } from './toolMenu/ToolMenu';
-import { useHeaderMenu } from '@/hook/layout/useHeaderMenu';
 
 // 🔹 header 
-export const HeaderLayout = () => {
+export const HeaderLayout = memo(() => {
   const location = useLocation();
   const isMobile = useIsMobile();
   const isScrolled = useHeaderScrollState();
@@ -19,15 +20,16 @@ export const HeaderLayout = () => {
     isMobile,
     pathname: location.pathname,
   });
-
+  
   // header bg 투명 필요한 url
-  const isTransparent = location.pathname === '/' && !isScrolled;
+  const transparentUrl = ['/', '/mypage', '/notice']
+  const isTransparent = transparentUrl.includes(location.pathname) && !isScrolled;
 
   return (
-    <header
+    <header 
       className={cn(
-        styles.header,
-        isTransparent && styles.transparent,
+        styles.header, 
+        isTransparent && styles.transparent, 
         isScrolled && styles.scroll
       )}
     >
@@ -35,14 +37,10 @@ export const HeaderLayout = () => {
         <LogoIcon />
         <GnbMenu isOpen={isMenuOpen} />
         <ToolMenu />
-
-        {isMobile && (
-          <MoreBtn
-            isOpen={isMenuOpen}
-            onClick={handleMenuToggle}
-          />
-        )}
+        {isMobile && <MoreBtn isOpen={isMenuOpen} onClick={handleMenuToggle} />}
       </div>
     </header>
   );
-};
+});
+
+HeaderLayout.displayName = 'HeaderLayout';

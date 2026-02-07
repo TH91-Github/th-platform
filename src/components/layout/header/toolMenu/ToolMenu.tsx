@@ -1,16 +1,13 @@
 
 import { ThemeToggle } from '@/components/common/theme/ThemeToggle';
-import { LoginBtn } from '@/components/common/auth/LoginBtn';
+import { LoginBtn } from '@/components/layout/header/toolMenu/LoginBtn';
 import styles from './ToolMenu.module.scss';
+import { memo } from 'react';
 
-export const ToolMenu = () => {
-
-  return (
-    <div className={styles.toolMenu}>
-      {/* 로그인 */}
-      <LoginBtn />
-      {/* 다크/라이트 */}
-      <ThemeToggle />
-    </div>
-  )
-}
+export const ToolMenu = memo(() => (
+  <div className={styles.toolMenu}>
+    <LoginBtn />
+    <ThemeToggle />
+  </div>
+));
+ToolMenu.displayName = 'ToolMenu';
