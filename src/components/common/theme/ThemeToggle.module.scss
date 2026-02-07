@@ -6,86 +6,122 @@
   display: block;
   overflow: hidden;
   position: relative;
-  width: 72px;
-  height: 36px;
-  background-color: $color-white;
-  border-radius: 36px;
-  box-shadow:
-    inset 1px 1px 3px rgba(0, 0, 0, 0.4),
-    inset 1px 0px 3px rgba(60, 64, 90, 0.15);
-  transition: box-shadow 0.3s ease;
 }
 
-.themeText {
+.textWrap {
   display: flex;
   align-items: center;
   position: relative;
-   z-index:2;
+  z-index:2;
   width: 100%;
   height: 100%;
-  .text {
-    display: inline-block;
-    width: 50%;
-    font-size: 12px;
-    color: var(--color-text);
-    transition: color 0.3s 0.2s ease;
-    &:first-child {
-      padding-left: 4px;
-    }
-    &:first-child~.text {
-      padding-right: 4px;
-    }
-  }
+}
+.text {
+  display: inline-block;
+  color: var(--color-text);
+  transition: color 0.3s 0.2s ease;
 }
 
-.modeIcon {
-  display: block;
-  position: absolute;
-  z-index:3;
-  top: 2px;
-  left: 2px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color:#fff;
-  background: linear-gradient(109.93deg, rgba(255, 255, 255, 1) 19.96%, rgba(235, 235, 235, 1) 83.79%);
-  box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3), -1px -1px 3px rgba(60, 64, 90, 0.2);
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  .icon{
-    display:block;
-    position:absolute;
-    top:50%;
-    left:50%;
-    width:20px;
-    height:20px;
-    color: var(--color-point);
-    transform: translate(-50%, -50%);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    &.light {
-      opacity:0;
-      transform: translate(-50%, -50%) scale(0);
+// text 모드
+.textMode{ 
+  .btn{
+    display:flex;
+    gap:5px;
+    align-items: center;
+    font-size:14px;
+  }
+  .textWrap{
+    & > span {
+      font-weight:500;
+      padding:0 5px;
+    }
+    &.dark > span:first-child, 
+    &.light > span:first-child + span{
+      color:var(--color-point);
     }
   }
+  .text{
+    white-space: nowrap;
+  }
 }
-
-[data-theme='dark'] {
+// icon 모드
+.iconMode {
   .btn {
-    background-color: $color-dark-bg;
-    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset 1px -1px 1px rgba(255, 255, 255, 0.5);
+    width: 72px;
+    height: 36px;
+    background-color: $color-white;
+    border-radius: 36px;
+    box-shadow:
+      inset 1px 1px 3px rgba(0, 0, 0, 0.4),
+      inset 1px 0px 3px rgba(60, 64, 90, 0.15);
+    transition: box-shadow 0.3s ease;
   }
-  .modeIcon {
-    background: $color-dark-bg-on;
-    transform: translatex(calc(100% + 2px));
-    .icon{
-      color:$color-yellow;
-      &.light {
-        opacity:1;
-        transform: translate(-50%, -50%) scale(1);
+  .textWrap {
+    .text {
+      width: 50%;
+      font-size: 12px;
+      &:first-child {
+        padding-left: 4px;
       }
-      &.dark{
+      &:first-child~.text {
+        padding-right: 4px;
+      }
+    }
+  }
+
+  .modeIcon {
+    display: block;
+    position: absolute;
+    z-index:3;
+    top: 2px;
+    left: 2px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color:#fff;
+    background: linear-gradient(109.93deg, rgba(255, 255, 255, 1) 19.96%, rgba(235, 235, 235, 1) 83.79%);
+    box-shadow: 2px 3px 4px rgba(0, 0, 0, 0.3), -1px -1px 3px rgba(60, 64, 90, 0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    .icon{
+      display:block;
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:20px;
+      height:20px;
+      color: var(--color-point);
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      &.light {
         opacity:0;
         transform: translate(-50%, -50%) scale(0);
       }
     }
   }
+}
+
+[data-theme='dark'] {
+  
+  .iconMode {
+    .btn {
+      background-color: $color-dark-bg;
+      box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4), inset 1px -1px 1px rgba(255, 255, 255, 0.5);
+    }
+    .modeIcon {
+      background: $color-dark-bg-on;
+      transform: translatex(calc(100% + 2px));
+      .icon{
+        color:$color-yellow;
+        &.light {
+          opacity:1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+        &.dark{
+          opacity:0;
+          transform: translate(-50%, -50%) scale(0);
+        }
+      }
+    }
+  }
+  
 }

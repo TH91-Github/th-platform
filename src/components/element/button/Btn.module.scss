@@ -10,6 +10,7 @@
   transition: var(--transition-bg), var(--transition-color), var(--transition-border);
   &:not(.freeMinH){
     min-height:40px;
+    line-height: 1.3;
   }
   & > span {
     font-weight:400;
@@ -29,14 +30,15 @@
   }
   &.base {
     &:hover, &:focus {
-      border-color: var(--color-point);
-      background-color:var(--color-point);
-      color: $color-text-w;
+      border-color: $color-dark-navy;
+      color:$color-dark-navy;
     }
     &-border{
+      border-color: $color-dark-navy;
+      color:$color-dark-navy;
       &:hover, &:focus {
-        border-color: $color-dark-navy;
-        color:$color-dark-navy;
+        border-color: var(--color-point);
+        color: var(--color-point);
       }
     }
   }

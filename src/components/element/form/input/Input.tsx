@@ -29,7 +29,7 @@ interface InputPropsType
 
 export function Input({ 
   ref, 
-  initVal = "",
+  initVal,
   disabled,
   error,
   $defaultLine,
@@ -37,9 +37,16 @@ export function Input({
   ...rest 
 }: InputPropsType) {
   const inputEl = useRef<HTMLInputElement | null>(null);
-  const [val, setVal] = useState(initVal);
+  const [val, setVal] = useState(initVal ?? '');
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const { id, title, placeholder } = rest
+
+  // 초깃값
+  useEffect(() => {
+    if (initVal !== undefined && initVal !== val) {
+      setVal(initVal);
+    }
+  }, [initVal]);
 
   const handleFocusIn = (e: React.FocusEvent<HTMLInputElement>) => {
     focusEvent && focusEvent(e)

@@ -3,6 +3,7 @@ import { cn } from "@/utils/common";
 import { createPortal } from "react-dom";
 import { useToastList } from "@/store/zustand/common/toastStore";
 import styles from './Toasts.module.scss';
+import { InnerHTML } from "@/components/ui/text/InnerHTML";
 
 // 🔹 Toast popup : toastStore 스토어 내 추가/삭제 제어
 export const Toasts = () => {
@@ -18,7 +19,7 @@ export const Toasts = () => {
           >
             <span className={styles.mgessage}>
               <span className={styles.icon}><IconCheck /></span>
-              <span className={styles.txt}>{message}</span>
+              <InnerHTML text={message} className={styles.txt} />
             </span>
           </div>
         ))}

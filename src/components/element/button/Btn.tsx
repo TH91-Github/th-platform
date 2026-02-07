@@ -3,7 +3,7 @@ import styles from './Btn.module.scss';
 
 interface BtnPropsType extends React.ButtonHTMLAttributes<HTMLButtonElement>{
   bType?: 'base' | 'primary' | 'point' | 'line' | 'gray' | 'red'
-  ghost ?:boolean, // 배경색과 border 색상 반전용
+  reverse?:boolean, // 배경색과 border 색상 반전용
   skeleton?: boolean,
   ellipsis?: boolean,
   size?:'inline' | 'full' | 'small',
@@ -15,7 +15,7 @@ interface BtnPropsType extends React.ButtonHTMLAttributes<HTMLButtonElement>{
 
 export const Btn = ({ 
   bType = 'base',
-  ghost,
+  reverse,
   ellipsis = false,
   skeleton = false,
   size = 'inline',
@@ -35,7 +35,7 @@ export const Btn = ({
         styles.btn, 
         className,
         freeHeight && styles.freeMinH,
-        styles[!ghost ? bType : `${bType}-border`],
+        styles[!reverse ? bType : `${bType}-border`],
         styles[size],
         ellipsis && styles.ellipsis,
         skeleton && styles.skeleton,
