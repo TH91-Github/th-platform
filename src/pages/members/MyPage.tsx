@@ -1,50 +1,62 @@
-import { IconUser } from "@/assets/icon";
-import { ParticleNetwork } from "@/components/isolated/particle-network/ParticleNetwork";
-import { useAppSelector } from "@/hook/store/useRedux";
-import { selectAuthUser } from "@/store/redux/store";
+import { ThemeToggle } from "@/components/common/theme/ThemeToggle";
+import { ParticleHeading } from "@/components/layout/cont/heading/ParticleHeading";
+import { myMenuList, MyPageDetail } from "@/components/pages/members/mypage/MyPageDetail";
+import { IconMatch } from "@/components/ui/icon/IconMatch";
+import { useAuthUser } from "@/hook/auth/useAuthUser";
+import type { MenuTListType } from "@/types/member/mypage";
 import { cn } from "@/utils/common";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import styles from './MyPage.module.scss';
-import { AccountMenu } from "@/components/pages/members/mypage/AccountMenu";
 
+// 🔹 마이페이지
 export const MyPage = () => {
-  const navigate = useNavigate();
-  const user = useAppSelector(selectAuthUser);
+  const user = useAuthUser();
+  const [activeTab, setActiveTab] = useState<MenuTListType>('profile');
 
-  useEffect(() => {
-    if (!user) {
-      navigate('/');
-    }
-  }, [user, navigate]);
   if(!user) return null
   return(
-    <div className={styles.myPageWrap}>
-      <div className={styles.headWrap}>
-        <ParticleNetwork />
-        <div className={styles.heading}>
-          <h2 className={styles.title}>My Page</h2>
-          <p className={styles.desc}>환영합니다.</p>
-        </div>
-      </div>
-      <div className={styles.contWrap}>
-        <div className={styles.userInfo}>
-          <div className={styles.profile}>
-            <div className={cn(styles.profileImg, !user.profile && styles.notImg)}>
-              { styles.profile ? (
-                <img src={user.profile} alt={user.nickName + '프로필 사진'} />
-                ) : (
-                  <i className={styles.icon}><IconUser /></i>
-                )}
+    <div className={styles.wrap}>
+      <ParticleHeading title="My Page" desc="환영합니다." />
+      <div className={styles.inner}>
+        <div className={styles.cont}>
+          <div className={styles.sideMenu}>
+            <div className={styles.profile}>
+              <div className={cn(styles.profileImg, !user.profile && styles.notImg)}>
+                { styles.profile ? (
+                  <img src={user.profile} alt={user.nickName + '프로필 사진'} />
+                  ) : (
+                    <i className={styles.icon}><IconMatch id={'icon-user'} /></i>
+                  )}
+              </div>
+              <p className={styles.name}>{user.nickName}</p>
             </div>
-            <p className={styles.name}>{user.nickName}</p>
+            <div className={styles.menuWrap}>
+              <ul className={styles.menu}>
+                {myMenuList.map(menuItem => (
+                  <li key={menuItem.id}>
+                    <button
+                      className={cn(
+                        styles.menuBtn,
+                        activeTab === menuItem.id && styles.active
+                      )}
+                      onClick={() => setActiveTab(menuItem.id)}
+                    >
+                      <span>{menuItem.title}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+              <div className={styles.bottomMenu}>
+                <ThemeToggle 
+                  modeTheme="text"
+                  afterText="테마 변경"
+                />
+              </div>
+            </div>
           </div>
-          <div className={styles.menu}>
-            <AccountMenu />
+          <div className={styles.detail}>
+             <MyPageDetail selectId={activeTab} />
           </div>
-        </div>
-        <div className={styles.detail}>
-          서비스 준비 중...
         </div>
       </div>
     </div>

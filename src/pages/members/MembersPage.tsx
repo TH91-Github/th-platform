@@ -5,7 +5,7 @@ import { RotatingSphere } from '@/components/ui/effect/RotatingSphere';
 import { useAppSelector } from '@/hook/store/useRedux';
 import { selectAuthUser } from '@/store/redux/store';
 import { cn } from '@/utils/common';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styles from './MembersPage.module.scss';
 import { useDelayRenderToggle } from '@/hook/common/useDelayRenderToggle';
 import { useEffect } from 'react';
@@ -27,7 +27,7 @@ export const MembersPage = () => {
   }, [isUser, navigate]);
 
   if (isUser) {
-    return null; // or <></>
+    return <Navigate to="/" replace />;
   }
 
   return (

@@ -26,6 +26,7 @@ export const BtnDetail = () => {
         />
         <p className={styles.desc}>버튼 컴포넌트 (목적에 맞는 스타일 제공)</p>
         <p className={styles.desc}>bType: 버튼 스타일 / border(border 우선),disabled,skeleton : boolean</p>
+        <p className={styles.desc}>reverse : true 색 반전</p>
         <p className={styles.desc}><span className="color">필수 구조</span>: button {`>`} span</p>
         {/* <ul className={cn(styles.linkLists, 'bullet-lists')}>
           <li>
@@ -49,7 +50,7 @@ export const BtnDetail = () => {
             <p className={styles.desc}>배경색 없이 최소한의 스타일을 가진 버튼</p>
             <div className={cn(styles.demo, styles.flex)}>
               <Btn bType="base"><span>btn</span></Btn>
-              <Btn bType="base" ghost ={true}><span>색 반전</span></Btn>
+              <Btn bType="base" reverse={true}><span>색 반전</span></Btn>
               <Btn disabled={true}><span>btn disabled</span></Btn>
               <div className={styles.w100}>
                 <Btn ellipsis={true}><span>btn ellipsis Test</span></Btn>
@@ -74,7 +75,7 @@ export const BtnDetail = () => {
             <p className={styles.desc}>bType="<span className="color">primary</span>"</p>
             <div className={cn(styles.demo, styles.flex)}>
               <Btn bType="primary"><span>btn</span></Btn>
-              <Btn bType="primary" ghost ={true}><span>색 반전</span></Btn>
+              <Btn bType="primary" reverse={true}><span>색 반전</span></Btn>
               <Btn bType="primary" disabled={true}><span>btn disabled</span></Btn>
               <div className={styles.w100}>
                 <Btn bType="primary" ellipsis={true}><span>btn ellipsis Test</span></Btn>
@@ -100,7 +101,7 @@ export const BtnDetail = () => {
             <p className={styles.desc}>bType="<span className="color">point</span>"</p>
             <div className={cn(styles.demo, styles.flex)}>
               <Btn bType="point"><span>btn</span></Btn>
-              <Btn bType="point" ghost ={true}><span>색 반전</span></Btn>
+              <Btn bType="point" reverse={true}><span>색 반전</span></Btn>
               <Btn bType="point" disabled={true}><span>btn disabled</span></Btn>
               <div className={styles.w100}>
                 <Btn bType="point" ellipsis={true}><span>btn ellipsis Test</span></Btn>
@@ -126,7 +127,7 @@ export const BtnDetail = () => {
             <p className={styles.desc}>bType="<span className="color">line</span>"</p>
             <div className={cn(styles.demo, styles.flex)}>
               <Btn bType="line"><span>btn</span></Btn>
-              <Btn bType="line" ghost ={true}><span>색 반전</span></Btn>
+              <Btn bType="line" reverse={true}><span>색 반전</span></Btn>
               <Btn bType="line" disabled={true}><span>btn disabled</span></Btn>
               <div className={styles.w100}>
                 <Btn bType="line" ellipsis={true}><span>btn ellipsis Test</span></Btn>
@@ -152,7 +153,7 @@ export const BtnDetail = () => {
             <p className={styles.desc}>bType="<span className="color">gray</span>"</p>
             <div className={cn(styles.demo, styles.flex)}>
               <Btn bType="gray"><span>btn</span></Btn>
-              <Btn bType="gray" ghost ={true}><span>색 반전</span></Btn>
+              <Btn bType="gray" reverse={true}><span>색 반전</span></Btn>
               <Btn bType="gray" disabled={true}><span>btn disabled</span></Btn>
               <div className={styles.w100}>
                 <Btn bType="gray" ellipsis={true}><span>btn ellipsis Test</span></Btn>
@@ -177,7 +178,7 @@ export const BtnDetail = () => {
             <p className={styles.desc}>bType="<span className="color">red</span>"</p>
             <div className={cn(styles.demo, styles.flex)}>
               <Btn bType="red"><span>btn</span></Btn>
-              <Btn bType="red" ghost ={true}><span>색 반전</span></Btn>
+              <Btn bType="red" reverse={true}><span>색 반전</span></Btn>
               <Btn bType="red" disabled={true}><span>btn disabled</span></Btn>
               <div className={styles.w100}>
                 <Btn bType="red" ellipsis={true}><span>btn ellipsis Test</span></Btn>

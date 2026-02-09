@@ -1,7 +1,7 @@
-import { Btn } from '@/components/element/button/Btn';
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCallback, useEffect, useState } from 'react';
 import styles from './ErrorPage.module.scss';
+import { Btn } from '@/components/element/button/Btn';
 
 export const ErrorPage = () => {
 	const [count, setCount] = useState(5);

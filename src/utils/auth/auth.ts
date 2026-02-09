@@ -105,3 +105,72 @@ export const validatePasswordConfirm = (
   }
   return '';
 };
+
+
+// 🔹 로그인 유효성 
+interface LoginValidationResult {
+  isValid: boolean;
+  errors: {
+    loginId?: string;
+    password?: string;
+  };
+}
+
+export const validateLogin = (
+  values: Record<string, string>
+): LoginValidationResult => {
+  const errors: LoginValidationResult['errors'] = {};
+
+  if (!values.loginId) {
+    errors.loginId = '아이디를 입력해주세요.';
+  }
+
+  if (!values.password) {
+    errors.password = '비밀번호를 입력해주세요.';
+  }
+
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors,
+  };
+};
+
+// 🔹 회원가입 유효성 체크
+interface SignupValidationResult {
+  isValid: boolean;
+  errors: {
+    email?: string;
+    'password-1'?: string;
+    'password-2'?: string;
+  };
+}
+
+export const validateSignup = (
+  values: Record<string, string>
+): SignupValidationResult => {
+  const errors: SignupValidationResult['errors'] = {};
+
+  const emailError = validateEmail(values.email ?? '');
+  if (emailError) {
+    errors.email = emailError;
+  }
+
+  const passwordError = validatePassword(values['password-1'] ?? '');
+  if (passwordError) {
+    errors['password-1'] = passwordError;
+  }
+
+  const confirmError = validatePasswordConfirm(
+    values['password-1'] ?? '',
+    values['password-2'] ?? ''
+  );
+
+  if (confirmError) {
+    errors['password-2'] = confirmError;
+  }
+
+  return {
+    isValid: Object.keys(errors).length === 0,
+    errors,
+  };
+};
