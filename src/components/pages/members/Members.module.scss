@@ -65,6 +65,12 @@
   margin-top:10px;
 }
 
+.checkboxWrap {
+  display:flex;
+  gap:10px; 
+  margin-top:15px;
+}
+
 .authenticationDivider{
   position:relative;
   width:100%;
@@ -138,14 +144,17 @@
     }
   }
   &.login{
-    .authenticationDivider{
+    .checkboxWrap{
       animation: fadeUpAni 0.3s ease 0.6s both; 
     }
-    .googleBtn{
+    .authenticationDivider{
       animation: fadeUpAni 0.3s ease 0.8s both; 
     }
-    .modeBox{
+    .googleBtn{
       animation: fadeUpAni 0.3s ease 1s both; 
+    }
+    .modeBox{
+      animation: fadeUpAni 0.3s ease 1.2s both; 
     }
   }
 }

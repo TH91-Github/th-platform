@@ -42,6 +42,15 @@ import {
   IconUnBookmark,
   IconKey,
   IconGoogle,
+  IconTrash,
+  IconEmail,
+  IconAccess,
+  IconWarning,
+  IconRank,
+  IconTheme,
+  IconEyeClosed,
+  IconEye,
+  IconSign,
 } from "@/assets/icon";
 
 //🔹 iconData.ts 동일하게
@@ -89,5 +98,14 @@ export const IconMatchLists = {
   'icon-bookmark': IconBookmark,
   'icon-unbookmark': IconUnBookmark,
   'icon-key': IconKey,
+  'icon-trash': IconTrash,
   'icon-google': IconGoogle,
+  'icon-email': IconEmail,
+  'icon-rank': IconRank,
+  'icon-theme':IconTheme,
+  'icon-sign':IconSign,
+  'icon-access': IconAccess,
+  'icon-warning': IconWarning,
+  'icon-eye': IconEye,
+  'icon-eye-closed': IconEyeClosed,
 } as const;

@@ -41,4 +41,14 @@ export { LuUsersRound as IconTogether} from "react-icons/lu";
 export { BsBookmarkCheck as IconBookmark} from "react-icons/bs";
 export { GoBookmarkSlash as IconUnBookmark} from "react-icons/go";
 export { IoKeyOutline as IconKey} from "react-icons/io5";
+export { GoTrash as IconTrash} from "react-icons/go";
 export { FcGoogle as IconGoogle} from "react-icons/fc";
+export { GiStarsStack as IconRank} from "react-icons/gi";
+export { AiOutlineMail as IconEmail} from "react-icons/ai";
+export { CgNametag as IconAccess} from "react-icons/cg";
+export { AiOutlineWarning as IconWarning} from "react-icons/ai";
+export { IoInvertMode as IconTheme} from "react-icons/io5";
+export { TbSignature as IconSign} from "react-icons/tb";
+export { FaRegEye as IconEye} from "react-icons/fa";
+export { LuEyeClosed as IconEyeClosed} from "react-icons/lu";
+
