@@ -1,10 +1,13 @@
-import { Calendar } from "@/components/element/calendar/Calendar";
+import { Btn } from "@/components/element/button/Btn";
 import { CodeHljs } from "@/components/element/highlight/CodeHljs";
+import { Modal } from "@/components/element/modal/Modal";
 import { TitlePoint } from "@/components/ui/text/TitlePoint";
-import type { DemoItemType } from "@/types/guide";
 import { cn } from "@/utils/common";
 import { partialUndisclosed, stripIndent } from "@/utils/textUtils";
+import { useState } from "react";
 import styles from '../../Detail.module.scss';
+import { Calendar } from "@/components/element/calendar/Calendar";
+import type { DemoItemType } from "@/types/guide";
 
 // 🔹 CalendarDetail 컴포넌트 설명
 

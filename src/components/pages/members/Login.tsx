@@ -1,21 +1,33 @@
 import { IconGoogle, IconLock } from '@/assets/icon';
 import { Btn } from '@/components/element/button/Btn';
+import { CheckBox } from '@/components/element/form/checkbox/CheckBox';
 import { Modal } from '@/components/element/modal/Modal';
 import { FormModule, type FormInputType } from '@/components/modules/form/FormModule';
 import { Loading } from '@/components/ui/effect/Loading';
 import { InnerHTML } from '@/components/ui/text/InnerHTML';
 import { fireBaseGoogleLogin } from '@/firebase/auth/googleLogin';
 import { fireBaseLogin } from '@/firebase/auth/login';
+import { saveSession } from '@/utils/auth/session';
 import { cn } from '@/utils/common';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Members.module.scss';
-import { saveSession } from '@/utils/auth/session';
+import { ConfirmModal } from '@/components/modules/modal/ConfirmModal';
+import { validateLogin } from '@/utils/auth/auth';
 
+// 🔹 로그인
+
+const APP_TITLE = import.meta.env.VITE_APP_TITLE ?? '';
+const STORAGE_ID_KEY = 'platform-login-id';
 interface LoginPropsType {
   modeChange?: () => void,
 }
-const APP_TITLE = import.meta.env.VITE_APP_TITLE ?? '';
+
+interface LoginOptionState {
+  rememberId: boolean;
+  rememberMe: boolean;
+  isModalOpen: boolean;
+}
 
 export const Login = ({modeChange}:LoginPropsType) => {
   const navigate = useNavigate();
@@ -24,12 +36,38 @@ export const Login = ({modeChange}:LoginPropsType) => {
     success: boolean;
     message: string;
   } | null>(null);
+  
+  const [optionState, setOptionState] = useState<LoginOptionState>({
+    rememberId: false,
+    rememberMe: false,
+    isModalOpen: false,
+  });
+
   const [inputs, setInputs] = useState<FormInputType[]>([
     { id: 'loginId', label: '아이디', required: true, errorMessage: '' },
     { id: 'password', label: '비밀번호', type: 'password', required: true, errorMessage: '' },
   ]);
 
-   // 에러 메시지 업데이트
+  // id 기억하기
+  useEffect(() => {
+    const savedId = localStorage.getItem(STORAGE_ID_KEY);
+    if (!savedId) return;
+
+    setOptionState(prev => ({
+      ...prev,
+      rememberId: true,
+    }));
+
+    setInputs(prev =>
+      prev.map(input =>
+        input.id === 'loginId'
+          ? { ...input, initVal: savedId }
+          : input
+      )
+    );
+  }, []);
+
+  // 에러 메시지 업데이트
   const updateErrorMessage = (fieldId: string, message: string) => {
     setInputs((prev) =>
       prev.map((input) =>
@@ -52,18 +90,15 @@ export const Login = ({modeChange}:LoginPropsType) => {
 
   const loginForm = async (values: Record<string, string>) => {
     clearAllErrors();
-    let isValid = true;
-    if (!values.loginId) {
-      updateErrorMessage('loginId', '아이디를 입력해주세요.');
-      isValid = false;
-    }
 
-    if (!values.password) {
-      updateErrorMessage('password', '비밀번호를 입력해주세요.');
-      isValid = false;
+    const { isValid, errors } = validateLogin(values);
+    if (!isValid) {
+      Object.entries(errors).forEach(([field, message]) => {
+        updateErrorMessage(field, message as string);
+      });
+      return;
     }
-
-    if (!isValid) return;
+    
     try {
       // loading
       setIsLoading(true);
@@ -72,6 +107,16 @@ export const Login = ({modeChange}:LoginPropsType) => {
         password: values.password,
       });
     
+      saveSession(optionState.rememberMe);
+
+      // ✅ ID 기억하기
+      if (optionState.rememberId) {
+        localStorage.setItem(STORAGE_ID_KEY, values.loginId);
+      } else {
+        localStorage.removeItem(STORAGE_ID_KEY);
+      }
+
+      // 로그인 완료 후 홈으로 이동은 MemberPage.tsx에서
     } catch (error: any) {
       if (error.message === 'SIMPLE_ID_NOT') {
         updateErrorMessage(
@@ -95,6 +140,7 @@ export const Login = ({modeChange}:LoginPropsType) => {
     try {
       setIsLoading(true);
       await fireBaseGoogleLogin();
+      saveSession(optionState.rememberMe);
       setAlertMessage({
         success: true,
         message: 'Google 로그인 성공!',
@@ -115,6 +161,37 @@ export const Login = ({modeChange}:LoginPropsType) => {
     setAlertMessage(null)
   }
 
+  const handleLoginRemember = (checked: boolean) => {
+    if (!checked) {
+      setOptionState(prev => ({
+        ...prev,
+        rememberMe: false,
+      }));
+      return;
+    }
+
+    // 체크하려고 하면 모달 열기
+    setOptionState(prev => ({
+      ...prev,
+      isModalOpen: true,
+    }));
+  };
+
+  const handleConfirm = () => {
+    setOptionState(prev => ({
+      ...prev,
+      rememberMe: true,
+      isModalOpen: false,
+    }));
+  };
+
+  const handleCancel = () => {
+    setOptionState(prev => ({
+      ...prev,
+      isModalOpen: false,
+    }));
+  };
+
   return(
     <div className={cn(styles.login, styles.membersInner, styles.ani)}>
       <div className={styles.icon}>
@@ -129,6 +206,38 @@ export const Login = ({modeChange}:LoginPropsType) => {
         onInputFocus={handleFocus}
         confirm={loginForm} 
       />
+      <div className={styles.checkboxWrap}>
+        <CheckBox 
+          label="ID 기억하기"
+          className={styles.check}
+          checked={optionState.rememberId}
+          onChange={(e) =>
+            setOptionState(prev => ({
+              ...prev,
+              rememberId: e.target.checked,
+            }))
+          }
+        />
+        <CheckBox 
+          label="로그인 유지하기"
+          className={styles.check}
+          checked={optionState.rememberMe}
+          onChange={(e) => handleLoginRemember(e.target.checked)}
+        />
+        {optionState.isModalOpen && (
+          <ConfirmModal
+            onConfirm={handleConfirm}
+            onCancel={handleCancel}
+          >
+            <div>
+              ⚠️<br />
+              로그인 상태를 유지하시겠습니까?<br />
+              공용 또는 타인의 기기에서는 <br />
+              보안에 주의하세요! 
+            </div>
+          </ConfirmModal>
+        )}
+      </div>
       <div className={styles.authenticationDivider}>
         <span>or</span>
       </div>

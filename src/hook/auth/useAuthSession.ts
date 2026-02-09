@@ -1,49 +1,58 @@
 import { auth, fireDB } from '@/firebase';
 import { actionUserLogin, actionUserLogout } from '@/store/redux/sliceActions';
+import { useAddToast } from '@/store/zustand/common/toastStore';
 import type { UserDataType } from '@/types/auth/auth';
 import { clearSession, isSessionValid, refreshSession, saveSession, SESSION_KEY } from '@/utils/auth/session';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-// 로그인 체크 및 갱신
+// 🔹 로그인 체크 및 갱신
 export const useAuthSession = () => {
   const dispatch = useDispatch();
+  const addToast = useAddToast();
+
+  // 로그아웃
+  const handleLogout = useCallback(async (isSessionExpired = false) => {
+    try {
+      dispatch(actionUserLogout());
+      clearSession();
+      await signOut(auth);
+
+      if (isSessionExpired) {
+        addToast('세션이 만료되었습니다.');
+      }
+    } catch (error) {
+      console.error('Logout failed:', error);
+      addToast('로그아웃 중 오류가 발생했습니다.', 'error');
+    }
+  }, [dispatch, addToast]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      // 로그아웃 상태
+      // 로그아웃
       if (!firebaseUser) {
-        clearSession();
-        dispatch(actionUserLogout());
+        handleLogout();
         return;
       }
-
-      const sessionData = localStorage.getItem(SESSION_KEY);
       // 세션 확인
+      const sessionData = localStorage.getItem(SESSION_KEY);
       if (!sessionData) {
-        // 최초 로그인
         saveSession(false);
       } else {
         const valid = isSessionValid();
-        // 지난 경우 로그아웃 및 clear
         if (!valid) {
-          await signOut(auth);
-          clearSession();
-          dispatch(actionUserLogout());
+          handleLogout(true); // 세션 만료
           return;
         }
-        // 갱신 
         refreshSession();
       }
-
       const userRef = doc(fireDB, 'userDB', firebaseUser.uid);
       const snap = await getDoc(userRef);
 
       if (snap.exists()) {
-        const data = snap.data();
-        // type 안정을 위해 데이터 재입력
+        const data = snap.data() as UserDataType;
         const user: UserDataType = {
           uid: data.uid,
           email: data.email,
@@ -56,11 +65,16 @@ export const useAuthSession = () => {
           permission: data.permission,
           profile: data.profile,
         };
-
         dispatch(actionUserLogin({ user }));
+        console.log('로그인')
+      } else {
+        // 문서 없는 경우 로그아웃 처리 
+        console.error('로그인 정보를 확인할 수 없습니다.')
+        handleLogout();
+        addToast('로그인 정보를 확인할 수 없어 로그아웃 됩니다.','error');
       }
     });
 
     return () => unsubscribe();
-  }, [dispatch]);
+  }, [dispatch, addToast, handleLogout]);
 };

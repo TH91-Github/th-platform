@@ -3,14 +3,13 @@ import { Btn } from '@/components/element/button/Btn';
 import { Modal } from '@/components/element/modal/Modal';
 import { FormModule, type FormInputType } from '@/components/modules/form/FormModule';
 import { Loading } from '@/components/ui/effect/Loading';
+import { auth } from '@/firebase';
 import { fireBaseSignUp } from '@/firebase/auth/signup';
-import { validateEmail, validatePassword, validatePasswordConfirm } from '@/utils/auth/auth';
+import { validateSignup } from '@/utils/auth/auth';
 import { cn } from '@/utils/common';
+import { signOut } from 'firebase/auth';
 import { useState } from 'react';
 import styles from './Members.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '@/firebase';
 
 interface SignUpPropsType {
   modeChange : () => void
@@ -56,33 +55,15 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
   const signupForm = async (values: Record<string, string>) => {
     // 에러 메시지 초기화
     clearAllErrors();
-    let isValid = true;
 
-    // 이메일 검증
-    const emailError = validateEmail(values.email ?? '');
-    if (emailError) {
-      updateErrorMessage('email', emailError);
-      isValid = false;
+    // 유효성 체크
+    const { isValid, errors } = validateSignup(values);
+    if (!isValid) {
+      Object.entries(errors).forEach(([field, message]) => {
+        updateErrorMessage(field, message as string);
+      });
+      return;
     }
-
-    // password
-    const passwordError = validatePassword(values['password-1'] ?? '');
-    if (passwordError) {
-      updateErrorMessage('password-1', passwordError);
-      isValid = false;
-    }
-    // password 확인
-    const passwordConfirmError = validatePasswordConfirm(
-      values['password-1'] ?? '',
-      values['password-2'] ?? ''
-    );
-
-    if (passwordConfirmError) {
-      updateErrorMessage('password-2', passwordConfirmError);
-      isValid = false;
-    }
-
-    if (!isValid) return;
     try {
       // loading
       setIsLoading(true);
@@ -105,7 +86,6 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
       // Firebase Auth 이메일 중복
       if (error.code === 'auth/email-already-in-use') {
         updateErrorMessage('email', '이미 가입된 이메일입니다.');
-        isValid = false;
         return;
       }
       // 그 외 에러

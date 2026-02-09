@@ -1,18 +1,21 @@
-const THIRTY_MINUTES = 1000 * 60 * 30; // 30분 default
+const THIRTY_MINUTES = 1000 * 60 * 30; // 30분
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7; // 7일
 
-export const SESSION_KEY = 'platform_sessionInfo';
+export const SESSION_KEY = 'platform-sessionInfo';
 
 interface SessionInfoType {
-  lastActive: number; //
-  remember: boolean; // 로그인 정보 기억하기
+  lastActive: number; // 마지막 활동 시간
+  remember: boolean; // 로그인 정보 기억 여부
+  createdAt: number; // 세션 생성 시간
 }
 
 // 세션 저장
 export const saveSession = (remember: boolean) => {
+  const now = Date.now();
   const session: SessionInfoType = {
-    lastActive: Date.now(),
+    lastActive: now,
     remember,
+    createdAt: now,
   };
   localStorage.setItem(SESSION_KEY, JSON.stringify(session));
 };
@@ -25,37 +28,83 @@ export const clearSession = () => {
 // 세션 유효성 검사
 export const isSessionValid = (): boolean => {
   const sessionData = localStorage.getItem(SESSION_KEY);
-  // 세션 없는 경우
+
   if (!sessionData) return false;
-
   try {
-    // JSON 파싱하여 세션 정보 복원
     const session: SessionInfoType = JSON.parse(sessionData);
-    // ✅ 경과시간 계산 (현재 - 마지막 활동시간)
-    const diff = Date.now() - session.lastActive;
-    // remember 여부에 따라 만료시간 결정
-    const limit = session.remember ? SEVEN_DAYS : THIRTY_MINUTES;
+    const elapsed = Date.now() - session.lastActive;
+    const expirationTime = session.remember ? SEVEN_DAYS : THIRTY_MINUTES;
 
-    // 유효시간 이내인지 확인
-    return diff <= limit;
-  } catch {
+    // 유효시간 체크
+    return elapsed < expirationTime;
+  } catch (error) {
+    console.error('세션 확인 실패', error);
+    clearSession();
     return false;
   }
 };
 
-// 기준 시간 재설정, 갱신
+// 세션 갱신
 export const refreshSession = () => {
   const sessionData = localStorage.getItem(SESSION_KEY);
-  // 세션 없는 경우
-  if (!sessionData) return;
 
+  if (!sessionData) return;
   try {
-    // 기존 세션 불러와서 현재 시간으로 갱신
     const session: SessionInfoType = JSON.parse(sessionData);
-    session.lastActive = Date.now();
-    // 갱신된 세션 저장
-    localStorage.setItem(SESSION_KEY, JSON.stringify(session));
-  } catch {
+    
+    // 유효성 체크 후 갱신
+    if (isSessionValid()) {
+      session.lastActive = Date.now();
+      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    } else {
+      clearSession(); // 만료된 세션은 삭제
+    }
+  } catch (error) {
+    console.error('세션 확인 실패', error);
     clearSession();
   }
 };
+
+// 세션 정보 조회
+export const getSessionInfo = (): SessionInfoType | null => {
+  const sessionData = localStorage.getItem(SESSION_KEY);
+
+  if (!sessionData) return null;
+  try {
+    return JSON.parse(sessionData);
+  } catch {
+    clearSession();
+    return null;
+  }
+};
+
+// 남은 시간 계산
+export const getRemainingTime = (): number => {
+  const session = getSessionInfo();
+  if (!session) return 0;
+
+  const expirationTime = session.remember ? SEVEN_DAYS : THIRTY_MINUTES;
+  const elapsed = Date.now() - session.lastActive;
+  const remaining = expirationTime - elapsed;
+
+  return Math.max(0, remaining);
+};
+
+// 남은 시간 변환
+export const getFormattedRemainingTime = (): string => {
+  const remaining = getRemainingTime();
+  if (remaining === 0) return '만료됨';
+
+  const minutes = Math.floor(remaining / (1000 * 60));
+  const hours = Math.floor(remaining / (1000 * 60 * 60));
+  const days = Math.floor(remaining / (1000 * 60 * 60 * 24));
+
+  if (days > 0) return `${days}일 남음`;
+  if (hours > 0) return `${hours}시간 남음`;
+  if (minutes > 0) return `${minutes}분 남음`;
+  return '1분 미만';
+};
+/*
+  const remaining = getFormattedRemainingTime();
+  console.log(remaining); / 00분 남음
+*/
