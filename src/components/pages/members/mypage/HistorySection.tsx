@@ -2,7 +2,7 @@ import { useAuthUser } from '@/hook/auth/useAuthUser';
 import styles from './MyPageDetail.module.scss'
 
 export const HistorySection = () =>{
-  const user = useAuthUser();
+  const { data: user } = useAuthUser();
   
   return( 
     <div className={styles.sectionWrap}>

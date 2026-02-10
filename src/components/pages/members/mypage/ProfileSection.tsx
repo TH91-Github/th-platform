@@ -7,7 +7,7 @@ import styles from './MyPageDetail.module.scss';
 
 
 export const ProfileSection = () =>{
-  const user = useAuthUser();
+  const { data: user } = useAuthUser();
 
   
   if(!user) return null
@@ -100,22 +100,8 @@ export const ProfileSection = () =>{
           </div>
         </div>
         {/*  */}
-        <div className={styles.sectionItem}>
-          <div className={styles.section}>
-            <div className={styles.heading}>
-              <i><IconMatch id={'icon-unlock'} /></i>
-              <span className={styles.tit}>로그아웃</span>
-            </div>
-          </div>
-          <div className={styles.section}>
-            <div className={cn(styles.heading, styles.red)}>
-              <i><IconMatch id={'icon-trash'} /></i>
-              <span className={styles.tit}>삭제</span>
-            </div>
-          </div>
-        </div>
+        <AccountMenu />
       </div>
-      <AccountMenu />
     </div>
   )
 }

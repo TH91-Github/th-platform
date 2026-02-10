@@ -90,6 +90,7 @@ $pcSideSize: 200px;
   padding-top:20px;
   border-top:1px solid var(--color-line);
 }
+// content right
 .detail{
   width:calc( 100% - $pcSideSize - 20px);
 }
@@ -99,4 +100,21 @@ $pcSideSize: 200px;
   justify-content: center;
   align-items: center;
   height:300px;
+}
+
+@include mob {
+  .cont{
+    flex-direction: column;
+    padding:20px 0;
+  }
+  .sideMenu{
+    width:100%;
+    padding:20px 15px;
+  }
+  .menu{
+    flex-direction: row;
+  }
+  .detail{
+    width:100%;
+  }
 }

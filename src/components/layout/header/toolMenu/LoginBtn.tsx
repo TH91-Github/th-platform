@@ -1,9 +1,9 @@
 import { IconLogin, IconLogout } from '@/assets/icon';
 import { auth } from '@/firebase';
+import { useAuthUser } from '@/hook/auth/useAuthUser';
 import { useCloseAniToggle } from '@/hook/common/useCloseAniToggle';
-import { useAppDispatch, useAppSelector } from '@/hook/store/useRedux';
+import { useAppDispatch } from '@/hook/store/useRedux';
 import { actionUserLogout } from '@/store/redux/sliceActions';
-import { selectAuthUser } from '@/store/redux/store';
 import { clearSession } from '@/utils/auth/session';
 import { cn } from '@/utils/common';
 import { signOut } from 'firebase/auth';
@@ -13,7 +13,7 @@ import styles from './LoginBtn.module.scss';
 
 // 로그인 이동, 로그아웃, 마이페이지 이동
 export const LoginBtn = memo(() => {
-   const user = useAppSelector(selectAuthUser);
+  const { data: user } = useAuthUser();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isRender, isOpen, isClosing, toggle, close, containerRef } = useCloseAniToggle();

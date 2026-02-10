@@ -1,7 +1,8 @@
 const THIRTY_MINUTES = 1000 * 60 * 30; // 30분
 const SEVEN_DAYS = 1000 * 60 * 60 * 24 * 7; // 7일
 
-export const SESSION_KEY = 'platform-sessionInfo';
+// platform
+export const SESSION_KEY = `platform-sessionInfo`;
 
 interface SessionInfoType {
   lastActive: number; // 마지막 활동 시간

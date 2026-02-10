@@ -57,7 +57,7 @@
     color:var(--color-point);
   }
 }
-.heading{
+.heading, .headingBtn{
   flex-grow:1;
   display:flex;
   align-items: center;
@@ -95,5 +95,25 @@
   .btnModify{
     padding:5px 8px;
     font-size:14px;
+  }
+}
+.red {
+  color:$color-red;
+}
+// 로그아웃, 삭제 모달
+.alert{
+  .tit{
+    font-size:18px;
+    font-weight:600;
+    color:var(--color-title);
+  }
+  .desc{
+    color: var(--color-sub-text);
+  }
+  .btnWrap{
+    display:flex;
+    justify-content: center;
+    gap:10px;
+    margin-top:10px;
   }
 }

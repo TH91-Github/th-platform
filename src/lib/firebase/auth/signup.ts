@@ -17,7 +17,7 @@ export const fireBaseSignUp = async ({ email, password }: FireBaseSignUpType) =>
     const { uid } = userCredential.user;
     const baseID = email.split('@')[0];
 
-    // ✅ simpleID 생성 #1 숫자로 - 중복 아이디 있는 경우 숫자 증가
+    // ✅ simpleID 생성 _1 숫자로 - 중복 아이디 있는 경우 숫자 증가
     const counterRef = doc(fireDB, 'userSimpleID', baseID);
     const simpleID = await runTransaction(fireDB, async (transaction) => {
       const snap = await transaction.get(counterRef);
@@ -33,8 +33,7 @@ export const fireBaseSignUp = async ({ email, password }: FireBaseSignUpType) =>
           currentCount: nextCount,
         });
       }
-
-      return `${baseID}#${nextCount}`;
+      return `${baseID}_${nextCount}`;
     });
 
     // ✅ userDB 저장
@@ -61,7 +60,7 @@ export const fireBaseSignUp = async ({ email, password }: FireBaseSignUpType) =>
     batch.set(doc(fireDB, 'userSimpleID_list', simpleID), {
       email,
       uid,
-      createdAt: now, // 🔥 통일
+      createdAt: now,
     });
 
     await batch.commit();

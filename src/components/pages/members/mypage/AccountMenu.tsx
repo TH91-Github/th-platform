@@ -1,18 +1,22 @@
-import { useState } from "react";
-import { Modal } from "@/components/element/modal/Modal";
-import { InnerHTML } from "@/components/ui/text/InnerHTML";
-import styles from './AccountMenu.module.scss';
 import { Btn } from "@/components/element/button/Btn";
-import { useNavigate } from "react-router-dom";
-import { actionUserLogout } from "@/store/redux/sliceActions";
-import { useAppDispatch } from "@/hook/store/useRedux";
-import { signOut } from "firebase/auth";
-import { clearSession } from "@/utils/auth/session";
+import { Modal } from "@/components/element/modal/Modal";
+import { IconMatch } from "@/components/ui/icon/IconMatch";
+import { InnerHTML } from "@/components/ui/text/InnerHTML";
 import { auth } from "@/firebase";
+import { useAppDispatch } from "@/hook/store/useRedux";
+import { actionUserLogout } from "@/store/redux/sliceActions";
+import { clearSession } from "@/utils/auth/session";
+import { cn } from "@/utils/common";
+import { signOut } from "firebase/auth";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styles from './MyPageDetail.module.scss';
+import { useAuthAction } from "@/hook/auth/useAuthAction";
 
 export const AccountMenu = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { removeAccount } = useAuthAction();
   const [alertMessage, setAlertMessage] = useState<{
       type: 'logout' | 'remove',
       tit: string,
@@ -28,16 +32,15 @@ export const AccountMenu = () => {
   const handleLogout = () => {
     setAlertMessage({
       type: 'logout',
-      tit: `로그아웃 하시겠습니까`,
-      desc: '삭제 시 되돌릴 수 없습니다'
+      tit: `로그아웃 할까요?`,
     });
     // 
   }
   const handleRemove = () => {
     setAlertMessage({
-      type: 'logout',
-      tit: `정말로 계정 삭제하시겠습니까?`,
-      desc: '삭제 시 되돌릴 수 없습니다'
+      type: 'remove',
+      tit: `정말로 계정 삭제할까요?`,
+      desc: '삭제 시 되돌릴 수 없어요. 😢'
     });
   }
 
@@ -47,41 +50,50 @@ export const AccountMenu = () => {
   }
 
   const handleConfirm = () => { 
-    if(alertMessage){
-      if(alertMessage.type ==='logout') {
-        userReset();
-      }
-      console.log('오한료'+ alertMessage.type)
+    if (!alertMessage) return;
+
+    if (alertMessage.type === 'logout') {
+      userReset();
     }
+
+    if (alertMessage.type === 'remove') {
+      removeAccount();
+    }
+
+    setAlertMessage(null);
   }
+
   return( 
-    <div className={styles.accountMenu}>
-      <ul>
-        <li>
+    <div className={styles.accountWrapp}>
+      <div className={styles.sectionItem}>
+        <div className={styles.section}>
           <button
             type="button"
+            className={styles.headingBtn}
             onClick={handleLogout}
           >
-            <span>로그아웃</span>
+            <i><IconMatch id={'icon-unlock'} /></i>
+            <span className={styles.tit}>로그아웃</span>
           </button>
-        </li>
-        <li>
-          <button
+        </div>
+        <div className={styles.section}>
+          <button 
             type="button"
-            className={styles.remove}
             onClick={handleRemove}
+            className={cn(styles.headingBtn, styles.red)}
           >
-            <span>계정 삭제</span>
+            <i><IconMatch id={'icon-trash'} /></i>
+            <span className={styles.tit}>삭제</span>
           </button>
-        </li>
-      </ul>
+        </div>
+      </div>
       { alertMessage && (
         <Modal onClose={handlePopupClose}>
           <div className={styles.alert}>
             <p className={styles.tit}>
               <InnerHTML text={alertMessage.tit}/>
             </p>
-            <p>
+            <p className={styles.desc}>
               {alertMessage?.desc}
             </p>
             <div className={styles.btnWrap}>

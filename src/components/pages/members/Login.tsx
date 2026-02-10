@@ -5,8 +5,6 @@ import { Modal } from '@/components/element/modal/Modal';
 import { FormModule, type FormInputType } from '@/components/modules/form/FormModule';
 import { Loading } from '@/components/ui/effect/Loading';
 import { InnerHTML } from '@/components/ui/text/InnerHTML';
-import { fireBaseGoogleLogin } from '@/firebase/auth/googleLogin';
-import { fireBaseLogin } from '@/firebase/auth/login';
 import { saveSession } from '@/utils/auth/session';
 import { cn } from '@/utils/common';
 import { useEffect, useState } from 'react';
@@ -14,9 +12,10 @@ import { useNavigate } from 'react-router-dom';
 import styles from './Members.module.scss';
 import { ConfirmModal } from '@/components/modules/modal/ConfirmModal';
 import { validateLogin } from '@/utils/auth/auth';
+import { fireBaseGoogleLogin } from '@/lib/firebase/auth/googleLogin';
+import { fireBaseLogin } from '@/lib/firebase/auth/login';
 
 // 🔹 로그인
-
 const APP_TITLE = import.meta.env.VITE_APP_TITLE ?? '';
 const STORAGE_ID_KEY = 'platform-login-id';
 interface LoginPropsType {

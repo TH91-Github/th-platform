@@ -10,7 +10,7 @@ import styles from './MyPage.module.scss';
 
 // 🔹 마이페이지
 export const MyPage = () => {
-  const user = useAuthUser();
+  const { data: user } = useAuthUser();
   const [activeTab, setActiveTab] = useState<MenuTListType>('profile');
 
   if(!user) return null

@@ -3,24 +3,20 @@ import { Btn } from '@/components/element/button/Btn';
 import { Modal } from '@/components/element/modal/Modal';
 import { FormModule, type FormInputType } from '@/components/modules/form/FormModule';
 import { Loading } from '@/components/ui/effect/Loading';
-import { auth } from '@/firebase';
-import { fireBaseSignUp } from '@/firebase/auth/signup';
+import { fireBaseSignUp } from '@/lib/firebase/auth/signup';
 import { validateSignup } from '@/utils/auth/auth';
 import { cn } from '@/utils/common';
-import { signOut } from 'firebase/auth';
 import { useState } from 'react';
 import styles from './Members.module.scss';
+import { useAddToast } from '@/store/zustand/common/toastStore';
 
 interface SignUpPropsType {
   modeChange : () => void
 }
 export const SignUp = ({modeChange}: SignUpPropsType) => {
-  const [formResetKey, setFormResetKey] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState<{
-    success: boolean;
-    message: string;
-  } | null>(null);
+  const addToast = useAddToast();
+
   // 이메일, 비밀번호, 비밀번호 확인
   const [inputs, setInputs] = useState<FormInputType[]>([
     { 
@@ -73,14 +69,7 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
         email: values.email,
         password: values['password-1'],
       });
-      // 회원 가입하면 자동으로 로그인 상태 방지
-      await signOut(auth);
-
-      setAlertMessage({
-        success: true,
-        message: '회원가입이 완료되었습니다.',
-      });
-      setFormResetKey(prev => prev +1);
+      addToast('회원가입 성공 🥳👏','success');
 
     } catch (error: any) {
       // Firebase Auth 이메일 중복
@@ -94,13 +83,6 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
       setIsLoading(false);
     }
   };
-
-  const handlePopupClick = () => {
-    if (alertMessage?.success) {
-      modeChange();
-    }
-    setAlertMessage(null)
-  }
 
   return(
     <div className={cn(
@@ -118,7 +100,6 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
         requiredText="필수 입력"
         className={styles.formWrap}
         disabled={isLoading}
-        resetKey={formResetKey}
         onInputFocus={handleFocus}
         confirm={signupForm}
       />
@@ -134,21 +115,6 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
         </button>
       </div>
       { isLoading && <Loading dimmed={true} mode="body"/> }
-      { alertMessage && (
-        <Modal onClose={handlePopupClick}>
-          <div className={styles.alert}>
-            <p className={styles.tit}>{alertMessage.message}</p>
-            <div className={styles.btnWrap}>
-              <Btn
-                bType="primary"
-                onClick={handlePopupClick}
-              >
-                <span>확인</span>
-              </Btn>
-            </div>
-          </div>          
-        </Modal>
-      )}
     </div>
   )
 }

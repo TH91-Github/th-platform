@@ -37,7 +37,7 @@ export const fireBaseGoogleLogin = async () => {
         currentCount: nextCount,
       });
     }
-    return `${baseID}#${nextCount}`;
+    return `${baseID}_${nextCount}`;
   });
   const now = Date.now();
   const userData = {

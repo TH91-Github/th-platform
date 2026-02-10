@@ -14,7 +14,13 @@ export interface UserDataType {
   profile: string; // 프로필 이미지 
 }
 
+export interface AuthUserType {
+  uid: string;
+  email: string | null;
+}
+
 export interface AuthStateType {
-  user: null | UserDataType,
-  loginTime: number,
+  user: null | AuthUserType;
+  loginTime: number;
+  isAuthReady: boolean;
 }

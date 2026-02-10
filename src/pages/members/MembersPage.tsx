@@ -2,33 +2,21 @@ import { colors, colorsText } from '@/assets/style/emotion/variables';
 import { Login } from '@/components/pages/members/Login';
 import { SignUp } from '@/components/pages/members/SignUp';
 import { RotatingSphere } from '@/components/ui/effect/RotatingSphere';
+import { useDelayRenderToggle } from '@/hook/common/useDelayRenderToggle';
 import { useAppSelector } from '@/hook/store/useRedux';
 import { selectAuthUser } from '@/store/redux/store';
-import { cn } from '@/utils/common';
-import { Navigate, useNavigate } from 'react-router-dom';
-import styles from './MembersPage.module.scss';
-import { useDelayRenderToggle } from '@/hook/common/useDelayRenderToggle';
-import { useEffect } from 'react';
 import { useIsMobile } from '@/store/zustand/common/commonStore';
+import { cn } from '@/utils/common';
+import styles from './MembersPage.module.scss';
 
 export const MembersPage = () => {
-  const navigate = useNavigate();
   const isMobile = useIsMobile();
   const isUser = useAppSelector(selectAuthUser);
   const delay = !isMobile ? 1300 : 300; // mobile cover 사용 x
   // delay css와 맞춰야함 0.1s 빠르게 보이는 모션이 있기 때문.
   const { isRender, isOpen, toggle, } = useDelayRenderToggle({ delay: delay }); 
 
-  // 로그인 상태에서 잘못 접근했을 경우
-  useEffect(() => {
-    if (isUser) {
-      navigate('/');
-    }
-  }, [isUser, navigate]);
-
-  if (isUser) {
-    return <Navigate to="/" replace />;
-  }
+  // ✅ 로그인 상태에서 잘못 접근했을 경우 홈으로 RouterLists 에서 제어
 
   return (
     <div className={cn(styles.membersWrap, isOpen ? styles.signup : styles.login)}>

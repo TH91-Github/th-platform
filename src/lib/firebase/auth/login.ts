@@ -15,7 +15,7 @@ export const fireBaseLogin = async ({ loginId, password }: FireBaseLoginType) =>
   if (!loginId.includes('@')) {
     const simpleId = loginId.trim(); 
     const simpleRef = doc(fireDB, 'userSimpleID_list', simpleId);
-    const snap = await getDoc(simpleRef); // 요청 1
+    const snap = await getDoc(simpleRef);
 
     if (!snap.exists()) {
       throw new Error('SIMPLE_ID_NOT');
@@ -29,7 +29,7 @@ export const fireBaseLogin = async ({ loginId, password }: FireBaseLoginType) =>
 
   // ✅ lastLoginTime 업데이트
   const userRef = doc(fireDB, 'userDB', uid);
-  await updateDoc(userRef, {  // setDoc → updateDoc!
+  await updateDoc(userRef, {
     lastLoginTime: Date.now()
   });
 
