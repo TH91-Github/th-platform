@@ -41,11 +41,11 @@ export const GnbMenu = ({isOpen}:{isOpen:boolean}) => {
         {navLists.map((navItem, idx) => (
           <li key={idx} className={styles.navItem}>
             <NavLink
-              to={navItem.path}
+              to={navItem.path ?? '/'}
               className={styles.navLink}
               ref={(el) => setNavRef(el, idx)}
             >
-              <span className={styles.navTit}>{navItem.handle.title}</span>
+              <span className={styles.navTit}>{navItem.handle ? navItem.handle.title : 'title 지정해주세요.'}</span>
             </NavLink>
           </li>
         ))}
