@@ -22,14 +22,13 @@ export const RunIntro = ({ onExitComplete }: RunIntroProps) => {
     return () => clearTimeout(timer);
   }, [isTypingDone]);
 
-  // 🔥 애니메이션 종료 후 부모에게 알림
   useEffect(() => {
     if (!isAnimating) return;
 
     const timer = setTimeout(() => {
       console.log('실행')
       onExitComplete();
-    }, 2500); // animation duration과 맞추기
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, [isAnimating, onExitComplete]);

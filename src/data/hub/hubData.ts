@@ -1,31 +1,13 @@
-import type { HubCategoryDataType, HubTotalType } from "@/types/hub/hub";
+import type { HubCategoryDataType, HubTableType, HubTotalType } from "@/types/hub/hub";
 
 // 🔹 default 카테고리 ko, en 정보
 export const hubCategoryData: HubCategoryDataType[] = [
-  {
-    id:'normal',
-    title:'일반',
-  },
-  {
-    id:'travel',
-    title:'여행',
-  },
-  {
-    id:'calendar',
-    title:'달력',
-  },
-  {
-    id:'memo',
-    title:'메모',
-  },
-  {
-    id:'cashledger',
-    title:'가계부',
-  },
-  {
-    id:'running',
-    title:'러닝',
-  },
+  {id:'normal', title:'일반'},
+  {id:'travel', title:'여행'},
+  {id:'calendar', title:'달력'},
+  {id:'memo', title:'메모'},
+  {id:'cashledger', title:'가계부'},
+  {id:'running', title:'러닝'},
 ]
 // 🔹 hub 카테고리 total default
 export const hubTotalData : HubTotalType[] = [
@@ -46,7 +28,7 @@ export const hubTotalData : HubTotalType[] = [
         total:0,
       },
       {
-        id:'multi',
+        id:'team',
         title:'함께',
         desc:'2인 이상 팀을 이루어진 방을 안내하고 있어요.',
         total:0,
@@ -133,3 +115,27 @@ export const hubTotalData : HubTotalType[] = [
   },
   
 ];
+
+// 목록
+export const hubTable:HubTableType[] = [
+  {
+    id: 'visibility',
+    title:'공개/비공개'
+  },
+  {
+    id:'title',
+    title:'제목',
+  },
+  {
+    id:'category',
+    title:'구분',
+  },
+  {
+    id:'date',
+    title:'개설일',
+  },
+  {
+    id:'Members',
+    title:'참여자'
+  }
+]
