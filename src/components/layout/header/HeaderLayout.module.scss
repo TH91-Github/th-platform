@@ -17,6 +17,10 @@
       color:$color-text-w;
     }
   }
+  &.open {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
 }
 .inner{
   display:flex;

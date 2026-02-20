@@ -50,7 +50,7 @@ export const routerList = [
         },
       },
     ],
-    hideNav: true,
+    hideNav: false,
   },
   {
     id: 'about',
@@ -107,7 +107,6 @@ export const routerList = [
         handle: {
           title: 'Members',
         },
-        hideNav: true,  
       },
     ],
     hideNav: true,

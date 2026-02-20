@@ -6,9 +6,6 @@
 - 회원을 기반으로 방(Room)을 생성하고 여러 명이 함께 참여
 - 지도, 날씨 등 외부 데이터 연동
 
-## 배포
-- vercel 사용 예정
-
 ### 환경변수
 .env
 
@@ -35,6 +32,7 @@
 
 기본 스타일은 CSS Module을 사용해 구조를 단순하게 유지하고 
 컴포넌트 단위로 동적 스타일이 필요로 하는 컴포넌트는 Emotion을 병행하고 있습니다.
+※ 다른 프로젝트로 컴포넌트 단위 옮기기 위해 기본 css 사용.
 
 ### 🔷 type 
 - 여러 컴포넌트에서 사용하는 type > 공통 type 폴더 내 관리
@@ -57,13 +55,15 @@ Redux와 Zustand를 각각의 목적에 맞게 분리하여 함께 사용하고 
 | **라우팅** | `react-router-dom` | SPA 구조의 라우팅 처리 및 페이지 이동 관리 |
 | **상태 관리** | `@reduxjs/toolkit`, `react-redux` | Redux Toolkit 기반 전역 상태 (API 전용 상태) 관리 |
 |  | `zustand` | UI /로컬 상태 관리 라이브러리 |
+| **서버 상태 관리** | `@tanstack/react-query` | 서버 데이터 캐싱, 비동기 상태 관리 및 API | 
 | **스타일링** | `sass, Module` | 전역 스타일 및 공통 스타일 관리를 위한 SCSS 사용 |
 |  | `@emotion/react`, `@emotion/styled` | CSS-in-JS 방식의 컴포넌트 단위 스타일링 |
 | **UI / 아이콘** | `react-icons` | React svg 아이콘 사용 |
+| **애니메이션** | `@gsap/react, gsap` | 스크롤 및 인터랙션 기반 모션 구현 |
 | **캐러셀** | `swiper` | 슬라이드, 캐러셀 swiper.js |
 | **콘텐츠 처리** | `dompurify` | HTML 콘텐츠 렌더링 시 XSS 방지를 위한 Sanitizing 처리 |
 | **하이라이팅** | `highlight.js` | 코드 하이라이팅 |
-
+| **DB/회원** | `firebase` | 인증(Auth), 데이터 관리 |
 
 ### 🔷 Node 기준
 node 22.12.0

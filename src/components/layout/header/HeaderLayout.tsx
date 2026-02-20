@@ -12,7 +12,7 @@ import styles from './HeaderLayout.module.scss';
 import { ToolMenu } from './toolMenu/ToolMenu';
 
 // 🔹 header 
-export const HeaderLayout = memo(() => {
+export const HeaderLayout = () => {
   const location = useLocation();
   const isMobile = useIsMobile();
   const isScrolled = useHeaderScrollState();
@@ -30,17 +30,22 @@ export const HeaderLayout = memo(() => {
       className={cn(
         styles.header, 
         isTransparent && styles.transparent, 
-        isScrolled && styles.scroll
+        isScrolled && styles.scroll,
+        isMenuOpen && styles.open
       )}
     >
       <div className={styles.inner}>
         <LogoIcon />
         <GnbMenu isOpen={isMenuOpen} />
         <ToolMenu />
-        {isMobile && <MoreBtn isOpen={isMenuOpen} onClick={handleMenuToggle} />}
+        {isMobile && (
+          <MoreBtn 
+            isTransparent={isTransparent}
+            isOpen={isMenuOpen}
+            onClick={handleMenuToggle} 
+          />
+        )}
       </div>
     </header>
   );
-});
-
-HeaderLayout.displayName = 'HeaderLayout';
+};

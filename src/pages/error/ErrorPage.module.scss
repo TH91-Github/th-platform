@@ -8,7 +8,6 @@
   color: #f9fafb;
   box-sizing: border-box;
 }
-
 .inner {
   max-width: 480px;
   width: 100%;
@@ -18,18 +17,15 @@
   background: $color-white;
   box-shadow: $shadow-b;
 }
-
 .title {
   font-size: 22px;
   color: $color-title-b;
 }
-
 .desc {
   margin-top:10px;
   font-size:14px;
   color: $color-desc-b;
 }
-
 .btnWrap {
   display: flex;
   flex-direction: column;
@@ -37,28 +33,7 @@
   align-items: center;
   margin-top:20px;
 }
-
 .timerText {
   font-size: 12px;
   color: $color-sub-text-b;
-}
-
-/* 반응형 살짝 */
-@media (min-width: 768px) {
-  .inner {
-    padding: 40px 32px 32px;
-  }
-
-  .code {
-    font-size: 80px;
-    margin-bottom: 10px;
-  }
-
-  .title {
-    font-size: 24px;
-  }
-
-  .desc {
-    font-size: 15px;
-  }
 }

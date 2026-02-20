@@ -1,5 +1,4 @@
 import { cn } from '@/utils/common';
-import { useMemo } from 'react';
 import styles from './TextChageUI.module.scss';
 
 // 🔹 텍스트 한 줄 여러개 순차적 보여주기 
@@ -27,11 +26,9 @@ export const TextChageUI = ({
   const hasDelayOnly = maxTextLength.length === 1 && delay > 0; // 1개 + delay
 
   // 가장 긴 문자열 - 가로 크기를 구하기 위해
-  const baseIndex = useMemo(() => {
-    return maxTextLength.reduce((maxIdx, cur, idx, arr) => {
-      return cur.length > arr[maxIdx].length ? idx : maxIdx;
-    }, 0);
-  }, [maxTextLength]);
+  const baseIndex = maxTextLength.reduce((maxIdx, cur, idx, arr) => {
+    return cur.length > arr[maxIdx].length ? idx : maxIdx;
+  }, 0);
 
   return (
     <p

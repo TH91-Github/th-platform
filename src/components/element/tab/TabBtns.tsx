@@ -28,9 +28,7 @@ export const TabBtns = ({
   const [activeIndex, setActiveIndex] = useState(isAll ? -1 : 0);
   const [movingStyle, setMovingStyle] = useState<MovingStyleType>({ left: 0, width: 0, height: 0 });
 
-  const defaultLabel = useMemo(() => (
-    isAll === 'en' ? 'All' : '전체'
-  ), [isAll]);
+  const defaultLabel = isAll === 'en' ? 'All' : '전체';
 
   // 초기 activeTab 설정
   useEffect(() => {

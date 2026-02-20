@@ -2,6 +2,19 @@
   position:relative;
   width: 40px;
   height: 40px;
+  &.transparent{
+    .btn{
+      &:not(.open){
+        &::before, &::after{
+          background-color:$color-white;
+        }
+        .icon{
+          background-color:$color-white;
+        }
+      }
+    }
+    
+  }
 }
 .btn{ 
   display: block;

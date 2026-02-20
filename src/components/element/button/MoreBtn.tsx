@@ -3,12 +3,19 @@ import styles from './MoreBtn.module.scss';
 
 // 🔹 더보기 버튼
 interface MoreBtnPropsType {
+  isTransparent?:boolean, // 투명 배경인 경우 white
   isOpen: boolean,
   uiType?: 'bar' | 'circle',
   className?: string,
   onClick: () => void,
 }
-export const MoreBtn = ({isOpen, className, uiType='bar', onClick}: MoreBtnPropsType) => {
+export const MoreBtn = ({
+  isTransparent,
+  isOpen, 
+  className, 
+  uiType='bar', 
+  onClick
+}: MoreBtnPropsType) => {
   const handleMoreClick = () => {
     onClick?.();
   }
@@ -16,6 +23,7 @@ export const MoreBtn = ({isOpen, className, uiType='bar', onClick}: MoreBtnProps
     <div className={cn(
         styles.moreBtnWrap, 
         className,
+        isTransparent && styles.transparent
       )}
     >
       <button

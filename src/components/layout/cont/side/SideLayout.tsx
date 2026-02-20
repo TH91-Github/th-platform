@@ -214,8 +214,8 @@ const StyleWrap = styled.div<StyleWrapType>`
       display:block;
       overflow:hidden;
       position:absolute;
-      top:10px;
-      left:15px;
+      top: calc(var(--header-h) + 20px);
+      right:15px;
       width: 30px;
       height:30px;
       &.open {
@@ -249,7 +249,7 @@ const StyleWrap = styled.div<StyleWrapType>`
     }
     .cont{
       width:100%;
-      padding-top:40px;
+      padding-top:var(--header-h);
       border-radius: 0;
     }
   }
