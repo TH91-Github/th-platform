@@ -14,7 +14,7 @@ interface ModalPropsType {
   className?:string,
   $width?: number,
   $align?: 'center' | 'left' | 'right',
-  children?:React.ReactNode,
+  children?: React.ReactNode | ((close: () => void) => React.ReactNode)
   onClose: () => void; // ⭐ 필수
 }
 export const Modal = ({
@@ -122,7 +122,9 @@ export const Modal = ({
           ref={modalRef}
         >
           <div className="modal-cont">
-            {children}
+            {typeof children === 'function'
+              ? children(handleCloseClick)
+              : children}
           </div>
           <button 
             type="button" 

@@ -17,7 +17,12 @@ interface DemoItemType {
 const DETAIL_TITLE ='Modal';
 const EX_CODE = stripIndent(`
   <Modal onClose={handlePopupClick}>
+    // 일반
     <p>Modal Test</p>
+    // children에서 부모 닫기
+    {(close) => (
+      <button type='button' onClick={close}>새로운 닫기</button>
+    )}
   </Modal>`
 );
 export const ModalDetail = () => {
