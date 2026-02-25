@@ -1,0 +1,21 @@
+.members {
+  position:relative;
+  width:100%;
+  height:100%;
+  & > ul { 
+    display:flex;
+  }
+}
+
+.icons{
+  & > li {
+    position:relative;
+    margin-left:-13px;
+    &:first-child{
+      margin-left:0;
+    }
+  }
+}
+.lists{ 
+  flex-direction: column;
+}
