@@ -51,6 +51,8 @@ import {
   IconEyeClosed,
   IconEye,
   IconSign,
+  IconOpenView,
+  IconRotate,
 } from "@/assets/icon";
 
 //🔹 iconData.ts 동일하게
@@ -108,4 +110,6 @@ export const IconMatchLists = {
   'icon-warning': IconWarning,
   'icon-eye': IconEye,
   'icon-eye-closed': IconEyeClosed,
+  'icon-open-view' : IconOpenView,
+  'icon-rotate': IconRotate,
 } as const;

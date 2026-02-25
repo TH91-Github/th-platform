@@ -6,9 +6,11 @@ import styles from './HubCategory.module.scss';
 import { HubCategoryIconMap } from './HubCategoryIconMap';
 import { TitlePoint } from '@/components/ui/text/TitlePoint';
 import { Count } from '@/components/element/count/Count';
+import { useAuthUser } from '@/hook/auth/useAuthUser';
 
-// 🔹 카테고리 
+// 🔹 카테고리 - 클릭 시 ContLists 필터 적용하여 보여진다
 export const HubCategory = () => {
+  const { data: user } = useAuthUser();
   // DB 연동 후 토탈 값 적용 필요.
   const filterData = hubTotalData;
 

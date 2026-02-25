@@ -21,7 +21,7 @@ export const TitlePoint = ({
   pointType = 'circle',
   className,
   $display = 'block',
-  $fontRem = true,
+  $fontRem = false,
   $fontSize = 18,
   $fixFontSize,
   $activeColor

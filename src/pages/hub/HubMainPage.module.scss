@@ -12,21 +12,11 @@
   .btnWrap{
     margin-top:20px;
   }
-  .btnAdd{
-    display:flex;
-    gap:5px;
-    align-items: center;
-    & > i {
-      width:15px;
-      height:15px;
-    }
-  }
 }
 
 .categoryWrap{
   margin-top:20px;
 }
-
 
 .contWrap{
   display:flex;
@@ -37,13 +27,10 @@
 }
 .subSide{
   flex-shrink: 0;
-  width:300px;
-  border:1px solid #dbdbdb;
-  
   display:flex;
   flex-direction: column;
+  width:300px;
   gap:20px;
-
 }
 
 @include mob { 

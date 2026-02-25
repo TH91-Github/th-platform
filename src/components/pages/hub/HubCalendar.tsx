@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
-import styles from './HubCalendar.module.scss';
 import { Calendar } from '@/components/element/calendar/Calendar';
 import type { DateRange } from '@/types/date/calendar';
+import styles from './HubCalendar.module.scss';
 
 export const HubCalendar = () => {
 
@@ -24,19 +24,20 @@ export const HubCalendar = () => {
         daysClassName={styles.calendarDay}
         selectDates={range}
         events={[
-          { date: '2026-01-15', label:'test' },
-          { date: '2026-01-15', label: '회의' },
-          { date: '2026-01-20', label: '휴가' },
+          { date: '2026-02-15', label:'test' },
+          { date: '2026-02-16', label: '회의' },
+          { date: '2026-02-25', label: '휴가' },
         ]}
         onChange={onChange}
-        isReadonly={false}
+        isReadonly={true}
         dayRender={(_, events) => {
           if (!events || events.length === 0) return null;
 
           return events.map((event, i) => (
-            <span key={i} className="dd">{event.label}</span>
+            <span key={i} className={styles.event}>{event.label}</span>
           ));
         }}
+        className={styles.calendar}
       />
     </div>
   )

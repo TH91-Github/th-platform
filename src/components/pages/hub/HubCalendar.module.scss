@@ -11,7 +11,25 @@
   color:$color-title-w;
   text-align: center;
 }
-
+.calendar{
+  border:1px solid var(--color-line);
+  border-top:0;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
 .calendarDay{
-  height:44px;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height:40px;
+}
+
+.event{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius: 50%;
+  background-color: var(--color-point);
+  text-indent: -9999px;
 }
