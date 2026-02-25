@@ -2,17 +2,17 @@ import { useEffect, useRef, useState } from 'react';
 
 // 🔹 Count 컴포넌트
 interface CountPropsType {
-  start?: number,
-  end: number,
-  duration?: number,
-  useComma?: boolean,
+  start?: number, // 시작 값
+  end: number, // 끝나는 값
+  duration?: number,  // 시간 
+  useComma?: boolean, // 숫자 천 단위 콤마 , 
   onComplete?: () => void,
 }
 
 export const Count = ({
   start = 0,
   end,
-  duration = 3000,
+  duration = 1000,
   useComma = false,
   onComplete,
 }: CountPropsType) => {

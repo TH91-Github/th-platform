@@ -51,4 +51,6 @@ export { IoInvertMode as IconTheme} from "react-icons/io5";
 export { TbSignature as IconSign} from "react-icons/tb";
 export { FaRegEye as IconEye} from "react-icons/fa";
 export { LuEyeClosed as IconEyeClosed} from "react-icons/lu";
+export { PiBookOpenTextThin  as IconOpenView } from "react-icons/pi";
+export { FaRotate as IconRotate } from "react-icons/fa6";
 

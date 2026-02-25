@@ -1,8 +1,8 @@
 // components/ThemeToggle.tsx
-import styles from './ThemeToggle.module.scss';
 import { IconMoon, IconSunny } from '@/assets/icon';
 import { useTheme, useToggleTheme } from '@/store/zustand/common/commonStore';
 import { cn } from '@/utils/common';
+import styles from './ThemeToggle.module.scss';
 interface ThemeTogglePropsType {
   modeTheme?: 'icon' | 'text';
   className?: string;

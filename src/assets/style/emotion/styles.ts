@@ -1,7 +1,6 @@
 import { css } from "@emotion/react";
 
 // 🔹emotion 전용 style
-
 // rem 
 export const rem = (fontSize: number, useRem: boolean = true, base:number = 16): string => {
   return useRem ? `${fontSize / base}rem` : `${fontSize}px`;

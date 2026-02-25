@@ -366,5 +366,18 @@ export const iconData = [
     title:'Eye Closed',
     keyword:['IconEyeClosed','hide','숨기기','eye','eye closed','closed','눈'],
   },
-
+  {
+    id:'icon-open-view',
+    code:'pi/PiBookOpenTextThin',
+    label: 'IconOpenView',
+    title:'Open View',
+    keyword:['IconOpenView','PiBookOpenTextThin','Open','오픈 북','자세히 보기','OpenText'],
+  },
+  {
+    id:'icon-rotate',
+    code:'fa6/FaRotate',
+    label: 'IconRotate',
+    title:'Rotate Arrow',
+    keyword:['IconRotate','Rotate Arrow','전환','리턴','변경','바꾸다','교체'],
+  },
 ]

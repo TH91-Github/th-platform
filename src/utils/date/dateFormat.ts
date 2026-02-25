@@ -5,10 +5,10 @@ type DateFormatType =
   | 'time';       // 시간만
 
 interface FormatDateOptions {
-  format?: DateFormatType;  
-  separator?: string;       
-  timeSeparator?: string;   
-  use12Hour?: boolean;
+  format?: DateFormatType; 
+  separator?: string; // ., -, _ 등 구분
+  timeSeparator?: string; // 기본 구분 : 
+  use12Hour?: boolean; // 오전,오후
 }
 
 export const dateFormat = (
@@ -22,7 +22,7 @@ export const dateFormat = (
     use12Hour = false,
   } = options;
 
-  const isKoreanMode = !separator;
+  const isKoreanMode = separator === undefined;
 
   const hasTime =
     typeof value === 'number' ||

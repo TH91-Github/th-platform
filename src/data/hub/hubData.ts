@@ -2,7 +2,6 @@ import type { HubCategoryDataType, HubTableType, HubTotalType } from "@/types/hu
 
 // 🔹 default 카테고리 ko, en 정보
 export const hubCategoryData: HubCategoryDataType[] = [
-  {id:'normal', title:'일반'},
   {id:'travel', title:'여행'},
   {id:'calendar', title:'달력'},
   {id:'memo', title:'메모'},
@@ -52,12 +51,6 @@ export const hubTotalData : HubTotalType[] = [
     totalCategory:'category',
     totalLists:[
       {
-        id:'normal',
-        title:'일반',
-        desc:'자유롭게 이용하는 방을 안내하고 있어요',
-        total:0,
-      },
-      {
         id:'travel',
         title:'여행',
         desc:'가족, 친구들과 여행 일정, 정산 등 확인하고 초대해보세요.',
@@ -102,13 +95,13 @@ export const hubTotalData : HubTotalType[] = [
       {
         id:'category',
         title:'카테고리별 즐겨찾기',
-        desc:'즐겨찾기 일반 즐겨찾기 방 수',
+        desc:'즐겨찾기 여행 즐겨찾기 방 수4',
         total:0,
       },
       {
         id:'public',
         title:'공개/비공개 즐겨찾기',
-        desc:'즐겨찾기 일반 즐겨찾기 방 수',
+        desc:'즐겨찾기 러닝 즐겨찾기 방 수3',
         total:0,
       },
     ]
