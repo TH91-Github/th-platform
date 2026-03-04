@@ -78,7 +78,7 @@
   @if $direction =='y' {
     overflow-y: auto;
     overflow-x: hidden;
-    padding-right: $width;
+    padding-right: calc($width - 1px);
     padding-bottom: 0;
   }
 

@@ -1,0 +1,86 @@
+
+.selectBox {
+  position: relative;
+}
+
+.hiddenSelect {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.selectBtn {
+  display:block;
+  position:relative;
+  width: 100%;
+  height:40px;
+  padding:0 15px;
+  border:1px solid var(--color-line);
+  border-radius:5px;
+  font-size:14px;
+  outline:none;
+  line-height:1;
+  text-align:left;
+  transition: var(--transition-border), var(--transition-color), var(--transition-bg);
+  &:focus {
+    border-color: var(--color-point);
+  }
+  &.disabled, &:disabled { 
+    color:$color-sub-text-b;
+    background-color: $color-disabled;
+  }
+  &.open {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+}
+
+.optionList {
+  overflow-y: auto;
+  position: absolute;
+  z-index: 10;
+  top: calc(100% - 1px);
+  width: 100%;
+  height:120px;
+  border:1px solid var(--color-line);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: var(--color-origin-on);
+  @include scroll('y', 3px);
+  box-shadow: var(--box-shadow);
+  & > li {
+    &:first-child {
+      .optionBtn{
+        border-top:none;
+      }
+    }
+  }
+}
+
+.optionBtn {
+  display:block;
+  width: 100%;
+  height:36px;
+  padding:0 15px;
+  border-top:1px solid transparent;
+  background-color: var(--color-origin-on);
+  font-size:14px;
+  line-height:1;
+  text-align: left;
+  transition: var(--transition-color), var(--transition-bg);
+  &:focus, &:hover {
+    background-color: var(--color-point-bg);
+    color: $color-text-b;
+  }
+  &.selected{
+    background-color: var(--color-point-bg);
+    color: var(--color-point);
+  }
+  &.disabled {
+    border-color: var(--color-line);
+    background-color: $color-disabled;    
+    color:$color-sub-text-b;
+  }
+}
