@@ -167,7 +167,6 @@ text-align: ${({$align}) => $align};
   }
 }
 .modal-inner{
-  overflow:hidden;
   display:flex;
   flex-direction: column;
   position:absolute;

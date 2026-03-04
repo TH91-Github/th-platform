@@ -28,15 +28,10 @@ export const CheckBox = ({
   );
 };
 
-
 /*
-  활용
   const [checkedList, setCheckedList] = useState<string[]>([]);
-
   const allItems = ['a', 'b', 'c'];
-
   const isAllChecked = checkedList.length === allItems.length;
-
   console.log(checkedList)
   const toggleAll = () => {
     if (isAllChecked) {
@@ -53,6 +48,4 @@ export const CheckBox = ({
         : [...prev, value]
     );
   };
-
-
 */
