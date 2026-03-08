@@ -114,7 +114,7 @@ export const SignUp = ({modeChange}: SignUpPropsType) => {
           <span>"로그인하기"</span>
         </button>
       </div>
-      { isLoading && <Loading dimmed={true} mode="body"/> }
+      { isLoading && <Loading /> }
     </div>
   )
 }

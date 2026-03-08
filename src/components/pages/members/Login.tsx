@@ -263,7 +263,7 @@ export const Login = ({modeChange}:LoginPropsType) => {
           <span>"가입하기"</span>
         </button>
       </div>
-      { isLoading && <Loading dimmed={true} mode="body"/> }
+      { isLoading && <Loading /> }
       { alertMessage && (
         <Modal onClose={handlePopupClick}>
           <div className={styles.alert}>
