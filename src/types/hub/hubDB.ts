@@ -8,7 +8,6 @@ interface RoomBaseType {
   category: HubCategoryId,
   visibility: HubVisibility, // 공개, 비공개, 초대
   createdAt: number, // 생성일,
-  members:MembersType[], // 참여 유저 정보
   owner: { // 개설자 탈퇴 시 유지 - rank로 방 유지 수정
     name : string // 개설자 네임
     uid : string // 개설자 uid
@@ -20,6 +19,7 @@ interface RoomBaseType {
 */
 export interface HubRoomType extends RoomBaseType { 
   // id : rooms doc id 
+  members:MembersType[], // 참여 유저 정보
   maxMember:number, // 방 최대 인원 20 아래로
   updateAt: number, // 업데이트,
 }
@@ -62,7 +62,7 @@ export interface MemoInfoType {
 export interface MemoInfoType {
   
 }
-
+// -------------------------------------------------------------
 
 /*
   ⭐ userRooms : 로그인한 유저별 방 개설 정보
@@ -70,10 +70,18 @@ export interface MemoInfoType {
 */
 export interface UserRoomsType extends RoomBaseType{
   // id : user uid
+  role: 'owner' | 'member', // 내가 만들었는지 여부
+  memberCount: number, // 미리보기 멤버 수 
+  memberPreview: { // 미리보기 멤버 간략하게
+    uid: string
+    nickName: string
+    imgSrc?: string
+  }[]
   favorite:boolean, // 즐겨찾기 여부
 }
 
 
+// -------------------------------------------------------------
 /*
   ⭐ hubStats : 전체 통계
   📘 
@@ -95,3 +103,4 @@ export interface HubStatsType {
   },
   ym: Record<string, number>, // "2026-02" : 123
 }
+

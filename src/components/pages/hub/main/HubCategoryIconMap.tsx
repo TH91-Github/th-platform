@@ -4,7 +4,7 @@ export const HubCategoryIconMap : Record<string, React.ReactNode> = {
   // total
   totalAll: <IconPart />,
   totalSingle: <IconUser />,
-  totalMulti: <IconTogether />,
+  totalTeam: <IconTogether />,
   totalPublic: <IconUnlock />,
   totalPrivate: <IconLock />,
   // category
@@ -16,6 +16,7 @@ export const HubCategoryIconMap : Record<string, React.ReactNode> = {
   categoryRunning: <IconRunning />,
   // book
   bookmarkAll: <IconBookmark />,
-  bookmarkCategory: <IconComponents />, 
+  bookmarkNon: <IconComponents />, 
   bookmarkPublic:<IconKey />,
+  bookmarkPrivate:<IconKey />,
 }

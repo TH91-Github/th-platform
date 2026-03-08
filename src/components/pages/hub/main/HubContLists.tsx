@@ -1,11 +1,11 @@
-import { hubCategoryData, hubTable } from '@/data/hub/hubData'
-import styles from './HubContLists.module.scss'
-import { useAuthUser } from '@/hook/auth/useAuthUser';
-import { nonUserRoomsData } from '@/data/hub/nonMember';
-import { useNavigate } from 'react-router-dom';
-import { dateFormat } from '@/utils/date/dateFormat';
-import { Members } from './members/Members';
 import { IconOpenView } from '@/assets/icon';
+import { Members } from '@/components/pages/hub/members/Members';
+import { hubCategoryData, hubTable } from '@/data/hub/hubData';
+import { nonUserRoomsData } from '@/data/hub/nonMember';
+import { useAuthUser } from '@/hook/auth/useAuthUser';
+import { dateFormat } from '@/utils/date/dateFormat';
+import { useNavigate } from 'react-router-dom';
+import styles from './HubContLists.module.scss';
 
 // 🔹 방 목록 
 export const HubContLists = () => {

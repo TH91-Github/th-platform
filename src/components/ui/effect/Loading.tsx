@@ -9,8 +9,8 @@ interface LoadingAnimationType {
   text?: string;
 }
 export const Loading = ({
-  dimmed = false, 
-  mode = 'local',
+  dimmed = true, 
+  mode = 'body',
   text = 'Loading...'
  }:LoadingAnimationType) => {
 
