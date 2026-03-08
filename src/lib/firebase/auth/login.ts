@@ -1,4 +1,6 @@
+import { fetchUser } from '@/api/auth/user';
 import { auth, fireDB } from '@/firebase';
+import { queryClient } from '@/lib/query/queryClient';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
@@ -32,6 +34,9 @@ export const fireBaseLogin = async ({ loginId, password }: FireBaseLoginType) =>
   await updateDoc(userRef, {
     lastLoginTime: Date.now()
   });
+  
+  const userData = await fetchUser(uid);
+  queryClient.setQueryData(['user', uid], userData);
 
   return userCredential.user;
 };

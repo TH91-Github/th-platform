@@ -93,20 +93,25 @@ export const hubTotalData : HubTotalType[] = [
         total:0,
       },
       {
-        id:'category',
-        title:'카테고리별 즐겨찾기',
-        desc:'즐겨찾기 여행 즐겨찾기 방 수4',
+        id:'non',
+        title:'즐겨찾지 않는 방',
+        desc:'즐겨찾기 등록이 안 된 방을 확인할 수 있어요.',
         total:0,
       },
       {
         id:'public',
-        title:'공개/비공개 즐겨찾기',
+        title:'공개 즐겨찾기',
+        desc:'즐겨찾기 러닝 즐겨찾기 방 수3',
+        total:0,
+      },
+      {
+        id:'private',
+        title:'비공개 즐겨찾기',
         desc:'즐겨찾기 러닝 즐겨찾기 방 수3',
         total:0,
       },
     ]
   },
-  
 ];
 
 // 목록

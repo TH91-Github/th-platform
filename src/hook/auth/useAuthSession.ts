@@ -1,4 +1,5 @@
 import { auth } from '@/firebase';
+import { queryClient } from '@/lib/query/queryClient';
 import { actionUserLogin, actionUserLogout } from '@/store/redux/sliceActions';
 import { useAddToast } from '@/store/zustand/common/toastStore';
 import { clearSession, isSessionValid, refreshSession, saveSession, SESSION_KEY } from '@/utils/auth/session';
@@ -15,6 +16,10 @@ export const useAuthSession = () => {
     try {
       dispatch(actionUserLogout());
       clearSession();
+      queryClient.removeQueries({
+        queryKey: ['user'],
+      });
+
       await signOut(auth);
 
       if (isSessionExpired) {

@@ -20,7 +20,7 @@ export interface AuthUserType {
 }
 
 export interface AuthStateType {
-  user: null | AuthUserType;
-  loginTime: number;
-  isAuthReady: boolean;
+  user: null | AuthUserType,
+  loginTime: number,
+  isAuthReady: boolean,
 }

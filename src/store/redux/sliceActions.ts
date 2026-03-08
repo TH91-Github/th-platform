@@ -17,7 +17,7 @@ export const testSlice = createSlice({
 })
 
 // 📍 Login user 정보 
-const initialState: AuthStateType = {
+const initialAuthState: AuthStateType = {
   user: null,
   loginTime: 0,
   isAuthReady:false,
@@ -25,7 +25,7 @@ const initialState: AuthStateType = {
 
 export const authSlice = createSlice({
   name: "auth",
-  initialState,
+  initialState: initialAuthState,
   reducers: {
     // 구글 신규 가입 시 바로 로그아웃 되는 문제 보안 
     actionUserLogin(

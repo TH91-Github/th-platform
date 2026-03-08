@@ -6,7 +6,9 @@ export const useUserQuery = (uid?: string) => {
   return useQuery({
     queryKey: ['user', uid],
     queryFn: () => fetchUser(uid!),
-    enabled: !!uid, // uid 있을 때만 실행
-    staleTime: 1000 * 60 * 5,
+    enabled: !!uid,
+    staleTime: Infinity,
+    gcTime: Infinity,
+    retry: false,
   });
 };
