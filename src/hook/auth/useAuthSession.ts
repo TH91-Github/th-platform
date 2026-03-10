@@ -14,12 +14,10 @@ export const useAuthSession = () => {
 
   const handleLogout = useCallback(async (isSessionExpired = false) => {
     try {
+      // ✅ 로그아웃 시 데이터 및 캐싱 여기서 초기화
       dispatch(actionUserLogout());
       clearSession();
-      queryClient.removeQueries({
-        queryKey: ['user'],
-      });
-
+      queryClient.clear();
       await signOut(auth);
 
       if (isSessionExpired) {

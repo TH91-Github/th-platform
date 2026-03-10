@@ -2,9 +2,6 @@ import { IconLogin, IconLogout } from '@/assets/icon';
 import { auth } from '@/firebase';
 import { useAuthUser } from '@/hook/auth/useAuthUser';
 import { useCloseAniToggle } from '@/hook/common/useCloseAniToggle';
-import { useAppDispatch } from '@/hook/store/useRedux';
-import { actionUserLogout } from '@/store/redux/sliceActions';
-import { clearSession } from '@/utils/auth/session';
 import { cn } from '@/utils/common';
 import { signOut } from 'firebase/auth';
 import { memo, useCallback } from 'react';
@@ -14,7 +11,6 @@ import styles from './LoginBtn.module.scss';
 // 로그인 이동, 로그아웃, 마이페이지 이동
 export const LoginBtn = memo(() => {
   const { data: user } = useAuthUser();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isRender, isOpen, isClosing, toggle, close, containerRef } = useCloseAniToggle();
 
@@ -24,13 +20,11 @@ export const LoginBtn = memo(() => {
 
   const handleLogout = useCallback(async () => {
     if (user) {
-      dispatch(actionUserLogout());
       await signOut(auth);
-      clearSession();
       close();
       navigate('/');
     }
-  }, [user, dispatch, close]);
+  }, [user, close]);
 
   const handleMyPage = useCallback(() => {
     close();

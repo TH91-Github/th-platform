@@ -3,18 +3,14 @@ import { Modal } from "@/components/element/modal/Modal";
 import { IconMatch } from "@/components/ui/icon/IconMatch";
 import { InnerHTML } from "@/components/ui/text/InnerHTML";
 import { auth } from "@/firebase";
-import { useAppDispatch } from "@/hook/store/useRedux";
-import { actionUserLogout } from "@/store/redux/sliceActions";
-import { clearSession } from "@/utils/auth/session";
+import { useAuthAction } from "@/hook/auth/useAuthAction";
 import { cn } from "@/utils/common";
 import { signOut } from "firebase/auth";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from './MyPageDetail.module.scss';
-import { useAuthAction } from "@/hook/auth/useAuthAction";
 
 export const AccountMenu = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { removeAccount } = useAuthAction();
   const [alertMessage, setAlertMessage] = useState<{
@@ -24,9 +20,7 @@ export const AccountMenu = () => {
     } | null>(null);
 
   const userReset = async () => {
-    dispatch(actionUserLogout());
     await signOut(auth);
-    clearSession();
     navigate('/')
   }
   const handleLogout = () => {
@@ -34,7 +28,6 @@ export const AccountMenu = () => {
       type: 'logout',
       tit: `로그아웃 할까요?`,
     });
-    // 
   }
   const handleRemove = () => {
     setAlertMessage({
