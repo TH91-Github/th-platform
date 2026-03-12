@@ -1,9 +1,11 @@
 .guideLayout {
   overflow:hidden;
   position:relative;
+  z-index:2;
   width:100%;
   max-width: $bp-max-pc;
   height: var(--min-h);
+  background-color: $color-white;
 }
 .inner{
   position:relative;
@@ -135,5 +137,10 @@
       }
     }
   }
-  
+}
+
+[data-theme='dark'] {
+  .guideLayout {
+    background-color:transparent;
+  }
 }

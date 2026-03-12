@@ -2,8 +2,10 @@ import { memo, useEffect, useRef } from 'react';
 import type { AccdionItemTitlePropsType } from './Accordion';
 import styles from './AccordionItem.module.scss';
 import { cn } from '@/utils/common';
+import { ArrowOpen } from '@/components/common/ui/ArrowOpen';
 
 // 🔹 아코디언 개별 Item
+// 🔺 개선 필요한 컴포넌트 
 interface AccordionItemPropsType {
   heading: AccdionItemTitlePropsType; // acc tit (버튼 or span)
   content?: React.ReactNode;  // 하위 목록이 있는경우 
@@ -140,7 +142,7 @@ const AccordionItem = ({
             >
               {jsx ? jsx : btnTit}
               <span className="blind">{isActive ? '닫기' : '열기'}</span>
-              <span className={styles.arrowIcon}></span>
+              <ArrowOpen open={isActive} />
             </button>
 
           </div>

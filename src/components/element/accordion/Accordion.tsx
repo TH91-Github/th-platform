@@ -3,7 +3,9 @@ import styles from './Accordion.module.scss';
 import { cn } from '@/utils/common';
 import { MemoAccordionItem } from './AccordionItem';
 import { IconFolderEmpty } from '@/assets/icon';
+
 // 🔹 아코디언 메뉴
+// 🔺 개선 필요한 컴포넌트 
 export interface AccdionItemTitlePropsType {
   btnTit: string;
   jsx?: React.ReactNode; // jsx - 있는경우 btnTit 대신 html 구조 사용
