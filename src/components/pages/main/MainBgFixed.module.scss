@@ -1,0 +1,59 @@
+.fixedBg{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100svh;
+  &::before, &::after{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    opacity: 0;
+    filter: blur(40px);
+    transform: translateX(-50%);
+    pointer-events: none;
+    content: '';
+  }
+  &::before {
+    // ellipse at center 타원형 그라데이션
+    // transparent 70% 투명
+    background: radial-gradient(
+      ellipse at center,
+      rgba(165, 32, 154, 0.4) 0%,
+      rgba(109, 35, 98, 0.3) 30%,
+      transparent 70%
+    );
+    animation: dropLight 15s 7s ease-in-out infinite;
+  }
+  &::after {
+    width: 70%;
+    height: 70%;
+    background: linear-gradient(
+      180deg,
+      rgba(139, 1, 167, 0.4) 0%,
+      rgba(5, 86, 139, 0.3) 40%,
+      rgba(0, 153, 255, 0) 100%
+    );
+    box-shadow: 0 0 50px rgba(0, 153, 255, 0.1);
+    border-radius: 50%;
+    animation: dropLight 15s ease-in-out infinite;
+  }
+}
+@keyframes dropLight {
+  0% {
+    transform: translate(-50%, -510px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.7;
+  }
+  60% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(-50%, calc(100svh - var(--header-h)));
+    opacity: 0;
+  }
+}
