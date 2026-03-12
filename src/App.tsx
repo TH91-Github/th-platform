@@ -7,9 +7,9 @@ function App() {
   return (
     <div className={css.app}>
       <HeaderLayout />
-      <div className={css.contents}>
+      <main className={css.contents}>
         <Outlet />
-      </div>
+      </main>
       <RootLayout />
     </div>
   )

@@ -13,7 +13,8 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@gsap/react": "^2.1.2",
-    "@reduxjs/toolkit": "^2.11.2",
+    "@reduxjs/toolkit": "^2.11.0",
+    "@studio-freight/lenis": "^1.0.42",
     "@tanstack/react-query": "^5.90.20",
     "@tanstack/react-query-devtools": "^5.91.3",
     "dompurify": "^3.3.0",
@@ -25,7 +26,7 @@
     "react-icons": "^5.5.0",
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.9.6",
-    "swiper": "^12.0.3",
+    "swiper": "^12.1.2",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
@@ -34,7 +35,6 @@
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
     "@vitejs/plugin-react": "^5.1.0",
-    "baseline-browser-mapping": "^2.9.19",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",

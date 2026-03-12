@@ -9,6 +9,17 @@ import { reduxStore } from './store/redux/store.ts'
 import '@/assets/style/common/common.scss'
 import '@/assets/style/common/index.scss'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { initSmoothScroll } from './lib/scroll/smoothScroll.ts'
+import { initScrollTrigger, refreshScroll } from './lib/scroll/scrollTrigger.ts'
+
+// srcoll
+initScrollTrigger();
+initSmoothScroll();
+router.subscribe(() => {
+  requestAnimationFrame(() => {
+    refreshScroll()
+  })
+})
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
