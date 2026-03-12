@@ -44,7 +44,6 @@
   background-color:#fff;
   box-shadow: var(--box-shadow);
   background-color:var(--color-origin-on);
-  transform:0;
   // transition: var(--transition-opacity), var(--transition-transform);
   .title{
     padding-right:30px;
@@ -52,7 +51,7 @@
   }
   .totalNum{
     display:flex;
-    padding-left:20px;
+    padding-left:10px;
     align-items: center;
     gap:20px;
     i {

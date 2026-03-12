@@ -1,74 +1,63 @@
 import type { UserRoomStats } from "@/types/hub/firebase";
 import type { HubTotalType } from "@/types/hub/hub";
+import type { HubStatsType } from "@/types/hub/hubDB";
 
 // 🔹 기본 데이터 + DB(개인별 방 통계) 머지
 export const userTotalMerge = (
-  base: HubTotalType[],
-  stats?: UserRoomStats | null
+  baseData: HubTotalType[],
+  statsData?: HubStatsType | null
 ): HubTotalType[] => {
 
-  if (!stats) return base;
-  return base.map((section) => {
-    // 전체 
-    if (section.totalCategory === "total") {
+  if (!statsData) return baseData;
+
+  return baseData.map(section => ({
+    ...section,
+    totalLists: section.totalLists.map(item => {
+
+      let total = 0;
+
+      if (section.totalCategory === "total") {
+        switch (item.id) {
+          case "all":
+            total = statsData.totalCount;
+            break;
+          case "single":
+            total = statsData.mode.single;
+            break;
+          case "team":
+            total = statsData.mode.team;
+            break;
+          case "public":
+            total = statsData.visibility.public;
+            break;
+          case "private":
+            total = statsData.visibility.private;
+            break;
+        }
+      }
+
+      if (section.totalCategory === "category") {
+        total =
+          statsData.category[
+            item.id as keyof HubStatsType["category"]
+          ] ?? 0;
+      }
+
+      if (section.totalCategory === "bookmark") {
+        if (item.id === "all") {
+          total = statsData.bookmark.total;
+        } else {
+          total =
+            statsData.bookmark[
+              item.id as keyof HubStatsType["bookmark"]
+            ] ?? 0;
+        }
+      }
+
       return {
-        ...section,
-        totalLists: section.totalLists.map((item) => {
-
-          switch (item.id) {
-            case "all":
-              return { ...item, total: stats.total ?? 0};
-
-            case "single":
-              return { ...item, total: stats.single ?? 0 };
-
-            case "team":
-              return { ...item, total: stats.team ?? 0 };
-
-            case "public":
-              return { ...item, total: stats.public ?? 0};
-
-            case "private":
-              return { ...item, total: stats.private ?? 0 };
-
-            default:
-              return item;
-          }
-        }),
+        ...item,
+        total
       };
-    }
-    // 카테고리
-    if (section.totalCategory === "category") {
-      return {
-        ...section,
-        totalLists: section.totalLists.map((item) => ({
-          ...item,
-          total: stats.category?.[item.id as keyof typeof stats.category] ?? 0,
-        })),
-      };
-    }
-    // 즐겨찾기
-    if (section.totalCategory === "bookmark") {
-      return {
-        ...section,
-        totalLists: section.totalLists.map((item) => {
-
-          switch (item.id) {
-            case "all":
-              return { ...item, total: stats.bookmark?.total ?? 0 };
-
-            case "public":
-              return { ...item, total: stats.bookmark?.public ?? 0 };
-
-            case "private":
-              return { ...item, total: stats.bookmark?.private ?? 0 };
-
-            default:
-              return item;
-          }
-        }),
-      };
-    }
-    return section;
-  });
+    })
+  }));
 };

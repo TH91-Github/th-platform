@@ -1,8 +1,7 @@
-import { doc, increment } from 'firebase/firestore';
-import { Firestore, Transaction } from 'firebase/firestore';
-import type { HubRoomType } from '@/types/hub/hubDB';
-import type { UserRoomsType } from '@/types/hub/hubDB';
+import { fireDB } from '@/firebase';
+import type { HubRoomType, UserRoomsType } from '@/types/hub/firebase';
 import { isColName } from '@/utils/hun/common';
+import { collection, doc, Firestore, getDocs, increment, limit, orderBy, query, QueryConstraint, QueryDocumentSnapshot, startAfter, Transaction, type DocumentData } from 'firebase/firestore';
 
 // 🔹 방 생성 시 유저 관련 필드 & 컬렉션
 export const addUserRoom = (
@@ -32,88 +31,56 @@ export const addUserRoom = (
     owner: room.owner,
     role: 'owner', // 내가 만든 방
     favorite: false,
-    memberCount: room.members.length, // 4명 정도만 간략하게
+    memberCount: 4, // 4명 정도만 간략하게
     memberPreview // 불러오는 4명 [{...}]
   };
 
+  const now = Date.now();
+  const ymKey = new Date(now).toISOString().slice(0, 7); // "2026-03"
   const modeKey = room.members.length > 1 ? "team" : "single";
 
-  // 방 요약 저장
+  // 📘 userRooms/{uid}/필드 값 해당 유저 전체 통계
   tx.set(roomRef, userRoomData);
-  // stats 증가
   tx.set(
     userRef,
     {
-      stats: {
-        total: increment(1),
-        [room.visibility]: increment(1),
-        [modeKey]: increment(1),
-        [`category.${room.category}`]: increment(1),
-      },
+      "stats.total": increment(1),
+      [`stats.visibility.${room.visibility}`]: increment(1),
+      [`stats.category.${room.category}`]: increment(1),
+      [`stats.mode.${modeKey}`]: increment(1),
+      [`stats.ym.${ymKey}`]: increment(1),
+      // 즐겨찾기
+      "stats.bookmark.total": 0,
+      "stats.bookmark.public": 0,
+      "stats.bookmark.private": 0,
     },
     { merge: true }
   );
+
+  // UserRoomStats
 };
 
-
-// 🔺 삭제 진행 시 확인 필요 유저 개별 방 삭제
-export const removeUserRoom = (
-  tx: Transaction,
-  db: Firestore,
-  room: UserRoomsType,
+// 🔹 유저가 만든 방 정보 가져오기
+export const getUserRooms = async (
   uid: string,
-  isGuest: boolean
-) => {
+  colName: string,
+  lastDoc: QueryDocumentSnapshot<DocumentData> | null = null,
+  limitNum: number = 10
+): Promise<{ rooms: UserRoomsType[]; lastDoc: QueryDocumentSnapshot<DocumentData> | null }> => {
+  
+  const roomsRef = collection(fireDB, colName, uid, "rooms");
 
-  const collection = isColName(isGuest,'userRooms');
-  const userRef = doc(db, `${collection}/${uid}`);
-  const roomRef = doc(db, `${collection}/${uid}/rooms/${room.id}`);
-  const modeKey = room.memberCount > 1 ? "team" : "single";
+  const constraints: QueryConstraint[] = [
+    orderBy("createdAt", "desc"),
+    orderBy("__name__", "desc"), // 2차 정렬 순 __name__ : Doc Id 기준 정렬
+    ...(lastDoc ? [startAfter(lastDoc)] : []),
+    limit(limitNum),
+  ];
 
-  tx.delete(roomRef);
-  tx.set(
-    userRef,
-    {
-      stats: {
-        total: increment(-1),
-        [room.visibility]: increment(-1),
-        [modeKey]: increment(-1),
-        [`category.${room.category}`]: increment(-1),
-      },
-    },
-    { merge: true }
-  );
-};
+  const snap = await getDocs(query(roomsRef, ...constraints));
 
-// 🔺 즐겨찾기 작업 시 재확인 및 수정 필요
-export const toggleUserRoomFavorite = (
-  tx: Transaction,
-  db: Firestore,
-  room: UserRoomsType,
-  uid: string,
-  isGuest: boolean
-) => {
-
-  const collection = isColName(isGuest,'userRooms');
-  const roomRef = doc(db, `${collection}/${uid}/rooms/${room.id}`);
-  const userRef = doc(db, `${collection}/${uid}`);
-  const nextFavorite = !room.favorite;
-  const inc = nextFavorite ? 1 : -1;
-
-  tx.update(roomRef, {
-    favorite: nextFavorite,
-  });
-
-  tx.set(
-    userRef,
-    {
-      stats: {
-        bookmark: {
-          total: increment(inc),
-          [room.visibility]: increment(inc),
-        },
-      },
-    },
-    { merge: true }
-  );
+  return {
+    rooms: snap.docs.map(doc => ({ id: doc.id, ...doc.data() } as UserRoomsType)), // ✅
+    lastDoc: snap.docs.at(-1) ?? null,
+  };
 };

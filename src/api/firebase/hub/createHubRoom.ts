@@ -1,12 +1,26 @@
+import { collection, doc, runTransaction, increment } from 'firebase/firestore';
 import { fireDB } from '@/firebase';
-import type { CreateHubRoomPayload } from '@/types/hub/firebase';
-import type { HubRoomType } from '@/types/hub/hubDB';
-import { isColName } from '@/utils/hun/common';
-import { collection, doc, increment, runTransaction } from 'firebase/firestore';
 import { initCashledgerSummary } from './categoryIni';
 import { addUserRoom } from './userRooms';
+import { isColName } from '@/utils/hun/common';
+import type { HubRoomType } from '@/types/hub/firebase';
+import type { HubCategoryId, HubVisibility } from '@/types/hub/hub';
 
 // 🔹 hub 방 생성 
+interface CreateHubRoomPayload {
+  title: string;
+  desc: string;
+  category: HubCategoryId;
+  visibility: HubVisibility;
+  maxMember: number;
+  owner: {
+    uid: string;
+    name: string;
+    email?: string;
+    imgSrc?: string;
+  };
+}
+
 export const createHubRoom = async (
   payload: CreateHubRoomPayload,
   isGuest: boolean
@@ -32,8 +46,8 @@ export const createHubRoom = async (
       category: payload.category,
       visibility: payload.visibility,
       createdAt: now,
-      updateAt: now,
       maxMember: payload.maxMember,
+      updateAt: now,
       owner: {
         uid: payload.owner.uid,
         name: payload.owner.name,
@@ -68,11 +82,11 @@ export const createHubRoom = async (
     tx.set(
       statsRef,
       {
-        totalCount: increment(1),
-        [payload.visibility]: increment(1),
-        [`category.${payload.category}`]: increment(1),
-        [`mode.${modeKey}`]: increment(1),
-        [`ym.${ymKey}`]: increment(1),
+        "stats.total": increment(1),
+        [`stats.visibility.${payload.visibility}`]: increment(1),
+        [`stats.category.${payload.category}`]: increment(1),
+        [`stats.mode.${modeKey}`]: increment(1),
+        [`stats.ym.${ymKey}`]: increment(1),
       },
       { merge: true }
     );

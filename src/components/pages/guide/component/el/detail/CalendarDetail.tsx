@@ -1,13 +1,10 @@
-import { Btn } from "@/components/element/button/Btn";
+import { Calendar } from "@/components/element/calendar/Calendar";
 import { CodeHljs } from "@/components/element/highlight/CodeHljs";
-import { Modal } from "@/components/element/modal/Modal";
 import { TitlePoint } from "@/components/ui/text/TitlePoint";
+import type { DemoItemType } from "@/types/guide";
 import { cn } from "@/utils/common";
 import { partialUndisclosed, stripIndent } from "@/utils/textUtils";
-import { useState } from "react";
 import styles from '../../Detail.module.scss';
-import { Calendar } from "@/components/element/calendar/Calendar";
-import type { DemoItemType } from "@/types/guide";
 
 // 🔹 CalendarDetail 컴포넌트 설명
 
@@ -73,7 +70,6 @@ export const CalendarDetail = () => {
           $fontSize={20}
           className={styles.tit}
         />
-        <p> {partialUndisclosed("abc",3)}</p>
         <p className={styles.desc}>달력(일정) 컴포넌트, Week, DateGrid 컴포넌트 분리</p>
         <p className={styles.desc}>단순 달력 표시 및 일정 선택, 일정 표시, 공휴일 체크</p>
         <p className={styles.desc}>공휴일, 이벤트 일정, 단일 선택, 기간 선택, 읽기 전용 옵션</p>

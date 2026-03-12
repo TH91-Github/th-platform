@@ -7,7 +7,7 @@ import { CashledgerTotal } from '@/components/pages/hub/cashledger/CashledgerTot
 export const RoomCashledgerPage = () =>{ 
 
   // 방 id가 포함된 url로 접근 시 로그인 체크
-  // 공개/비공개 분류
+  // 통합, 리스트 스토어로 관리 이전, 다음, 글 목록 확인하기 위함
 
   return(
    <div className={styles.cashledger}>

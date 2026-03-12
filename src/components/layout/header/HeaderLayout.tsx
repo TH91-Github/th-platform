@@ -5,7 +5,6 @@ import { useHeaderMenu } from '@/hook/layout/useHeaderMenu';
 import { useHeaderScrollState } from '@/hook/layout/useHeaderScrollState';
 import { useIsMobile } from '@/store/zustand/common/commonStore';
 import { cn } from '@/utils/common';
-import { memo } from 'react';
 import { useLocation } from 'react-router-dom';
 import { GnbMenu } from './gnbMenu/GnbMenu';
 import styles from './HeaderLayout.module.scss';

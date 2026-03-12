@@ -9,7 +9,7 @@ export const useGoogleLogin = () => {
     mutationFn: fireBaseGoogleLogin,
     onSuccess: (user) => {
       queryClient.invalidateQueries({
-        queryKey: ['user', user.uid],
+        queryKey: ['user', user.uid, 'userDB'],
       });
     },
   });

@@ -1,18 +1,18 @@
+.contLists{
+  width: 100%;
+}
 $grid-columns: 100px 1fr 100px 100px 100px;
-
 .table {
   display: grid;
   grid-template-columns: $grid-columns;
   width: 100%;
 }
-
 .row {
   display: contents; 
   &:first-child > .cell {
     border-top: 0;
   }
 }
-
 .cell {
   display: flex;
   align-items: center;
@@ -31,7 +31,6 @@ $grid-columns: 100px 1fr 100px 100px 100px;
     padding: 5px 10px;
   }
 }
-
 .thead {
   display: contents;
   .row {
@@ -52,7 +51,6 @@ $grid-columns: 100px 1fr 100px 100px 100px;
     }
   }
 }
-
 .tbody {
   display: contents;
   .cell {
@@ -72,7 +70,6 @@ $grid-columns: 100px 1fr 100px 100px 100px;
     }
   }
 }
-
 .roomBtn{
   overflow:hidden;
   position:relative;

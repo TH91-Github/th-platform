@@ -5,16 +5,17 @@ import { CheckBox } from '@/components/element/form/checkbox/CheckBox';
 import { Input, type InputRefType } from '@/components/element/form/input/Input';
 import { SelectBox } from '@/components/element/form/select/SelectBox';
 import { Modal } from '@/components/element/modal/Modal';
+import { Loading } from '@/components/ui/effect/Loading';
 import { TitlePoint } from '@/components/ui/text/TitlePoint';
 import { useAuthUser } from '@/hook/auth/useAuthUser';
 import { useToggle } from '@/hook/common/useToggle';
+import { queryClient } from '@/lib/query/queryClient';
+import { useAddToast } from '@/store/zustand/common/toastStore';
 import type { HubCategoryId, HubVisibility } from '@/types/hub/hub';
 import { cn } from '@/utils/common';
+import { getHubUid, isColName } from '@/utils/hun/common';
 import { useRef, useState } from 'react';
 import styles from './HubCreate.module.scss';
-import { Loading } from '@/components/ui/effect/Loading';
-import { useAddToast } from '@/store/zustand/common/toastStore';
-import { getHubUid } from '@/utils/hun/common';
 
 //🔹 방만들기 폼
 interface HubCreatePropsType {
@@ -72,27 +73,29 @@ export const HubCreate = ({ title, className }: HubCreatePropsType) => {
       uid: getHubUid(user),
       name: user?.nickName ?? '테스트',
       email: user?.email ?? 'TestUser@gmail.com',
-      imgSrc: '',
+      imgSrc: '#E1D9BC',
     }
 
     try {
       setIsLoading(true);
       const isGuest = !user; // 비회원인경우
+      const roomId = await createHubRoom({
+        title: titleVal.trim(),
+        desc: descVal.trim(),
+        category,
+        visibility,
+        maxMember,
+        owner,
+      }, isGuest );
 
-      const roomId = await createHubRoom(
-        {
-          title: titleVal.trim(),
-          desc: descVal.trim(),
-          category,
-          visibility,
-          maxMember,
-          owner,
-        },
-        isGuest
-      );
       console.log('Room Code', roomId);
       resetForm();
       addToast('방 생성 완료! 🥳👏','success');
+
+      // 리스트 다시 불러오기
+      const colName = isColName(isGuest, 'userRooms');
+      queryClient.invalidateQueries({ queryKey: ['user', owner.uid, colName] });
+
     } catch (err) {
       resetForm();
       addToast('❌ 방 생성 실패...','error');

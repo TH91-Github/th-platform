@@ -8,7 +8,7 @@ export const hubCategoryData: HubCategoryDataType[] = [
   {id:'cashledger', title:'가계부'},
   {id:'running', title:'러닝'},
 ]
-// 🔹 hub 카테고리 total default
+// 🔹 hub 카테고리 유저 total default
 export const hubTotalData : HubTotalType[] = [
   {
     totalTitle:'전체',
