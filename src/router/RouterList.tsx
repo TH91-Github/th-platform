@@ -36,6 +36,7 @@ export const routerList = [
     handle: {
       title: 'Notice',
     },
+    hideNav: true,
   },
   {
     id: 'hub',
