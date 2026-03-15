@@ -5,9 +5,9 @@ import styles from './MainVisual.module.scss';
 
 const APP_TITLE = import.meta.env.VITE_APP_TITLE;
 const MAIN_SUB_TEXT = [
-  ['Customer Satisfaction','Communication','Contact Us'],
-  ['Teamwork Spirit','FE/BE','서울시 강남구 학동로3길 10'],
-  ['Professional Mind','Design','T 02-2017-2501'],
+  ['Platform Hub','Components','Cashledger'],
+  ['Dev Guide','Hooks / Utils','Travel'],
+  ['Record System','Design','Running'],
 ]
 export const MainVisual = () => {
   return (
