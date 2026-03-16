@@ -131,7 +131,7 @@ export const HubCreate = ({ title, className }: HubCreatePropsType) => {
 
       {/* 개발 전 단계 로컬 외 막기 */}
       {testModal && (
-        <Modal onClose={handleTestModalClose}>
+        <Modal onClose={handleTestModalClose} isDimmed={false}>
           <div>
             ❌ 개발 진행 중으로 <br />
             방 생성을 진행할 수 없어요.. 😢
@@ -143,6 +143,7 @@ export const HubCreate = ({ title, className }: HubCreatePropsType) => {
         <Modal
           $width={450}
           $align="left"
+          isUnder={testModal}
           onClose={() => {
             if (!isLoading) setIsModal.off();
           }}
