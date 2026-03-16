@@ -51,6 +51,12 @@ export const hubTotalData : HubTotalType[] = [
     totalCategory:'category',
     totalLists:[
       {
+        id:'cashledger',
+        title:'가계부',
+        desc:'지출, 수입, 투자 등 꼼꼼하게 기록하고 확인하세요.',
+        total:0,
+      },
+      {
         id:'travel',
         title:'여행',
         desc:'가족, 친구들과 여행 일정, 정산 등 확인하고 초대해보세요.',
@@ -66,12 +72,6 @@ export const hubTotalData : HubTotalType[] = [
         id:'memo',
         title:'메모',
         desc:'메모, 체크리스트 등을 기록하고 사용하세요.',
-        total:0,
-      },
-      {
-        id:'cashledger',
-        title:'가계부',
-        desc:'지출, 수입, 투자 등 꼼꼼하게 기록하고 확인하세요.',
         total:0,
       },
       {
@@ -94,7 +94,7 @@ export const hubTotalData : HubTotalType[] = [
       },
       {
         id:'non',
-        title:'즐겨찾지 않는 방',
+        title:'미등록 방',
         desc:'즐겨찾기 등록이 안 된 방을 확인할 수 있어요.',
         total:0,
       },

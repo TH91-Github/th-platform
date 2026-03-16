@@ -1,105 +1,41 @@
+import { hubTotalData } from "@/data/hub/hubData";
+import { fireDB } from "@/firebase";
+import { actionClearHubState, actionHubStateUpdate } from "@/store/redux/hubSlice";
+import type { AppDispatch, RootState } from "@/store/redux/store";
+import type { UserRoomStats } from "@/types/hub/firebase";
+import { unflatten } from "@/utils/firebaseStore";
+import { isColName } from "@/utils/hun/common";
+import { userTotalMerge, defaultStats, mergeUserStats } from "@/utils/hun/hubStats";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { fireDB } from "@/firebase";
-import type { UserRoomStats } from "@/types/hub/firebase";
-import { isColName } from "@/utils/hun/common";
-import { userKeys } from "@/queryKeys/userKeys";
+import { useDispatch, useSelector } from "react-redux";
 
+// 🔹 user stats
 export const useUserHubStats = (uid?: string, isGuest = false) => {
-  const queryClient = useQueryClient();
-
+  const dispatch = useDispatch<AppDispatch>();
   const colName = isColName(isGuest, "userRooms");
-
-  const query = useQuery({
-    queryKey: userKeys.stats(uid!),
-    queryFn: () => defaultStats,
-    enabled: !!uid,
-    staleTime: Infinity,
-  });
+  const defaultTotalData = userTotalMerge(hubTotalData, defaultStats);
 
   useEffect(() => {
-    if (!uid) return;
-
+    if (!uid) {
+      dispatch(actionClearHubState()); // total 초기화 
+      return;
+    }
     const ref = doc(fireDB, colName, uid);
-
     const unsub = onSnapshot(ref, (snap) => {
       if (!snap.exists()) {
-        queryClient.setQueryData(userKeys.stats(uid), defaultStats);
-        return;
+        dispatch(actionHubStateUpdate(defaultTotalData)); // 기본 값 
+      } else {
+        const data = snap.data();
+        const stats = unflatten<UserRoomStats>(data, "stats."); // .(dot 구조 변환)
+        const nextStats = mergeUserStats(defaultStats, stats); // 초깃값 객체 total 합산
+        // 기본 + db merge
+        const mergeData = userTotalMerge(hubTotalData, nextStats);
+        dispatch(actionHubStateUpdate(mergeData));
       }
-
-      const data = snap.data();
-      const stats = (data?.stats ?? {}) as Partial<UserRoomStats>;
-
-      const nextStats: UserRoomStats = {
-        ...defaultStats,
-        ...stats,
-
-        visibility: {
-          ...defaultStats.visibility,
-          ...stats.visibility,
-        },
-
-        category: {
-          ...defaultStats.category,
-          ...stats.category,
-        },
-
-        mode: {
-          ...defaultStats.mode,
-          ...stats.mode,
-        },
-
-        bookmark: {
-          ...defaultStats.bookmark,
-          ...stats.bookmark,
-        },
-
-        ym: {
-          ...defaultStats.ym,
-          ...stats.ym,
-        },
-      };
-
-      queryClient.setQueryData(userKeys.stats(uid), nextStats);
     });
-
     return () => unsub();
-  }, [uid, colName, queryClient]);
+  }, [uid, colName]);
 
-  return {
-    statsData: query.data,
-    isLoading: query.isLoading,
-  };
-};
-
-const defaultStats: UserRoomStats = {
-  total: 0,
-
-  visibility: {
-    public: 0,
-    private: 0,
-  },
-
-  category: {
-    travel: 0,
-    memo: 0,
-    calendar: 0,
-    cashledger: 0,
-    running: 0,
-  },
-
-  mode: {
-    single: 0,
-    team: 0,
-  },
-
-  bookmark: {
-    total: 0,
-    public: 0,
-    private: 0,
-  },
-
-  ym: {},
+  return useSelector((state: RootState) => state.hub);
 };

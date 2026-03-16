@@ -13,34 +13,11 @@ export const addUserRoom = (
   const collection = isColName(isGuest,'userRooms');
   const uid = room.owner.uid;
   const userRef = doc(db, `${collection}/${uid}`);
-  const roomRef = doc(db, `${collection}/${uid}/rooms/${room.id}`);
-  const memberPreview = room.members.slice(0, 4).map((member) => ({
-    uid: member.uid,
-    nickName: member.nickName,
-    imgSrc: member.imgSrc,
-  }));
-
-  // 방 개별 요약 정보 
-  const userRoomData: UserRoomsType = {
-    id: room.id,
-    title: room.title,
-    desc: room.desc,
-    category: room.category,
-    visibility: room.visibility,
-    createdAt: room.createdAt,
-    owner: room.owner,
-    role: 'owner', // 내가 만든 방
-    favorite: false,
-    memberCount: 4, // 4명 정도만 간략하게
-    memberPreview // 불러오는 4명 [{...}]
-  };
-
   const now = Date.now();
   const ymKey = new Date(now).toISOString().slice(0, 7); // "2026-03"
-  const modeKey = room.members.length > 1 ? "team" : "single";
+  const modeKey = room.maxMember > 1 ? "team" : "single";
 
   // 📘 userRooms/{uid}/필드 값 해당 유저 전체 통계
-  tx.set(roomRef, userRoomData);
   tx.set(
     userRef,
     {
@@ -57,6 +34,29 @@ export const addUserRoom = (
     { merge: true }
   );
 
+  // 📘 userRooms/{uid}/rooms/{roomId}/
+  const roomRef = doc(db, `${collection}/${uid}/rooms/${room.id}`);
+  const memberPreview = room.members.slice(0, 4).map((member) => ({
+    uid: member.uid,
+    nickName: member.nickName,
+    imgSrc: member.imgSrc,
+  }));
+  const userRoomData: UserRoomsType = {
+    id: room.id,
+    title: room.title,
+    desc: room.desc,
+    category: room.category,
+    visibility: room.visibility,
+    createdAt: room.createdAt,
+    owner: room.owner,
+    role: 'owner', // 내가 만든 방
+    favorite: false,
+    memberCount: 4, // 4명 정도만 간략하게
+    memberPreview // 불러오는 4명 [{...}]
+  };
+
+  tx.set(roomRef, userRoomData); 
+  
   // UserRoomStats
 };
 

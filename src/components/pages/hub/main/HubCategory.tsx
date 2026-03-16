@@ -1,12 +1,10 @@
 import { Carousel } from '@/components/element/carousel/Carousel';
 import { Count } from '@/components/element/count/Count';
 import { TitlePoint } from '@/components/ui/text/TitlePoint';
-import { hubTotalData } from '@/data/hub/hubData';
 import { useAuthUser } from '@/hook/auth/useAuthUser';
 import { useUserHubStats } from '@/hook/hub/useUserHubStats';
 import { cn } from '@/utils/common';
 import { getHubUid } from '@/utils/hun/common';
-import { userTotalMerge } from '@/utils/hun/hubStats';
 import { capitalizeWords } from '@/utils/textUtils';
 import styles from './HubCategory.module.scss';
 import { HubCategoryIconMap } from './HubCategoryIconMap';
@@ -15,10 +13,7 @@ import { HubCategorySkeleton } from './HubCategorySkeleton';
 // 🔹 카테고리 - 클릭 시 ContLists 필터 적용하여 보여진다
 export const HubCategory = () => {
   const { data: user } = useAuthUser();
-  const { statsData, isLoading } = useUserHubStats(getHubUid(user), !user);
-  const filterData = hubTotalData //userTotalMerge(hubTotalData, statsData);
-
-  console.log(filterData);
+  const { totalData, isLoading } = useUserHubStats(getHubUid(user), !user);
 
   return (
     <div className={styles.hubCategory}>
@@ -34,7 +29,7 @@ export const HubCategory = () => {
         }}
         slideClaseeName={styles.categoryItem}
       >
-        { filterData?.map((totalItem) => (
+        { totalData?.map((totalItem) => (
           <div className={styles.totalItem} key={totalItem.totalCategory}>
             <span className={styles.categoryTag}>{totalItem.totalTitle}</span>
             <Carousel
