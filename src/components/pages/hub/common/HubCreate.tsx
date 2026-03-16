@@ -38,6 +38,13 @@ export const HubCreate = ({ title, className }: HubCreatePropsType) => {
     desc?: boolean;
   }>({});
 
+  // 개발전 방 생성 막기 단계
+  const [testModal, setTestModal] = useToggle(false);
+
+  const handleTestModalClose = () => {
+    setTestModal.off();
+  }
+
   // 초기화
   const resetForm = () => {
     titleRef.current?.reset();
@@ -76,6 +83,12 @@ export const HubCreate = ({ title, className }: HubCreatePropsType) => {
       imgSrc: '#E1D9BC',
     }
 
+    // 개발 단계 진행 중. 로컬에서만 가능 그 외 일시 금지 
+    if (window.location.hostname !== 'localhost') {
+      setTestModal.on();
+      return;
+    }
+    
     try {
       setIsLoading(true);
       const isGuest = !user; // 비회원인경우
@@ -115,6 +128,17 @@ export const HubCreate = ({ title, className }: HubCreatePropsType) => {
         <i><IconFolderAdd /></i>
         <span>{title}</span>
       </Btn>
+
+      {/* 개발 전 단계 로컬 외 막기 */}
+      {testModal && (
+        <Modal onClose={handleTestModalClose}>
+          <div>
+            ❌ 개발 진행 중으로 <br />
+            방 생성을 진행할 수 없어요.. 😢
+          </div>
+        </Modal>
+      )}
+
       {isModal && (
         <Modal
           $width={450}
