@@ -5,7 +5,7 @@ import type { AppDispatch, RootState } from "@/store/redux/store";
 import type { UserRoomStats } from "@/types/hub/firebase";
 import { unflatten } from "@/utils/firebaseStore";
 import { isColName } from "@/utils/hun/common";
-import { userTotalMerge, defaultStats, mergeUserStats } from "@/utils/hun/hubStats";
+import { defaultStats, mergeUserStats, userTotalMerge } from "@/utils/hun/hubStats";
 import { doc, onSnapshot } from "firebase/firestore";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";

@@ -105,7 +105,17 @@ export function userTotalMerge(
   });
 }
 
-
+// 🔹 user 전체 목록 category, id별 total 구하기
+export const getHubTotal = (
+  totalData: HubTotalType[] | null,
+  category: string,
+  id: string
+) => {
+  const resultData = totalData
+    ?.find(v => v.totalCategory === category)
+    ?.totalLists?.find(v => v.id === id)?.total ?? 0;
+  return resultData
+}
 
 // firebase 
 export const defaultStats: UserRoomStats = {

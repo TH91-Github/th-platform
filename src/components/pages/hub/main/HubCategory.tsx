@@ -14,7 +14,7 @@ import { HubCategorySkeleton } from './HubCategorySkeleton';
 export const HubCategory = () => {
   const { data: user } = useAuthUser();
   const { totalData, isLoading } = useUserHubStats(getHubUid(user), !user);
-
+  
   return (
     <div className={styles.hubCategory}>
       <HubCategorySkeleton />
@@ -61,7 +61,11 @@ export const HubCategory = () => {
                   <div className={styles.totalNum}>
                     <i>{HubCategoryIconMap[`${totalItem.totalCategory}${capitalizeWords(listItem.id)}`]}</i>
                     <span className={styles.num}>
-                      <Count end={listItem.total} useComma={true} />
+                      <Count 
+                        end={listItem.total} 
+                        useComma={true} 
+                        duration={500}
+                      />
                     </span>
                   </div>
                   <p className={styles.desc}>{listItem.desc}</p>

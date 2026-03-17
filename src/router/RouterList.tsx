@@ -18,6 +18,7 @@ import { PortfolioPage } from "@/pages/portfolio/PortfolioPage";
 import { RunPage } from "@/pages/run/RunPage";
 import { GUIDE_LIST } from "./guide/GuideLists";
 import { GuestOnlyRoute, UserProtectedRoute } from "./ProtectedRoute";
+import { TestPage } from "@/components/pages/test/TestPage";
 
 export const routerList = [
   {
@@ -28,6 +29,15 @@ export const routerList = [
       title: 'Guide',
     },
     children: [...GUIDE_LIST],
+  },
+  {
+    id: 'test-page',
+    path: '/testPage',
+    element: <TestPage />,
+    handle: {
+      title: '테스트 공간',
+    },
+    hideNav: true,
   },
   {
     id: 'notice',

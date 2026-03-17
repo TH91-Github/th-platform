@@ -2,12 +2,12 @@ import type { HubTotalType } from "@/types/hub/hub";
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface HubState {
-  totalData: HubTotalType[] | null;
+  totalData: HubTotalType[];
   isLoading: boolean;
 }
 
 const initialState: HubState = {
-  totalData: null,
+  totalData: [],
   isLoading: true,
 };
 
@@ -20,7 +20,7 @@ export const hubSlice = createSlice({
       state.isLoading = false;
     },
     actionClearHubState: (state) => {
-      state.totalData = null;
+      state.totalData = [];
       state.isLoading = true;
     },
   },

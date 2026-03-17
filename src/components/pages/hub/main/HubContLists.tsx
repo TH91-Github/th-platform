@@ -5,8 +5,10 @@ import { Loading } from '@/components/ui/effect/Loading';
 import { hubCategoryData, hubTable } from '@/data/hub/hubData';
 import { useAuthUser } from '@/hook/auth/useAuthUser';
 import { useUserRooms } from '@/hook/hub/useUserRooms';
+import { selectUserHub } from '@/store/redux/store';
 import { dateFormat } from '@/utils/date/dateFormat';
 import { getHubUid } from '@/utils/hun/common';
+import { getHubTotal } from '@/utils/hun/hubStats';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -14,33 +16,39 @@ import styles from './HubContLists.module.scss';
 
 // 🔹 방 목록 
 export const HubContLists = () => {
-  // const navigate = useNavigate();
-  // const { data: user } = useAuthUser();
-  // const stats = useSelector(selectHubTotal);
-  // const total = stats?.total ?? 0;
-  // const { roomData, fetchMore, isLoading, isFetching} = useUserRooms(getHubUid(user), !user);
-  // const [page, setPage] = useState(1);
-  // const start = (page - 1) * 10;
-  // const viewData = roomData.slice(start, start + 10);
+  const navigate = useNavigate();
+  const { data: user } = useAuthUser();
+  const { totalData, isLoading : stateLoading } = useSelector(selectUserHub);
+  const total = getHubTotal(totalData, 'total', 'all');
+  const { roomData, fetchMore, isLoading, isFetching} = useUserRooms(getHubUid(user), !user);
+  const [page, setPage] = useState(1);
+  const viewNum = 5;
+  const start = (page - 1) * viewNum;
+  const viewData = roomData.slice(start, start + viewNum);
 
-  // useEffect(() => {
-  //   const need = page * 10;
-  //   if (roomData.length < need) {
-  //     fetchMore();
-  //   }
-  // }, [page, roomData.length, fetchMore]);
+  useEffect(() => {
+    const need = page * viewNum;
+    if (roomData.length < need) {
+      fetchMore();
+    }
+  }, [page, roomData.length, fetchMore]);
 
-  // const handleRoomOpen = (docId:string, category:string) => {
-  //   navigate(`/hub/${category}/${docId}`);
-  // }
-  // const categoryConversion = (categoryId:string) => {
-  //   const findVal = hubCategoryData.find(c => c.id === categoryId);
-  //   return  findVal ? findVal.title : '-';
-  // }
+  const handleRoomOpen = (docId:string, category:string) => {
+    navigate(`/hub/${category}/${docId}`);
+  }
+  const categoryConversion = (categoryId:string) => {
+    const findVal = hubCategoryData.find(c => c.id === categoryId);
+    return  findVal ? findVal.title : '-';
+  }
+
+  const onChangePagination = (page:number) => {
+    console.log(page)
+    setPage(page)
+  }
 
   return (
     <div className={styles.contLists}>
-      {/* { isLoading && roomData.length === 0 ? (
+      { isLoading && roomData.length === 0 ? (
         <Loading mode="local" />
       ) : (
         <div className={styles.tableWrap}>
@@ -85,11 +93,13 @@ export const HubContLists = () => {
           </div>
           <Pagination
             page={page}
-            totalPages={Math.ceil(total / 10)}
-            onChange={setPage}
+            totalPages={total}
+            viewCount={viewNum}
+            center={true}
+            onChange={onChangePagination}
           />
         </div>
-      )} */}
+      )}
     </div>
     
   )
