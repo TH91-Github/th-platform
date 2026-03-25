@@ -18,7 +18,7 @@ import { PortfolioPage } from "@/pages/portfolio/PortfolioPage";
 import { RunPage } from "@/pages/run/RunPage";
 import { GUIDE_LIST } from "./guide/GuideLists";
 import { GuestOnlyRoute, UserProtectedRoute } from "./ProtectedRoute";
-import { TestPage } from "@/components/pages/test/TestPage";
+import { TestPage } from "@/pages/test/TestPage";
 
 export const routerList = [
   {
