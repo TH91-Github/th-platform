@@ -39,10 +39,9 @@
 - 하나의 컴포넌트에서 사용하는 경우 같은 폴더 내 type.ts 생성하여 관리
 
 ### 🔷 상태관리 참고
-둘 다 사용하는 이유는 둘 다 사용하고 경험하여 사용 방법을 숙지하고 활용하기 위해서 입니다.
-Redux와 Zustand를 각각의 목적에 맞게 분리하여 함께 사용하고 있습니다.
-- redux : api 사용 중심 데이터 값 
-- zustand : api 사용하지 않는 UI 상태 프로젝트 내부 값
+전역 앱 상태는 Zustand, 서버 상태와 캐싱은 React Query로 분리해 관리하고 있습니다.
+- zustand : 인증, UI, 실시간 전역 상태
+- react-query : 서버 데이터 조회, 캐싱, 비동기 상태 관리
 
 <hr /> 
 
@@ -53,8 +52,7 @@ Redux와 Zustand를 각각의 목적에 맞게 분리하여 함께 사용하고 
 | **번들러 / 개발환경** | `vite` | 빠른 개발 서버 및 빌드 환경 구성 |
 | **타입** | `typescript` | TypeScript 사용 |
 | **라우팅** | `react-router-dom` | SPA 구조의 라우팅 처리 및 페이지 이동 관리 |
-| **상태 관리** | `@reduxjs/toolkit`, `react-redux` | Redux Toolkit 기반 전역 상태 (API 전용 상태) 관리 |
-|  | `zustand` | UI /로컬 상태 관리 라이브러리 |
+| **상태 관리** | `zustand` | 전역 앱 상태 및 UI 상태 관리 |
 | **서버 상태 관리** | `@tanstack/react-query` | 서버 데이터 캐싱, 비동기 상태 관리 및 API | 
 | **스타일링** | `sass, Module` | 전역 스타일 및 공통 스타일 관리를 위한 SCSS 사용 |
 |  | `@emotion/react`, `@emotion/styled` | CSS-in-JS 방식의 컴포넌트 단위 스타일링 |

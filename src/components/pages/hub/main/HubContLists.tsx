@@ -5,12 +5,11 @@ import { Loading } from '@/components/ui/effect/Loading';
 import { hubCategoryData, hubTable } from '@/data/hub/hubData';
 import { useAuthUser } from '@/hook/auth/useAuthUser';
 import { useUserRooms } from '@/hook/hub/useUserRooms';
-import { selectUserHub } from '@/store/redux/store';
+import { useUserHub } from '@/store/zustand/hub/hubStore';
 import { dateFormat } from '@/utils/date/dateFormat';
 import { getHubUid } from '@/utils/hun/common';
 import { getHubTotal } from '@/utils/hun/hubStats';
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import styles from './HubContLists.module.scss';
 
@@ -18,9 +17,9 @@ import styles from './HubContLists.module.scss';
 export const HubContLists = () => {
   const navigate = useNavigate();
   const { data: user } = useAuthUser();
-  const { totalData, isLoading : stateLoading } = useSelector(selectUserHub);
+  const { totalData } = useUserHub();
   const total = getHubTotal(totalData, 'total', 'all');
-  const { roomData, fetchMore, isLoading, isFetching} = useUserRooms(getHubUid(user), !user);
+  const { roomData, fetchMore, isLoading } = useUserRooms(getHubUid(user), !user);
   const [page, setPage] = useState(1);
   const viewNum = 5;
   const start = (page - 1) * viewNum;

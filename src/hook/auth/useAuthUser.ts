@@ -1,13 +1,12 @@
 import { auth } from "@/firebase";
-import { useAppSelector } from "@/hook/store/useRedux";
 import { useUserQuery } from "@/lib/query/useUserQuery";
-import { selectAuthUser } from "@/store/redux/store";
+import { useAuthUser as useAuthUserStore } from "@/store/zustand/auth/authStore";
 import { signOut } from "firebase/auth";
 import { useEffect } from "react";
 
-// 🔹 redux : 유저 간단 정보만, query: data 역할 분리.
+// 🔹 유저 간단 정보는 store, userDB 데이터는 query 역할 분리.
 export const useAuthUser = () => {
-  const authUser = useAppSelector(selectAuthUser);
+  const authUser = useAuthUserStore();
   const query = useUserQuery(authUser?.uid);
 
   // 🔹 userDB 없으면 로그아웃

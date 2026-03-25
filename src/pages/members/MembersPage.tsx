@@ -3,15 +3,12 @@ import { Login } from '@/components/pages/members/Login';
 import { SignUp } from '@/components/pages/members/SignUp';
 import { RotatingSphere } from '@/components/ui/effect/RotatingSphere';
 import { useDelayRenderToggle } from '@/hook/common/useDelayRenderToggle';
-import { useAppSelector } from '@/hook/store/useRedux';
-import { selectAuthUser } from '@/store/redux/store';
 import { useIsMobile } from '@/store/zustand/common/commonStore';
 import { cn } from '@/utils/common';
 import styles from './MembersPage.module.scss';
 
 export const MembersPage = () => {
   const isMobile = useIsMobile();
-  const isUser = useAppSelector(selectAuthUser);
   const delay = !isMobile ? 1300 : 300; // mobile cover 사용 x
   // delay css와 맞춰야함 0.1s 빠르게 보이는 모션이 있기 때문.
   const { isRender, isOpen, toggle, } = useDelayRenderToggle({ delay: delay }); 

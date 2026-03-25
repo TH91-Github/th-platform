@@ -2,14 +2,12 @@ import { auth, fireDB } from "@/firebase";
 import { deleteUser } from "firebase/auth";
 import { deleteDoc, doc, getDoc, runTransaction } from "firebase/firestore";
 import { useCallback } from "react";
-import { useDispatch } from "react-redux";
-import { actionUserLogout } from "@/store/redux/sliceActions";
-import { clearSession, SESSION_KEY } from "@/utils/auth/session";
+import { useAuthStore } from "@/store/zustand/auth/authStore";
+import { clearSession } from "@/utils/auth/session";
 import { useAddToast } from "@/store/zustand/common/toastStore";
 
 // 🔹 firebase user auth
 export const useAuthAction = () => {
-  const dispatch = useDispatch();
   const addToast = useAddToast();
 
   // 🔹 계정 삭제
@@ -62,7 +60,7 @@ export const useAuthAction = () => {
       // firebase auth 삭제
       await deleteUser(user);
 
-      dispatch(actionUserLogout());
+      useAuthStore.getState().logout();
       // 로컬 스토리지 platform 관련 삭제
       Object.keys(localStorage).forEach((key) => {
         if (key.startsWith("platform")) {
@@ -72,19 +70,23 @@ export const useAuthAction = () => {
       clearSession();
 
       addToast("계정이 삭제되었습니다.");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("계정 삭제 실패:", error);
 
-      if (error.code === "auth/requires-recent-login") {
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "code" in error &&
+        error.code === "auth/requires-recent-login"
+      ) {
         addToast("보안을 위해 다시 로그인 후 시도해주세요.", "error");
       } else {
         addToast("계정 삭제 중 오류가 발생했습니다.", "error");
       }
     }
-  }, [dispatch, addToast]);
+  }, [addToast]);
 
   return {
     removeAccount,
   };
 };
-
