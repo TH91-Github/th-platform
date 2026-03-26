@@ -71,10 +71,13 @@ const DEMO_DATA:AccordionDataType[] = [
   },
 ]
 const EX_CODE = stripIndent(`
-  <Accordion data={data}>
-    {(accItem, accIdx, actives) => ({ // data 기준 - item, idx, active(활성 번호)
+  <Accordion
+    data={data}
+    defaultActive={[0]}
+    onActiveChange={(indexes) => console.log(indexes)}
+    renderItem={(accItem, { index, isActive }) => ({ 
       heading: {
-        btnTit: 타이틀, // 버튼 속성 title
+        title: 타이틀,
         jsx:(<> // button 자식으로 들어가는 구조
           <span className="tit">타이틀</span>
         </>),
@@ -84,7 +87,7 @@ const EX_CODE = stripIndent(`
         jsx 구조 // 펼쳐 졌을 때 확인 영역
       )
     })}
-  </Accordion>` 
+  />` 
 );
 export const AccordionDetail = () => {
 
@@ -99,8 +102,8 @@ export const AccordionDetail = () => {
           className={styles.tit}
         />
         <p className={styles.desc}>아코디언 메뉴 기능</p>
-        <p className={styles.desc}>단일, 멀티, 부드럽게 옵션 선택 가능</p>
-        <p className={styles.desc}></p>
+        <p className={styles.desc}>단일, 멀티, 초기 활성, 부드러운 전환 옵션 지원</p>
+        <p className={styles.desc}>renderItem과 active change 콜백으로 확장성을 높였습니다.</p>
         {/* <ul className={cn(styles.linkLists, 'bullet-lists')}>
           <li>
             <OutLink
@@ -128,15 +131,19 @@ export const AccordionDetail = () => {
                   <Accordion
                     data={demoItem.lists} 
                     mode={demoItem.option?.mode ?? 'multiple'}
-                    initActive={demoItem.option?.initActive ?? undefined}
+                    defaultActive={demoItem.option?.initActive ?? undefined}
                     smoothAni={demoItem.option?.smoothAni}
                     className={styles.accordion}
-                  >
-                    {(accItem, accIdx) => ({
+                    onActiveChange={(indexes) => {
+                      console.log(`${demoItem.tit}:`, indexes);
+                    }}
+                    renderItem={(accItem, { index, isActive }) => ({
                       heading: {
-                        btnTit: accItem.title,
+                        title: `${accItem.title} - ${index + 1}`,
                         jsx:(<> 
-                          <span className="tit">{accItem.title} - {accIdx+1}</span>
+                          <span className="tit">
+                            {accItem.title} - {index + 1} {isActive ? '(open)' : ''}
+                          </span>
                         </>),
                       },
                       content: 
@@ -147,7 +154,7 @@ export const AccordionDetail = () => {
                           </div>)
                         : null
                     })}
-                  </Accordion>
+                  />
                 </div>
               </div>
             </div>

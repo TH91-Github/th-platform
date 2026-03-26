@@ -1,81 +1,143 @@
-import { useCallback, useEffect, useState } from 'react';
-import styles from './Accordion.module.scss';
-import { cn } from '@/utils/common';
-import { MemoAccordionItem } from './AccordionItem';
 import { IconFolderEmpty } from '@/assets/icon';
+import { cn } from '@/utils/common';
+import { useCallback, useId, useState } from 'react';
+import { MemoAccordionItem } from './AccordionItem';
+import styles from './Accordion.module.scss';
 
-// 🔹 아코디언 메뉴
-// 🔺 개선 필요한 컴포넌트 
-export interface AccdionItemTitlePropsType {
-  btnTit: string;
-  jsx?: React.ReactNode; // jsx - 있는경우 btnTit 대신 html 구조 사용
-  className?:string;
+export interface AccordionItemHeadingProps {
+  title?: string;
+  btnTit?: string;
+  jsx?: React.ReactNode;
+  className?: string;
 }
+
+export interface AccordionRenderResult {
+  heading: AccordionItemHeadingProps;
+  content?: React.ReactNode;
+  disabled?: boolean;
+}
+
+export interface AccordionRenderContext {
+  index: number;
+  isActive: boolean;
+  activeIndexes: number[];
+  toggle: () => void;
+}
+
 interface AccordionProps<T> {
   data: T[];
-  mode?: "single" | "multiple"; // 하나만 열기 or 각 open
+  mode?: 'single' | 'multiple';
   className?: string;
-  initActive?: number[]; // 초기 활성화 필요한 목록
-  allClose?: boolean,
-  smoothAni?: boolean; // 부드럽게
+  initActive?: number[];
+  defaultActive?: number[];
+  activeIndexes?: number[];
+  smoothAni?: boolean;
+  itemKey?: (item: T, index: number) => React.Key;
+  onActiveChange?: (indexes: number[]) => void;
   accOpt?: {
-    titFull?: boolean,
+    titFull?: boolean;
     openIcon?: 'arrow' | 'none';
-  }
-  children: (accItem: T, accIdx: number, actives:number[]) => { // 부모에게 각 item, idx, active 활성 번호
-    heading: AccdionItemTitlePropsType;  // 아코디언 타이틀 (버튼)
-    content?: React.ReactNode; // 하위 메뉴 (아코디언 내부 컨텐츠)
   };
+  renderItem?: (item: T, context: AccordionRenderContext) => AccordionRenderResult;
+  children?: (item: T, index: number, activeIndexes: number[]) => AccordionRenderResult;
 }
+
+const normalizeIndexes = (indexes: number[], mode: 'single' | 'multiple') => {
+  if (mode === 'single') {
+    return indexes.length > 0 ? [indexes[0]] : [];
+  }
+  return [...new Set(indexes)];
+};
+
+const isSameIndexes = (prev: number[], next: number[]) => (
+  prev.length === next.length && prev.every((item, index) => item === next[index])
+);
+
+const toggleIndexes = (current: number[], index: number, mode: 'single' | 'multiple') => {
+  const isActive = current.includes(index);
+
+  if (mode === 'single') {
+    return isActive ? [] : [index];
+  }
+
+  return isActive
+    ? current.filter((item) => item !== index)
+    : [...current, index];
+};
+
+// 🔹 아코디언 메뉴
 export const Accordion = <T,>({
   data,
-  mode = "multiple",
+  mode = 'multiple',
   className,
   initActive = [],
-  allClose,
+  defaultActive,
+  activeIndexes: controlledActiveIndexes,
   smoothAni = false,
+  itemKey,
+  onActiveChange,
   accOpt = { titFull: true, openIcon: 'arrow' },
+  renderItem,
   children,
 }: AccordionProps<T>) => {
-  const [isActives, setIsActives] = useState<number[]>(
-    mode === 'single' ? (initActive.length > 0 ? [initActive[0]] : []) : [...initActive]
+  const accordionId = useId();
+  const isControlled = controlledActiveIndexes !== undefined;
+  const initialActiveIndexes = normalizeIndexes(defaultActive ?? initActive, mode);
+  const [uncontrolledActiveIndexes, setUncontrolledActiveIndexes] = useState<number[]>(initialActiveIndexes);
+  const activeIndexes = isControlled
+    ? normalizeIndexes(controlledActiveIndexes, mode)
+    : uncontrolledActiveIndexes;
+
+  const handleToggle = useCallback((index: number) => {
+    const nextIndexes = toggleIndexes(activeIndexes, index, mode);
+
+    if (!isControlled && !isSameIndexes(uncontrolledActiveIndexes, nextIndexes)) {
+      setUncontrolledActiveIndexes(nextIndexes);
+    }
+
+    onActiveChange?.(nextIndexes);
+  }, [activeIndexes, isControlled, mode, onActiveChange, uncontrolledActiveIndexes]);
+
+  const resolveItem = useCallback(
+    (item: T, index: number) => {
+      const isActive = activeIndexes.includes(index);
+      const toggle = () => handleToggle(index);
+
+      if (renderItem) {
+        return renderItem(item, {
+          index,
+          isActive,
+          activeIndexes,
+          toggle,
+        });
+      }
+
+      if (children) {
+        return children(item, index, activeIndexes);
+      }
+
+      throw new Error('Accordion requires renderItem or children.');
+    },
+    [activeIndexes, children, handleToggle, renderItem]
   );
 
-  const handleChange = useCallback((index: number) => {
-    setIsActives(prevState => {
-      const isIndexActive = prevState.includes(index);
-      if (mode === 'single') {
-        return isIndexActive ? [] : [index];  // single 모드에서는 하나만 선택
-      }
-      return isIndexActive
-        ? prevState.filter(item => item !== index) // 삭제
-        : [...prevState, index];  // 추가
-    });
-  }, [setIsActives, mode]);
-
-  // initActive 변경
-  useEffect(() => {
-    if(allClose) setIsActives([])
-  }, [allClose]);
-  
   return (
-    <div
-      className={cn(
-        styles.accordionWrap,
-        className,
-      )}
-    >
+    <div className={cn(styles.accordionWrap, className)}>
       {data.length > 0 ? (
         <ul>
-          {data.map((accItem, accIdx) => {
-            const { heading, content } = children(accItem, accIdx, isActives);
+          {data.map((item, index) => {
+            const resolved = resolveItem(item, index);
+            const isActive = activeIndexes.includes(index);
+
             return (
               <MemoAccordionItem
-                key={accIdx}
-                isActive={isActives.includes(accIdx)}
-                onChange={() => handleChange(accIdx)}
-                heading={heading}
-                content={content}
+                key={itemKey ? itemKey(item, index) : index}
+                itemId={`${accordionId}-${index}`}
+                heading={resolved.heading}
+                content={resolved.content}
+                disabled={resolved.disabled}
+                isActive={isActive}
+                onChange={() => handleToggle(index)}
                 smoothAni={smoothAni}
                 accOpt={accOpt}
               />
@@ -83,12 +145,11 @@ export const Accordion = <T,>({
           })}
         </ul>
       ) : (
-        <div className={cn(styles.empty) }>
+        <div className={styles.empty}>
           <i className={styles.icon}><IconFolderEmpty /></i>
           <p className="tit"> 목록이 없습니다.</p>
         </div>
-      )
-      }
+      )}
     </div>
   );
 };

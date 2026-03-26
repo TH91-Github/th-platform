@@ -1,6 +1,6 @@
 import { hubTotalData } from "@/data/hub/hubData";
 import { fireDB } from "@/firebase";
-import { useHubStore, useUserHub } from "@/store/zustand/hub/hubStore";
+import { useHubStore, useHubIsLoading, useHubTotalData } from "@/store/zustand/hub/hubStore";
 import type { UserRoomStats } from "@/types/hub/firebase";
 import { unflatten } from "@/utils/firebaseStore";
 import { isColName } from "@/utils/hun/common";
@@ -37,5 +37,8 @@ export const useUserHubStats = (uid?: string, isGuest = false) => {
     return () => unsub();
   }, [uid, colName, defaultTotalData]);
 
-  return useUserHub();
+  const totalData = useHubTotalData();
+  const isLoading = useHubIsLoading();
+
+  return { totalData, isLoading };
 };

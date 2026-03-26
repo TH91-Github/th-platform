@@ -31,8 +31,4 @@ export const useAuthStore = create<AuthStoreType>((set) => ({
 }));
 
 export const useAuthUser = () => useAuthStore((state) => state.user);
-export const useAuthStatus = () =>
-  useAuthStore((state) => ({
-    user: state.user,
-    isAuthReady: state.isAuthReady,
-  }));
+export const useIsAuthReady = () => useAuthStore((state) => state.isAuthReady);

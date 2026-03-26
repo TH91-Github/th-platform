@@ -5,7 +5,7 @@ import { Loading } from '@/components/ui/effect/Loading';
 import { hubCategoryData, hubTable } from '@/data/hub/hubData';
 import { useAuthUser } from '@/hook/auth/useAuthUser';
 import { useUserRooms } from '@/hook/hub/useUserRooms';
-import { useUserHub } from '@/store/zustand/hub/hubStore';
+import { useHubTotalData } from '@/store/zustand/hub/hubStore';
 import { dateFormat } from '@/utils/date/dateFormat';
 import { getHubUid } from '@/utils/hun/common';
 import { getHubTotal } from '@/utils/hun/hubStats';
@@ -17,20 +17,25 @@ import styles from './HubContLists.module.scss';
 export const HubContLists = () => {
   const navigate = useNavigate();
   const { data: user } = useAuthUser();
-  const { totalData } = useUserHub();
+  const hubUid = getHubUid(user);
+  const totalData = useHubTotalData();
   const total = getHubTotal(totalData, 'total', 'all');
-  const { roomData, fetchMore, isLoading } = useUserRooms(getHubUid(user), !user);
+  const { roomData, fetchMore, hasMore, isLoading, isFetching } = useUserRooms(hubUid, !user);
   const [page, setPage] = useState(1);
   const viewNum = 5;
   const start = (page - 1) * viewNum;
   const viewData = roomData.slice(start, start + viewNum);
 
   useEffect(() => {
+    if (!hubUid) return;
+    if (isFetching) return;
+    if (hasMore === false) return;
+
     const need = page * viewNum;
     if (roomData.length < need) {
       fetchMore();
     }
-  }, [page, roomData.length, fetchMore]);
+  }, [fetchMore, hasMore, hubUid, isFetching, page, roomData.length]);
 
   const handleRoomOpen = (docId:string, category:string) => {
     navigate(`/hub/${category}/${docId}`);

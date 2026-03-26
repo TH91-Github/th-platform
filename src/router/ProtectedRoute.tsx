@@ -1,9 +1,10 @@
-import { useAuthStatus } from "@/store/zustand/auth/authStore";
+import { useAuthUser, useIsAuthReady } from "@/store/zustand/auth/authStore";
 import { Navigate, Outlet } from "react-router-dom";
 
 // 🔹 로그인(유저 정보 있는 경우)된 상태에서만 접근 가능.
 export const UserProtectedRoute = () => {
-  const { user, isAuthReady } = useAuthStatus();
+  const user = useAuthUser();
+  const isAuthReady = useIsAuthReady();
   if (!isAuthReady) {
     return null;
   }
@@ -16,7 +17,8 @@ export const UserProtectedRoute = () => {
 
 // 🔹 로그인 안 한 사람만 접근 가능
 export const GuestOnlyRoute = () => {
-  const { user, isAuthReady } = useAuthStatus();
+  const user = useAuthUser();
+  const isAuthReady = useIsAuthReady();
   if (!isAuthReady) {
     return null;
   }

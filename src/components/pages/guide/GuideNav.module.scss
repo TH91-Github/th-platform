@@ -35,6 +35,19 @@
   display:flex;
   align-items: center;
   gap:10px;
+  transition: var(--transition-color), var(--transition-bg), var(--transition-shadow);
+  &.current{
+    color:var(--color-point);
+    .icon{
+      color:var(--color-point);
+    }
+    .navTit{
+      color:var(--color-point);
+    }
+  }
+  &.expanded{
+    color:var(--color-point);
+  }
 }
 .navLength{
   display:inline-block;
@@ -75,8 +88,11 @@
   &[class*="active"]{ 
     font-weight:600;
     background-color: var(--color-origin);
-    color: var(--color-title);
+    color: var(--color-point);
     box-shadow: var(--box-shadow);
+    .navTit{
+      color:var(--color-point);
+    }
     .icon {
       color:var(--color-point);
     }
@@ -84,6 +100,13 @@
 }
 @include tablet-pc{
   .nav {
+    &:not(.fold){
+      & > ul > [class*="open"]{
+        .navBtn{
+          color:var(--color-point);
+        }
+      }
+    }
     &.fold {
       margin-top:20px;
       .depth{
@@ -99,9 +122,15 @@
       }
       .navBtn{
         justify-content: center;
-      }
-      [class*="_arrowIcon_"]{
-        display:none;
+        &.expanded{
+          color:var(--color-sub-text);
+        }
+        &.current{
+          color:var(--color-point);
+          .icon{
+            color:var(--color-point);
+          }
+        }
       }
       .navLink{
         justify-content: center;
@@ -120,11 +149,23 @@
 
 
 [data-theme='dark'] {
+  .navBtn{
+    &.current{
+      color:var(--color-point);
+      .navTit{
+        color:var(--color-point);
+      }
+    }
+  }
   .navLink{
     &[class*="active"]{ 
       background-color: $color-dark-bg-on;
+      color:var(--color-point);
       .icon {
         color: var(--color-point);
+      }
+      .navTit{
+        color:var(--color-point);
       }
     }
   }

@@ -23,8 +23,5 @@ export const useHubStore = create<HubStoreType>((set) => ({
   clearHubState: () => set(initialState),
 }));
 
-export const useUserHub = () =>
-  useHubStore((state) => ({
-    totalData: state.totalData,
-    isLoading: state.isLoading,
-  }));
+export const useHubTotalData = () => useHubStore((state) => state.totalData);
+export const useHubIsLoading = () => useHubStore((state) => state.isLoading);
