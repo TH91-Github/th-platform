@@ -26,6 +26,7 @@ export const HooksGuidePage = () => {
         <SearchLists 
           data={hookData}
           searchTitle="Hooks"
+          pageSize={12}
           onClick={handleItemClick}
         />
         { popupData && (

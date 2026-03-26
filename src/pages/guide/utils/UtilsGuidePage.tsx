@@ -25,6 +25,7 @@ export const UtilsGuidePage = () => {
         <SearchLists 
           data={utilData}
           searchTitle="Util"
+          pageSize={12}
           onClick={handleItemClick}
         />
         { popupData && (

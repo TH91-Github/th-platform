@@ -65,8 +65,46 @@ export const elementData: GuideDataType[] = [
     keyword: ['calendar', '일정','캘린더','달력','일정선택','날짜','요일','기간'],
     link: ''
   },
-
-  
+  {
+    id: 'breadcrumb',
+    title: 'Breadcrumb',
+    desc: '현재 경로를 표시하는 브레드크럼',
+    category: 'Navigation',
+    keyword: ['breadcrumb', '브레드크럼', '경로 표시', 'navigation', '현재 위치'],
+    link: ''
+  },
+  {
+    id: 'count',
+    title: 'Count',
+    desc: '숫자 증가 애니메이션 컴포넌트',
+    category: 'Display',
+    keyword: ['count', '카운트', '숫자 애니메이션', 'counter', 'number'],
+    link: ''
+  },
+  {
+    id: 'form',
+    title: 'Form Controls',
+    desc: '입력을 제외한 체크박스, 스위치, 셀렉트 컴포넌트',
+    category: 'Form',
+    keyword: ['form', 'checkbox', 'switch', 'select', '폼', '체크박스', '셀렉트'],
+    link: ''
+  },
+  {
+    id: 'highlight',
+    title: 'Highlight',
+    desc: '코드 및 텍스트 하이라이트 컴포넌트',
+    category: 'Display',
+    keyword: ['highlight', 'code', 'text highlight', '코드 하이라이트', '텍스트 강조'],
+    link: ''
+  },
+  {
+    id: 'pagination',
+    title: 'Pagination',
+    desc: '페이지 번호 이동 컴포넌트',
+    category: 'Navigation',
+    keyword: ['pagination', '페이지네이션', 'page', '목록 이동', 'next prev'],
+    link: ''
+  },
 ]
 
 export const moduleData: GuideDataType[] = [
@@ -76,6 +114,14 @@ export const moduleData: GuideDataType[] = [
     desc: '공통 검색 모듈',
     category: 'Module',
     keyword: ['search', 'module', '검색', '하이라이트', 'input', '찾기', '써치', '모듈', '공통'],
+    link: ''
+  },
+  {
+    id: 'formModule',
+    title: 'Form Module',
+    desc: '입력과 제출 버튼을 묶은 공통 폼 모듈',
+    category: 'Module',
+    keyword: ['form module', '폼 모듈', '회원가입 폼', '로그인 폼', 'input group'],
     link: ''
   },
 ]

@@ -35,6 +35,7 @@ export const ComponentsGatePage = () => {
     <SearchLists 
       data={COMPONENT_DATA[category]}
       searchTitle={capitalizeWords(category)}
+      pageSize={12}
       onClick={handleItemClick}
     />
   )

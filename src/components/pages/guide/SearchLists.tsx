@@ -1,3 +1,4 @@
+import { Pagination } from '@/components/element/pagination/Pagination';
 import { GuideSearch } from '@/components/pages/guide/GuideSearch';
 import type { SearchResultType } from '@/types/common';
 import type { GuideDataType } from '@/types/guide';
@@ -8,9 +9,11 @@ interface SearchListsPropsType{
   data: GuideDataType[],
   searchTitle?: string,
   onClick?: (e:string) => void,
+  pageSize?: number,
 }
-export const SearchLists = ({data, searchTitle, onClick}:SearchListsPropsType) => {
+export const SearchLists = ({data, searchTitle, onClick, pageSize = 0}:SearchListsPropsType) => {
   const [matchedIds, setMatchedIds] = useState<string[] | null>(null);
+  const [page, setPage] = useState(1);
   
   const handleItemClick = (id:string) => {
     onClick?.(id);
@@ -18,10 +21,20 @@ export const SearchLists = ({data, searchTitle, onClick}:SearchListsPropsType) =
 
   const onResult= (result:SearchResultType) => {
     setMatchedIds(result.matchIds);
+    setPage(1);
   }
   const visibleList = matchedIds
     ? data.filter(item => matchedIds.includes(item.id))
     : data;
+  const usePagination = pageSize > 0;
+  const totalPageCount = usePagination ? Math.ceil(visibleList.length / pageSize) : 1;
+  const safePage = usePagination
+    ? Math.min(page, Math.max(totalPageCount, 1))
+    : 1;
+  const start = (safePage - 1) * pageSize;
+  const pagedList = usePagination
+    ? visibleList.slice(start, start + pageSize)
+    : visibleList;
     
   return(
     <div className={styles.searchLists}>
@@ -33,8 +46,9 @@ export const SearchLists = ({data, searchTitle, onClick}:SearchListsPropsType) =
       />
       <div className={styles.listsWrap}>
         {visibleList.length > 0 ? (
+          <>
           <ul>
-            {visibleList.map(item => (
+            {pagedList.map(item => (
               <li key={item.id}>
                 <button
                   type="button"
@@ -48,6 +62,17 @@ export const SearchLists = ({data, searchTitle, onClick}:SearchListsPropsType) =
               </li>
             ))}
           </ul>
+          {usePagination && (
+            <Pagination
+              page={safePage}
+              totalPages={visibleList.length}
+              viewCount={pageSize}
+              pageBtnCount={5}
+              center={true}
+              onChange={setPage}
+            />
+          )}
+          </>
         ) : (
           <div className={styles.empty}>
             <p>일치하는 컴포넌트가 없어요.. 🥹</p>

@@ -1,11 +1,16 @@
 import { useEffect, useMemo } from "react";
 import { NotLoad } from "../NotLoad";
 import { AccordionDetail } from "./detail/AccordionDetail";
+import { BreadcrumbDetail } from "./detail/BreadcrumbDetail";
 import { BtnDetail } from "./detail/BtnDetail";
 import { CalendarDetail } from "./detail/CalendarDetail";
 import { CarouselDetail } from "./detail/CarouselDetail";
+import { CountDetail } from "./detail/CountDetail";
+import { FormDetail } from "./detail/FormDetail";
+import { HighlightDetail } from "./detail/HighlightDetail";
 import { InputDetail } from "./detail/InputDetail";
 import { ModalDetail } from "./detail/ModalDetail";
+import { PaginationDetail } from "./detail/PaginationDetail";
 import { TabButtonDetail } from "./detail/TabButtonDetail";
 import { ToastDetail } from "./detail/ToastDetail";
 
@@ -26,6 +31,11 @@ export const ElementLoad = ({id, onNotFound}:ElementLoadPropsType) => {
     accordion: <AccordionDetail />,
     input: <InputDetail />,
     calendar:<CalendarDetail />,
+    breadcrumb: <BreadcrumbDetail />,
+    count: <CountDetail />,
+    form: <FormDetail />,
+    highlight: <HighlightDetail />,
+    pagination: <PaginationDetail />,
   }), []);
 
   // 일치하지 않는 경우 NotView 컴포넌트 

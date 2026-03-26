@@ -161,4 +161,84 @@ export const hookData: GuidePopupDataType[] = [
         } = useDelayRenderToggle({ duration: 1000 }); `
     },
   },
+  {
+    id: 'location-path',
+    title: 'useLocationPath',
+    desc: '현재 pathname을 기준으로 매칭 데이터와 경로 정보 추출',
+    category: 'router',
+    keyword: ['useLocationPath', 'pathname', 'route match', '현재 경로', 'router'],
+    link: '',
+    popInfo: {
+      tit: 'useLocationPath(data, idKey, index?)',
+      desc: [
+        'pathname을 분해해서 특정 depth의 값을 기준으로 데이터와 매칭합니다.',
+        '현재 항목, 인덱스, parentPath, currentPath를 함께 반환합니다.',
+      ],
+      code: `
+        const { locationIdx, locationItem, parentPath, currentPath } =
+          useLocationPath(guideLists, 'id');
+      `
+    },
+  },
+  {
+    id: 'match-item',
+    title: 'useMatchItem / useMatchItems',
+    desc: '배열 데이터에서 단일 또는 다중 매치 항목 찾기',
+    category: 'data',
+    keyword: ['useMatchItem', 'useMatchItems', 'find', 'filter', '매치'],
+    link: '',
+    popInfo: {
+      tit: 'useMatchItem / useMatchItems',
+      desc: [
+        'data 배열에서 idKey와 findVal 기준으로 첫 번째 또는 모든 일치 항목을 찾습니다.',
+        '검색 결과나 선택된 데이터 매칭에 사용하기 좋습니다.',
+      ],
+      code: `
+        const { matchIdx, matchItem } = useMatchItem({
+          data, idKey: 'id', findVal: 'toast'
+        });
+
+        const { matchIdxs, matchItems } = useMatchItems({
+          data, idKey: 'category', findVal: 'Overlay'
+        });
+      `
+    },
+  },
+  {
+    id: 'page-title',
+    title: 'usePageTitle',
+    desc: '현재 route handle.title 기준으로 document.title 설정',
+    category: 'router',
+    keyword: ['usePageTitle', 'document.title', 'route handle', '페이지 제목'],
+    link: '',
+    popInfo: {
+      tit: 'usePageTitle()',
+      desc: [
+        'react-router의 matches와 handle.title을 읽어서 document.title을 갱신합니다.',
+        '동적 params title 함수도 지원합니다.',
+      ],
+      code: `
+        usePageTitle();
+        // route handle.title 기준으로 문서 제목 갱신
+      `
+    },
+  },
+  {
+    id: 'scroll-top',
+    title: 'useScrollToTop',
+    desc: '라우트 이동 시 화면을 최상단으로 이동',
+    category: 'scroll',
+    keyword: ['useScrollToTop', 'scroll top', 'route change', 'lenis'],
+    link: '',
+    popInfo: {
+      tit: 'useScrollToTop()',
+      desc: [
+        'pathname 변경 시 최상단으로 스크롤합니다.',
+        'Lenis가 있으면 Lenis를 우선 사용하고, 없으면 window.scrollTo를 사용합니다.',
+      ],
+      code: `
+        useScrollToTop();
+      `
+    },
+  },
 ]
